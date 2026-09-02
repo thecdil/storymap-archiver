@@ -1,6 +1,9 @@
 # scaffolded per-story standalone projects (extractor CLI output)
 /output/
 
+# raw ArcGIS API response cache, keyed by appid
+/.cache/
+
 # dependencies
 node_modules/
 

@@ -142,38 +142,123 @@ docs/
       but a clear terminal error (not a silent skip) for 404/403 on anything
       the story references.
 
-## Phase 3 — Normalize into a story manifest
+## Phase 3 — Normalize into a story manifest ✅
 
-- [ ] Define our own manifest schema (title, description, credit/license,
+- [x] Define our own manifest schema (title, description, credit/license,
       theme colors/fonts, ordered list of sections with a small closed set of
       normalized types: `cover`, `immersive`, `panel`, `credits`, `map`, ...).
-- [ ] Write one normalizer per observed Esri section/background/media type,
+- [x] Write one normalizer per observed Esri section/background/media type,
       starting with the confirmed set: `cover`, `immersive` w/ `image`/`color`/
       `webmap` backgrounds, image media, and the trailing credits section.
-- [ ] Add a **strict fallback**: any section/background/media `type` not
+- [x] Add a **strict fallback**: any section/background/media `type` not
       explicitly handled must produce a visible warning in the CLI output and
       a placeholder marker in the manifest (never drop it silently) — expect
       to extend normalizers as real-world stories surface new types beyond
       the 3 examples.
-- [ ] Unit test normalizers against cached fixtures for all 3 example appids.
+- [x] Unit test normalizers against cached fixtures for all 3 example appids.
 
-## Phase 4 — Asset localization
+Findings/deviations from the original plan:
 
-- [ ] Download every item resource and every external image URL referenced
+- Real section types observed (via cached raw JSON, not just the earlier
+  paraphrased API summaries) are `cover`, `title`, `sequence`, `immersive`,
+  `credits` — there is no bare `panel`/`map` type; `sequence` is the linear
+  narrative panel, and `immersive` sections carry their own `views[]`, each
+  with its own `background` (`color`/`image`/`webmap`) and `foreground.panels[]`.
+  A `webmap` background only ever appears inside an immersive view, holding a
+  `webmapId` plus per-view layer visibility overrides (`layerOverrides`) — the
+  actual webmap layer data is fetched once per `webmapId` (Phase 2) and shared
+  across every section/view that references it.
+- Block types observed inside `sequence`/`immersive` panels: `text`, `image`,
+  `image-gallery`. `credits` sections have their own panel-level types
+  (`blocks`, `credits`) — the inner shape of a populated `credits` array
+  entry has not been observed (empty in all 3 examples), so it's passed
+  through verbatim rather than guessed.
+- Implementation lives in `src/normalize/{image,blocks,background,manifest}.js`
+  rather than one file per section type under `src/normalize/sections/` — the
+  background/block/image normalizers are shared by every section kind, so
+  splitting by section type would have fragmented that shared logic for no
+  benefit at this size.
+- All 3 example stories normalize with **zero warnings**, confirmed both by
+  `test/normalize.test.js` (fixtures checked into `test/fixtures/<appid>/`)
+  and by re-running `bin/migrate.js` live. Synthetic tests also confirm an
+  unrecognized section/block type is flagged (warning + `kind: "unknown"`
+  passthrough) rather than silently dropped.
+
+## Phase 4 — Asset localization ✅
+
+- [x] Download every item resource and every external image URL referenced
       by the manifest into `output/<base>/assets/images/...`; rewrite manifest
       to relative paths.
-- [ ] For `webmap` sections: write each layer's snapshotted features as local
+- [x] For `webmap` sections: write each layer's snapshotted features as local
       `.geojson` files under `output/<base>/assets/data/...`; keep renderer
       metadata (symbology/popup fields) alongside so the client can restyle
       without needing the live service.
-- [ ] Vendor the chosen client-side map library (e.g. MapLibre GL JS) into
-      `assets/vendor/` at build time instead of loading from a CDN, in
-      keeping with the "no external dependencies" aim.
+- [x] Vendor the chosen client-side map library into `assets/vendor/` at
+      build time instead of loading from a CDN, in keeping with the "no
+      external dependencies" aim. **Chose Leaflet, not MapLibre GL** — every
+      basemap observed across the 3 reference stories is a plain raster
+      ArcGIS Tiled Map Service, not a vector tile style, so Leaflet's
+      `L.tileLayer` is a direct fit and the library is far smaller.
 - [ ] Video embeds (YouTube/Vimeo): cannot be self-hosted from this API.
-      Keep as an external iframe embed and clearly document this as the one
-      unavoidable exception (see Known limitations).
-- [ ] Skip re-downloading assets already present (content-hash or filename +
-      size check) so repeated runs are fast and resumable.
+      Deferred — no example story has actually surfaced a video block yet
+      (Phase 3's normalizer already flags one loudly as `kind: "unknown"`
+      rather than dropping it, so nothing is lost in the meantime; see
+      Known limitations).
+- [x] Skip re-downloading assets already present: item-resource and external
+      images/layers are both read through the same on-disk cache as Phase 2
+      (`src/cache/store.js`), keyed by filename or a hash of the URL, so a
+      re-run only re-fetches from ArcGIS what isn't already cached locally.
+
+Findings/deviations from the original plan, all discovered by actually
+running the full pipeline against the live "Closure of Syringa" example
+(the only one of the 3 with real `webmap` sections) rather than by
+inspection alone:
+
+- **Esri JSON → GeoJSON needs a real dependency, not hand-rolled code.**
+  Converting Esri polygon rings to GeoJSON correctly (ring winding order,
+  grouping holes with their outer ring) is a well-known, easy-to-get-subtly-
+  wrong problem; used Esri's own `@esri/arcgis-to-geojson-utils` rather than
+  reimplementing it. It only handles geometry *shape*, not reprojection.
+- **Web Mercator reprojection was missing and is required.** Inline "Feature
+  Collection" layers embedded directly in a webmap's JSON carry raw,
+  unprojected coordinates (observed wkid 102100). A live layer query with
+  `f=geojson` *is* reprojected to WGS84 by the ArcGIS REST API itself, but
+  inline features are not — `src/assets/geometry.js` reprojects Web Mercator
+  (102100/102113/3857) to WGS84 by hand, verified against a real feature
+  whose attributes happened to carry both its raw geometry and its true
+  lon/lat independently (exact match to 6 decimal places). Anything in an
+  unrecognized spatial reference is left alone and flagged with a warning
+  rather than silently mis-plotted.
+- **A single unfiltered "reference" layer can be enormous.** One webmap in
+  the Syringa story included a *nationwide* Census block-group layer
+  (217,178 features) purely for visual context, with no server-side
+  `definitionExpression` to scope it down — the first live run hung
+  attempting to page through all of it. Added a `MAX_FEATURES_PER_LAYER`
+  safety cap (5000; comfortably above nationwide county-level data at
+  ~3,200 features) in `src/fetch/webmap.js` — a layer over the cap is
+  skipped with a warning rather than downloaded. This is a genuine,
+  disclosed scope tradeoff, not a bug fix; revisit the threshold (or make it
+  a CLI flag) if a real story needs a bigger single layer.
+- **Failures are common and must be scoped to the smallest unit possible.**
+  Live-testing surfaced, in one story: a layer needing an ArcGIS subscriber
+  token it doesn't have (`499 Token Required`, e.g. Living Atlas content), a
+  referenced webmap item that no longer exists (`400` — deleted/private), and
+  a layer whose underlying feature service URL has itself rotted
+  (`400 Invalid URL`, since renamed/removed at the source, independent of
+  this project). Every one of these is now caught at the narrowest possible
+  scope (per-layer, or per-webmap if the whole item is unreachable) and
+  turned into a warning + a degraded-but-present manifest node
+  (`background.unavailable: true` for a whole dead webmap, a layer entry
+  with no `dataFile` for one blocked/oversized layer) rather than aborting
+  the migration or silently omitting the section.
+- Added an explicit per-request timeout (`AbortSignal.timeout`, 20s) to
+  `fetchWithRetry` in `src/fetch/portal.js` — with none, a slow/unresponsive
+  service could hang the whole run indefinitely with no feedback.
+- Implementation lives in `src/assets/{download,vendor,geometry,localize}.js`
+  rather than the originally proposed `download.js`/`rewrite.js` split —
+  rewriting manifest references is inherently interleaved with downloading
+  (the local path is only known once the download completes), so a separate
+  "rewrite" module would just pass the same url→path map back and forth.
 
 ## Phase 5 — Render the new static site
 

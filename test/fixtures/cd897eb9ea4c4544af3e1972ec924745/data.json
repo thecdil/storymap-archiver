@@ -1,0 +1,1343 @@
+{
+  "values": {
+    "config": {
+      "author": {
+        "name": ""
+      }
+    },
+    "settings": {
+      "theme": {
+        "colors": {
+          "id": "black-on-white-1",
+          "label": "Light",
+          "themeMajor": "light",
+          "themeContrast": "dark",
+          "bgMain": "white",
+          "textMain": "#4c4c4c",
+          "selected": true
+        },
+        "fonts": {
+          "titleFont": {
+            "label": "Open Sans",
+            "fontFamily": "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+          },
+          "bodyFont": {
+            "label": "Noto Serif",
+            "fontFamily": "'noto_serif', 'Georgia', 'Hoefler Text', 'Palatino', cursive"
+          }
+        }
+      },
+      "header": {
+        "logo": {
+          "enabled": false,
+          "url": "resources/tpl/viewer/icons/esri-logo.png",
+          "link": "https://www.esri.com"
+        },
+        "link": {
+          "url": "https://www.lib.uidaho.edu/digital/collections.html",
+          "title": "A Potlatch Story Map"
+        },
+        "social": {
+          "enabled": true
+        }
+      }
+    },
+    "template": {
+      "name": "Story Map Cascade",
+      "createdWith": "1.7.2",
+      "editedWith": "1.12.0",
+      "dataVersion": "1.0.0"
+    },
+    "sections": [
+      {
+        "type": "cover",
+        "foreground": {
+          "title": "Flunkies and Loggerettes: Women in the White Pine Forest",
+          "subtitle": "Kit Stokes, University of Idaho",
+          "options": {
+            "titleStyle": {
+              "shadow": false,
+              "text": "dark",
+              "background": "light"
+            }
+          }
+        },
+        "options": {},
+        "layout": "cover-1",
+        "background": {
+          "type": "image",
+          "image": {
+            "type": "image",
+            "width": 1287,
+            "height": 854,
+            "url": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/Saw_Mill_Girls%203__1525065096780.jpg",
+            "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/Saw_Mill_Girls%203__1525065096780__thumb.jpg",
+            "options": {
+              "size": "small",
+              "placement": {
+                "type": "fill",
+                "fill": {
+                  "x": 0.654125,
+                  "y": 0.576148343373494
+                }
+              }
+            }
+          }
+        },
+        "bookmark": {
+          "enabled": false,
+          "title": ""
+        }
+      },
+      {
+        "type": "title",
+        "layout": "title-regular",
+        "background": {
+          "type": "image",
+          "image": {
+            "type": "image",
+            "width": 800,
+            "height": 573,
+            "url": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/5__1525064522453.jpg",
+            "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/5__1525064522453__thumb.jpg",
+            "options": {
+              "size": "small",
+              "placement": {
+                "type": "fill",
+                "fill": {
+                  "x": 0.532125,
+                  "y": 0.39106145251396646
+                }
+              }
+            }
+          }
+        },
+        "foreground": {
+          "title": "The Company Town",
+          "credits": "",
+          "options": {
+            "titleStyle": {
+              "shadow": false,
+              "text": "dark",
+              "background": "light"
+            }
+          }
+        },
+        "bookmark": {
+          "enabled": false,
+          "title": "The Company Town"
+        }
+      },
+      {
+        "type": "sequence",
+        "layout": "sequence-1",
+        "background": {
+          "type": "color",
+          "color": {
+            "value": "white"
+          }
+        },
+        "foreground": {
+          "blocks": [
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">In the late 19th and early 20th centuries, employers in Washington, Oregon, and Idaho built thousands of small communities. Houses, stores, schools, mines, mills, and factories all went up on company land, for company employees.&nbsp;</p>"
+              }
+            },
+            {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 1920,
+                "height": 1374,
+                "options": {
+                  "fitHeight": false,
+                  "size": "medium"
+                },
+                "url": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/PHSGroup1_003_001__1524515241107.jpg",
+                "caption": "1905: Workers construct the foundation for the first house built in Potlatch, Idaho",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/PHSGroup1_003_001__1524515241107__thumb.jpg"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">The work force of these towns, including Potlatch, were male-dominated and made up of a mix of skilled craftsmen and laborers, experienced managers and professionals, as well as transients.&nbsp;</p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">The men working for Potlatch Forests, Inc. held jobs that ranged from sawmill or box factory manager to laborers in lumber camps in the surrounding rural areas.&nbsp;</p>"
+              }
+            },
+            {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 1920,
+                "height": 1530,
+                "options": {
+                  "fitHeight": false,
+                  "size": "medium"
+                },
+                "url": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/First_Day_of_Production__1524517056156.jpg",
+                "caption": "The managers and designers of the Potlatch mill on the first day of production in 1906",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/First_Day_of_Production__1524517056156__thumb.jpg"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">The women in Potlatch, on the other hand, spent their time in much different ways. A lot of women in Potlatch rarely worked outside of the home since there were very few opportunities for them in the mill, and there were few other employers in town. Because of this, most of the women in Potlatch were homemakers and child raisers.&nbsp;</p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">Women who worked outside of the home might have had opportunities at the mercantile or on the company clerical staff. A very small number were nurses, maids, boardinghouse cooks, waitresses, or post office workers. Outside of Potlatch, though, a number of women found work as flunkies in the lumber camps all throughout the Palouse.&nbsp;</p>"
+              }
+            }
+          ]
+        },
+        "bookmark": {
+          "enabled": false,
+          "title": "In the late 19th and"
+        }
+      },
+      {
+        "type": "title",
+        "layout": "title-regular",
+        "background": {
+          "type": "image",
+          "image": {
+            "url": "https://images.unsplash.com/photo-1444837881208-4d46d5c1f127?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7cded608ecc7f671b33d84e6589403e1&q=80&fm=jpg&crop=entropy&fit=max&w=2048",
+            "width": 2048,
+            "height": 1137,
+            "sizes": [
+              {
+                "url": "https://images.unsplash.com/photo-1444837881208-4d46d5c1f127?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7cded608ecc7f671b33d84e6589403e1&q=80&fm=jpg&crop=entropy&fit=max&w=2048",
+                "height": 1137,
+                "width": 2048,
+                "longestSide": 2048
+              },
+              {
+                "url": "https://images.unsplash.com/photo-1444837881208-4d46d5c1f127?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7cded608ecc7f671b33d84e6589403e1&q=80&fm=jpg&crop=entropy&fit=max&w=1600",
+                "height": 888,
+                "width": 1600,
+                "longestSide": 1600
+              },
+              {
+                "url": "https://images.unsplash.com/photo-1444837881208-4d46d5c1f127?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7cded608ecc7f671b33d84e6589403e1&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                "height": 569,
+                "width": 1024,
+                "longestSide": 1024
+              },
+              {
+                "url": "https://images.unsplash.com/photo-1444837881208-4d46d5c1f127?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7cded608ecc7f671b33d84e6589403e1&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                "height": 444,
+                "width": 800,
+                "longestSide": 800
+              }
+            ],
+            "type": "image",
+            "thumbUrl": "https://images.unsplash.com/photo-1444837881208-4d46d5c1f127?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7cded608ecc7f671b33d84e6589403e1&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+            "options": {
+              "size": "small",
+              "placement": {
+                "type": "fill",
+                "fill": {
+                  "x": 0.508125,
+                  "y": 0
+                },
+                "fit": {
+                  "color": "rgb(196, 196, 195)"
+                }
+              }
+            }
+          }
+        },
+        "foreground": {
+          "title": "Flunkies in Logging Camps",
+          "credits": "",
+          "options": {
+            "titleStyle": {
+              "shadow": false,
+              "text": "dark",
+              "background": "light"
+            }
+          }
+        },
+        "bookmark": {
+          "enabled": false,
+          "title": "Flunkies in Logging "
+        }
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 1920,
+                "height": 1312,
+                "options": {
+                  "size": "small",
+                  "placement": {
+                    "type": "fill",
+                    "fill": {
+                      "x": 0,
+                      "y": 0.1025219298245614
+                    }
+                  }
+                },
+                "url": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/IMG_1090__1525070512420.JPG",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/IMG_1090__1525070512420__thumb.JPG"
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "left",
+                    "size": "medium",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">Between 1903 and 1986, the Potlatch Lumber Company had over 185 logging camps scattered throughout seven different counties in northern Idaho. In the logging camps, workers were responsible for the cutting down and transporting of hundreds of trees to the nearby Palouse River where the currents would drive them to the sawmill.&nbsp;<br></p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">In this map here, you can see several locations of some of the earliest logging camps that contributed to the Potlatch operation.&nbsp;</p>"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "Early logging camp locations in the Bovill quadrant",
+                "global": true,
+                "style": {
+                  "shadow": false,
+                  "text": "dark",
+                  "background": "light"
+                }
+              }
+            }
+          }
+        ],
+        "bookmark": {
+          "enabled": false,
+          "title": "Early logging camp l"
+        }
+      },
+      {
+        "type": "sequence",
+        "layout": "sequence-1",
+        "background": {
+          "type": "color",
+          "color": {
+            "value": "white"
+          }
+        },
+        "foreground": {
+          "blocks": [
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">Often, conditions in the camps were very primitive. In early camps, living quarters and mess halls were simple log cabins and later, the better-constructed Marion shack became the building of choice in camps.&nbsp;&nbsp;</p>"
+              }
+            },
+            {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 1920,
+                "height": 1558,
+                "options": {
+                  "fitHeight": false,
+                  "size": "medium"
+                },
+                "url": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/Logging_Camp__1525071120221.jpg",
+                "caption": "One of the earliest Potlatch Lumber Company logging camps in the Harvard area&nbsp;",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/Logging_Camp__1525071120221__thumb.jpg"
+              }
+            },
+            {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 1920,
+                "height": 1420,
+                "options": {
+                  "fitHeight": false,
+                  "size": "medium"
+                },
+                "url": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/PLC_Camp__1525071092933.jpg",
+                "caption": "Early Potlatch Lumber Company logging camp",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/PLC_Camp__1525071092933__thumb.jpg"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\" style=\"text-align: left;\">The people in these logging camps were typically men who worked in logging all their lives. Many of them had families that they would move from camp to camp with them as their work sites changed. During the first generation of these camps, many women were employed as flunkies, working in the camp kitchens and assisting cooks with descriptive names like Greasy Pete Carman, Sourdough Smith, and Cold Ham Snyder, to name a few.&nbsp;</p>"
+              }
+            },
+            {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 1293,
+                "height": 996,
+                "url": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/Camp_14_Crew__1525074206160.jpg",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/Camp_14_Crew__1525074206160__thumb.jpg",
+                "options": {
+                  "fitHeight": false,
+                  "size": "medium"
+                },
+                "caption": "The crew at Camp 14. In the front on the far right is a small group of women who were likely the camp flunkies.&nbsp;"
+              }
+            }
+          ]
+        },
+        "bookmark": {
+          "enabled": false,
+          "title": "Often, conditions in"
+        }
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 1344,
+                "height": 987,
+                "url": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/Cook_House_Crew__1525072079193.jpg",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/Cook_House_Crew__1525072079193__thumb.jpg",
+                "options": {
+                  "size": "small",
+                  "placement": {
+                    "type": "fit",
+                    "fit": {
+                      "color": "rgb(241, 241, 239)"
+                    }
+                  }
+                }
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "right",
+                    "size": "medium",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">A typical camp cook house crew might look like the one in this image. Center is Jim Marko, head cook, accompanied by two unnamed male flunkies and two female flunkies, Daisy Wunderlich and Maude Carlin.&nbsp;</p>"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "",
+                "global": true,
+                "style": {
+                  "shadow": false,
+                  "text": "dark",
+                  "background": "light"
+                }
+              }
+            }
+          },
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 1408,
+                "height": 1241,
+                "url": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/Logging_Camp_Workers%201__1525072450175.jpg",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/Logging_Camp_Workers%201__1525072450175__thumb.jpg",
+                "options": {
+                  "size": "small",
+                  "placement": {
+                    "type": "fit",
+                    "fit": {
+                      "color": "rgb(234, 230, 230)"
+                    }
+                  }
+                }
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "left",
+                    "size": "medium",
+                    "style": "background",
+                    "theme": "white-over-black",
+                    "layout": "scroll-full"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">The work flunkies did mostly consisted of preparing and serving abundant meals to large groups of hungry loggers. In this photo, Joy Leatherwood and Evelyn Olson are shown preparing for the next meal in an unknown camp in 1915.&nbsp;</p>"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "bookmark": {
+          "enabled": false,
+          "title": "A typical camp cook "
+        }
+      },
+      {
+        "type": "sequence",
+        "layout": "sequence-1",
+        "background": {
+          "type": "color",
+          "color": {
+            "value": "white"
+          }
+        },
+        "foreground": {
+          "blocks": [
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">Given the scarce nature of photos documenting the work women did in logging camps, photos like these are invaluable in learning what it was like as a woman working in a camp.&nbsp;</p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">It was the role of flunkies to assist in preparing and serving enormous hot meals to hundreds of lumbermen at a time, all without the amenities used today in modern cooking. Because their work fueled the men working, it was a smart investment for the company to hire skilled and attentive cooks and flunkies.&nbsp;</p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">Flunkies did prep work for the cook, waited tables, fired wood stoves, and handled clean up after meals. They would also prepare lunch buckets for the men to take with them off into the woods. &nbsp;</p>"
+              }
+            }
+          ]
+        },
+        "bookmark": {
+          "enabled": false,
+          "title": "Given the scarce nat"
+        }
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 1341,
+                "height": 997,
+                "url": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/Elk_River_Camp_4__1525073503579.jpg",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/Elk_River_Camp_4__1525073503579__thumb.jpg",
+                "options": {
+                  "size": "small",
+                  "placement": {
+                    "type": "fit",
+                    "fit": {
+                      "color": "rgb(225, 225, 224)"
+                    }
+                  }
+                }
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "left",
+                    "size": "medium",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">Free time for flunkies was infrequent, but in between prepping, serving, and cleaning up meals, they were able to spend their time as they wished.&nbsp;</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">Pictured here are sisters Daisy (right) and Maude (left). They worked in several different Potlatch logging camps during early adulthood. In their down time, they would often spend time with each other, the children in the camps, and some of the men, picking huckleberries and exploring the surrounding wilderness.&nbsp;</p>"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "",
+                "global": true,
+                "style": {
+                  "shadow": false,
+                  "text": "dark",
+                  "background": "light"
+                }
+              }
+            }
+          }
+        ],
+        "bookmark": {
+          "enabled": false,
+          "title": "Free time for flunki"
+        }
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 560,
+                "height": 1377,
+                "url": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/Flapper_Drawing__1525073873664.jpg",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/Flapper_Drawing__1525073873664__thumb.jpg",
+                "options": {
+                  "size": "small",
+                  "placement": {
+                    "type": "fit",
+                    "fit": {
+                      "color": "rgb(241, 241, 241)"
+                    }
+                  }
+                }
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "right",
+                    "size": "medium",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">In a rare glimpse into the personal life of a flunky, pictured here is a drawing of Daisy as a flapper, done by Camp 11 artist Nels Haugen in 1926.&nbsp;</p>"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "",
+                "global": true,
+                "style": {
+                  "shadow": false,
+                  "text": "dark",
+                  "background": "light"
+                }
+              }
+            }
+          }
+        ],
+        "bookmark": {
+          "enabled": false,
+          "title": "Pictured here is a d"
+        }
+      },
+      {
+        "type": "title",
+        "layout": "title-regular",
+        "background": {
+          "type": "image",
+          "image": {
+            "url": "https://images.unsplash.com/photo-1444837881208-4d46d5c1f127?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7cded608ecc7f671b33d84e6589403e1&q=80&fm=jpg&crop=entropy&fit=max&w=2048",
+            "width": 2048,
+            "height": 1137,
+            "sizes": [
+              {
+                "url": "https://images.unsplash.com/photo-1444837881208-4d46d5c1f127?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7cded608ecc7f671b33d84e6589403e1&q=80&fm=jpg&crop=entropy&fit=max&w=2048",
+                "height": 1137,
+                "width": 2048,
+                "longestSide": 2048
+              },
+              {
+                "url": "https://images.unsplash.com/photo-1444837881208-4d46d5c1f127?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7cded608ecc7f671b33d84e6589403e1&q=80&fm=jpg&crop=entropy&fit=max&w=1600",
+                "height": 888,
+                "width": 1600,
+                "longestSide": 1600
+              },
+              {
+                "url": "https://images.unsplash.com/photo-1444837881208-4d46d5c1f127?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7cded608ecc7f671b33d84e6589403e1&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                "height": 569,
+                "width": 1024,
+                "longestSide": 1024
+              },
+              {
+                "url": "https://images.unsplash.com/photo-1444837881208-4d46d5c1f127?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7cded608ecc7f671b33d84e6589403e1&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                "height": 444,
+                "width": 800,
+                "longestSide": 800
+              }
+            ],
+            "type": "image",
+            "thumbUrl": "https://images.unsplash.com/photo-1444837881208-4d46d5c1f127?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7cded608ecc7f671b33d84e6589403e1&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+            "options": {
+              "size": "small",
+              "placement": {
+                "type": "fill",
+                "fill": {
+                  "x": 0.700125,
+                  "y": 0
+                },
+                "fit": {
+                  "color": "rgb(196, 196, 195)"
+                }
+              }
+            }
+          }
+        },
+        "foreground": {
+          "title": "Loggerettes",
+          "credits": "",
+          "options": {
+            "titleStyle": {
+              "shadow": false,
+              "text": "dark",
+              "background": "light"
+            }
+          }
+        },
+        "bookmark": {
+          "enabled": false,
+          "title": "Loggerettes"
+        }
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 1530,
+                "height": 1932,
+                "url": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/Camp_flunkey%201__1525076565887.jpg",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/Camp_flunkey%201__1525076565887__thumb.jpg",
+                "options": {
+                  "size": "small",
+                  "placement": {
+                    "type": "fill",
+                    "fill": {
+                      "x": 0.49857954545454547,
+                      "y": 0.336
+                    }
+                  }
+                }
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "right",
+                    "size": "medium",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">During World War I and World War II, men everywhere in the country were being drafted into the military. This meant many jobs were left open, and the people left to fill them were women.&nbsp;</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">While many men were apprehensive about women being able to fill these empty positions and do a good job, their uncertainties were unfounded as it became apparent that women could do logging work just as competently as men.&nbsp;</p>"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "",
+                "global": true,
+                "style": {
+                  "shadow": false,
+                  "text": "dark",
+                  "background": "light"
+                }
+              }
+            }
+          }
+        ],
+        "bookmark": {
+          "enabled": false,
+          "title": "During World War I a"
+        }
+      },
+      {
+        "type": "sequence",
+        "layout": "sequence-1",
+        "background": {
+          "type": "color",
+          "color": {
+            "value": "white"
+          }
+        },
+        "foreground": {
+          "blocks": [
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">During the first World War, women's duties expanded from serving food and making match boxes to include logging duties, work in the box factories, and even positions in the large sawmills. These women became known as \"loggerettes\" as they started taking over work that had traditionally been done by men.&nbsp;<br></p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">A 1942 article from the Potlatch Forests, Inc. company newspaper, <i>The Family Tree</i>, discusses the integration of women into jobs left vacant by men called away by the wars:</p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">\"A generation ago freckled girls with pink straw bonnets worked in the logging camp kitchens, and others, equally comely, made lumber into ammunition boxes. It is a matter of record that during World War I, women were employed in logging camps, in box factories, and for lighter tasks in sawmills. The men had gone to war.<br><br>The story repeats itself today. The men again are going to war. Women again are replacing men in industry. Everyone regards the change without disfavor for they rightly construe the employment of women to be natural and inevitable. Women are now employed as waitresses in all the company logging camps except the isolated ones along the river. A few are also employed in the box factory at Lewiston.&nbsp;<br></p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<blockquote class=\"block\">The introduction of loggerettes as waitresses in the logging amps was made without a hitch. Some of the lumberjax felt uneasy for a day or two and toyed with their food instead of wolfing it the way a logger should. But as the stage fright passed, their appetites returned to normal and the consumption of food in the cookhouses is again at high level.&nbsp;</blockquote>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">Nor were any alarming symptoms noted in Lewiston when women were hired in the box factory. Men who had doubts about the modern woman being a good worker were speedily enlightened. It possibly can be conceded that machines, gears, belts, and pulleys are more mysterious to women that to men. But there is no proof that skills cannot be acquired by women as well as men. After all, men are not as superior as they try to make their wives believe. How many men know how to bake biscuits?--soft, fluffy biscuits, not the kind that bounce.\"</p>"
+              }
+            }
+          ]
+        },
+        "bookmark": {
+          "enabled": false,
+          "title": "During the first Wor"
+        }
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 956,
+                "height": 1380,
+                "url": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/Women_in_the_Box_Factory%201__1525077986773.jpg",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/Women_in_the_Box_Factory%201__1525077986773__thumb.jpg",
+                "options": {
+                  "size": "small",
+                  "placement": {
+                    "type": "fit",
+                    "fit": {
+                      "color": "rgb(206, 202, 199)"
+                    }
+                  }
+                }
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "left",
+                    "size": "medium",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">Images like the one shown here document the work women did during World War I while the men that usually held these jobs were overseas.&nbsp;</p>"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "",
+                "global": true,
+                "style": {
+                  "shadow": false,
+                  "text": "dark",
+                  "background": "light"
+                }
+              }
+            }
+          },
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 1379,
+                "height": 938,
+                "url": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/Box_Factory_Crew__1525078148039.jpg",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/Box_Factory_Crew__1525078148039__thumb.jpg",
+                "options": {
+                  "size": "small",
+                  "placement": {
+                    "type": "fit",
+                    "fit": {
+                      "color": "rgb(220, 215, 213)"
+                    }
+                  }
+                }
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "right",
+                    "size": "medium",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">Many women were eager to learn new skills, and enjoyed working as loggerettes in the logging camps, the box factory, and the sawmills.</p>"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "bookmark": {
+          "enabled": false,
+          "title": "Images like the one "
+        }
+      },
+      {
+        "type": "sequence",
+        "layout": "sequence-1",
+        "background": {
+          "type": "color",
+          "color": {
+            "value": "white"
+          }
+        },
+        "foreground": {
+          "blocks": [
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\"><br></p>"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "title",
+        "layout": "title-regular",
+        "background": {
+          "type": "image",
+          "image": {
+            "url": "https://images.unsplash.com/photo-1444837881208-4d46d5c1f127?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7cded608ecc7f671b33d84e6589403e1&q=80&fm=jpg&crop=entropy&fit=max&w=2048",
+            "width": 2048,
+            "height": 1137,
+            "sizes": [
+              {
+                "url": "https://images.unsplash.com/photo-1444837881208-4d46d5c1f127?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7cded608ecc7f671b33d84e6589403e1&q=80&fm=jpg&crop=entropy&fit=max&w=2048",
+                "height": 1137,
+                "width": 2048,
+                "longestSide": 2048
+              },
+              {
+                "url": "https://images.unsplash.com/photo-1444837881208-4d46d5c1f127?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7cded608ecc7f671b33d84e6589403e1&q=80&fm=jpg&crop=entropy&fit=max&w=1600",
+                "height": 888,
+                "width": 1600,
+                "longestSide": 1600
+              },
+              {
+                "url": "https://images.unsplash.com/photo-1444837881208-4d46d5c1f127?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7cded608ecc7f671b33d84e6589403e1&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                "height": 569,
+                "width": 1024,
+                "longestSide": 1024
+              },
+              {
+                "url": "https://images.unsplash.com/photo-1444837881208-4d46d5c1f127?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7cded608ecc7f671b33d84e6589403e1&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                "height": 444,
+                "width": 800,
+                "longestSide": 800
+              }
+            ],
+            "type": "image",
+            "thumbUrl": "https://images.unsplash.com/photo-1444837881208-4d46d5c1f127?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7cded608ecc7f671b33d84e6589403e1&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+            "options": {
+              "size": "small",
+              "placement": {
+                "type": "fill",
+                "fill": {
+                  "x": 0.700125,
+                  "y": 0
+                },
+                "fit": {
+                  "color": "rgb(196, 196, 195)"
+                }
+              }
+            }
+          }
+        },
+        "foreground": {
+          "title": "Women in the Potlatch Mill",
+          "credits": "",
+          "options": {
+            "titleStyle": {
+              "shadow": false,
+              "text": "dark",
+              "background": "light"
+            }
+          }
+        },
+        "bookmark": {
+          "enabled": false,
+          "title": "Loggerettes"
+        }
+      },
+      {
+        "type": "sequence",
+        "layout": "sequence-1",
+        "background": {
+          "type": "color",
+          "color": {
+            "value": "white"
+          }
+        },
+        "foreground": {
+          "blocks": [
+            {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 1920,
+                "height": 687,
+                "options": {
+                  "fitHeight": false,
+                  "size": "medium"
+                },
+                "url": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/scan0632%202cropped__1571684125246.jpg",
+                "caption": "The front page of Moscow newspaper The Daily Idahonian from December 1942 featuring women working in the Potlatch mill",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/scan0632%202cropped__1571684125246__thumb.jpg"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">The roughly 40 women working in the Potlatch mill during World War II were featured on the front page of a December 1942 issue of Moscow newspaper <i>The Daily Idahonian</i>. \"Paul Bunyan's Spouse Makes Good Mill Hand, Potlatch Finds,\" reads the title, followed by several photographs of women working various pieces of mill machinery.&nbsp;</p>"
+              }
+            },
+            {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 764,
+                "height": 541,
+                "url": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/women__1571685279428.jpg",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/women__1571685279428__thumb.jpg",
+                "options": {
+                  "fitHeight": false,
+                  "size": "medium"
+                },
+                "caption": ""
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">The images above show the following women going about their work, clockwise starting from the top left: Ramona Anderson and Helen Burden stacking Pres-to-logs hot off the big machine; Louise white sorting lumber in the re-manufacturing plant while another worker, Mrs. L.M. Tribble, stands in the background; Louise White and plant office janitor, Timsy Poston, visitng during an afternoon rest period in the rest room provided for women employees; Audrey Stewart punching buttons in her crows nest high above the mill floor to control the chains leading to gang saws; and a Mrs. Paul Tobin, whose husband was yard superintendent at the mill, operating a timber cut-off saw.&nbsp;</p>"
+              }
+            },
+            {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 796,
+                "height": 322,
+                "url": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/headline__1571686090624.jpg",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/headline__1571686090624__thumb.jpg",
+                "options": {
+                  "fitHeight": false,
+                  "size": "medium"
+                },
+                "caption": "Sub-heading for the <i>Daily Idahonian</i> article featuring women workers at the Potlatch mill"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">The accompanying article in <i>The Daily Idahonian </i>lauds the ability of the women working in the mill to do their jobs just as well as—or in some cases, better than—the men they replaced:</p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<blockquote class=\"block\">\"Since last August, the feminine crew has been taking over many jobs on both the day and night shifts in the big lumber mill, and now they are so familiar with their daily tasks that their production often equals that of the men they replaced. In a few cases, where speed and co-ordination are more important than muscle, the women are hanging up new records in proficiency.\"&nbsp;</blockquote>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">J.J. O'Connell, manager of the Potlatch unit, tells the<i> Daily Idahonian</i> that \"it was a matter of necessity when we started training women for work in the sawmill. Our housing facilities were all taken up, so we couldn't import labor even if we wanted to, or could get the men. And we had to operate with two full shifts to meet Uncle Sam's orders for lumber. The women seemed to take naturally to the work and they've done such a splendid job that we're all proud of them.\"&nbsp;</p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">The article continues to explain some of the work being done by the women in the mill that day:</p>"
+              }
+            },
+            {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 502,
+                "height": 617,
+                "url": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/another%20learning__1571690708607.jpg",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/another%20learning__1571690708607__thumb.jpg",
+                "options": {
+                  "fitHeight": false,
+                  "size": "medium"
+                },
+                "caption": "Excerpt from the <i>Daily Idahonian</i> article discussing work of individual women in the Potlatch mill"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">Reports describing the introduction and success of women workers in the mills and other parts of the lumber industry in Northern Idaho during both World Wars highlight it as being incredibly successful, but it's likely that the women in these environments experienced some amount of prejudice, intimidation, and/or harassment because of their gender. Still, female workers like those featured in this <i>Daily Idahonian</i> article didn't let that stop them from learning to do the jobs in the sawmill just as well as, if not better than, their male counterparts. At the time this article was written, the mill was on its way to setting a new production record for the last decade, all thanks to the help of women like Dolora Kammeyer, Audrey Stewart, and the others featured here.&nbsp;</p>"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "url": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/Saw_Mill_Girls%203__1525065096780.jpg",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/Saw_Mill_Girls%203__1525065096780__thumb.jpg",
+                "options": {
+                  "size": "small",
+                  "placement": {
+                    "type": "fit",
+                    "fit": {
+                      "color": "rgb(204, 200, 197)"
+                    }
+                  }
+                },
+                "width": 1287,
+                "height": 854
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "left",
+                    "size": "medium",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">It's likely that most of the women in these photos enjoyed their jobs enough that they wanted to continue working them even when the men returned from war, but in the aftermath of each war they were asked by the Potlatch Lumber Company to leave so that the men could resume their old jobs.&nbsp;</p>"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "",
+                "global": true,
+                "style": {
+                  "shadow": false,
+                  "text": "dark",
+                  "background": "light"
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "sequence",
+        "layout": "sequence-1",
+        "background": {
+          "type": "color",
+          "color": {
+            "value": "white"
+          }
+        },
+        "foreground": {
+          "blocks": [
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">While many women who found jobs at the Potlatch mill and the surrounding logging camps during the war may have wanted to remain in those jobs, they found themselves replaced by returning men after both World War I and World War II. Even though they were forced out, these pioneering women had shown their community that they could do \"men's work,\" which made a huge impact on local perspectives of gender equality. This was one small step forward that, taken with other small steps, helped eventually change perceptions of what women were capable of and secure equality for women in Potlatch. </p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">The narratives surrounding the creation and building of Potlatch and the Potlatch Lumber Company are very saturated with the names and activities of men. Given the societal expectations and opportunities available to women during this time, that isn't all that surprising. However, Potlatch wasn't built by just men, and women have played an integral part in making the town what it was and is today. By looking back and recognizing the hand women played in the success of this former company town, we can also acknowledge their struggles to create a place for themselves in a world full of opportunities that before had only been open to men.&nbsp;</p>"
+              }
+            },
+            {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "url": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/Potlatch_Idaho_Landscape1908__1525079879779.jpg",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/cd897eb9ea4c4544af3e1972ec924745/resources/Potlatch_Idaho_Landscape1908__1525079879779__thumb.jpg",
+                "options": {
+                  "fitHeight": false,
+                  "size": "large"
+                },
+                "caption": "Potlatch, ID circa 1908",
+                "width": 1307,
+                "height": 745
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "sequence",
+        "layout": "sequence-1",
+        "background": {
+          "type": "color",
+          "color": {
+            "value": "white"
+          }
+        },
+        "foreground": {
+          "blocks": [
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\"><br></p>"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "credits",
+        "layout": "credits-1",
+        "background": {
+          "type": "color",
+          "color": {
+            "value": "#000"
+          }
+        },
+        "foreground": {
+          "panels": [
+            {
+              "type": "blocks",
+              "blocks": [
+                {
+                  "type": "text",
+                  "text": {
+                    "value": "<p class=\"block\" style=\"text-align: center;\">All photos were provided by the Potlatch Historical Society archives and the Potlatch Lumber Company Photograph Collection, both of which are housed in the University of Idaho Library Digital Collections.&nbsp;</p>"
+                  }
+                },
+                {
+                  "type": "text",
+                  "text": {
+                    "value": "<p class=\"block\" style=\"text-align: center;\">Other resources invaluable to this project are Keith Petersen's <i>Company Town: Potlatch, Idaho, and the Potlatch Lumber Company </i>and Tom Farbo's <i>White Pine Wobblies and Wannigans</i>.</p>"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "credits",
+              "credits": []
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

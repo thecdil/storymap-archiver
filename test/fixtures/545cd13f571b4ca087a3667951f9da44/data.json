@@ -1,0 +1,2631 @@
+{
+  "values": {
+    "config": {
+      "author": {
+        "name": ""
+      }
+    },
+    "settings": {
+      "theme": {
+        "colors": {
+          "id": "black-on-white-1",
+          "label": "Light",
+          "themeMajor": "light",
+          "themeContrast": "dark",
+          "bgMain": "white",
+          "textMain": "#4c4c4c"
+        },
+        "fonts": {
+          "titleFont": {
+            "label": "Open Sans",
+            "fontFamily": "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+          },
+          "bodyFont": {
+            "label": "Noto Serif",
+            "fontFamily": "'noto_serif', 'Georgia', 'Hoefler Text', 'Palatino', cursive"
+          }
+        }
+      },
+      "header": {
+        "logo": {}
+      }
+    },
+    "template": {
+      "name": "Story Map Cascade",
+      "createdWith": "1.6.2",
+      "editedWith": "1.9.1",
+      "dataVersion": "1.0.0"
+    },
+    "sections": [
+      {
+        "type": "cover",
+        "foreground": {
+          "title": "Idaho Dairy Industry's Vulnerability to Long-Term Drought   ",
+          "subtitle": "Alycia Bean, University of Idaho, Geography Department A presentation for the 2018 Innovation Showcase",
+          "options": {
+            "titleStyle": {
+              "shadow": false,
+              "text": "dark",
+              "background": "light"
+            }
+          }
+        },
+        "options": {},
+        "layout": "cover-1",
+        "background": {
+          "type": "image",
+          "image": {
+            "url": "https://images.unsplash.com/uploads/1411451635098130bb10f/8609bf40?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+            "width": 1024,
+            "height": 678,
+            "sizes": [
+              {
+                "url": "https://images.unsplash.com/uploads/1411451635098130bb10f/8609bf40?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=2048",
+                "height": 1356,
+                "width": 2048,
+                "longestSide": 2048
+              },
+              {
+                "url": "https://images.unsplash.com/uploads/1411451635098130bb10f/8609bf40?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=1600",
+                "height": 1060,
+                "width": 1600,
+                "longestSide": 1600
+              },
+              {
+                "url": "https://images.unsplash.com/uploads/1411451635098130bb10f/8609bf40?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                "height": 678,
+                "width": 1024,
+                "longestSide": 1024
+              },
+              {
+                "url": "https://images.unsplash.com/uploads/1411451635098130bb10f/8609bf40?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                "height": 530,
+                "width": 800,
+                "longestSide": 800
+              }
+            ],
+            "type": "image",
+            "thumbUrl": "https://images.unsplash.com/uploads/1411451635098130bb10f/8609bf40?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+            "options": {
+              "size": "small"
+            }
+          }
+        }
+      },
+      {
+        "type": "sequence",
+        "layout": "sequence-1",
+        "background": {
+          "type": "color",
+          "color": {
+            "value": "white"
+          }
+        },
+        "foreground": {
+          "blocks": [
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\"></p>"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "url": "https://images.unsplash.com/photo-1500595046743-cd271d694d30?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7d279a3a08e6e5336aab8bd61e6bfd98&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                "width": 1024,
+                "height": 680,
+                "sizes": [
+                  {
+                    "url": "https://images.unsplash.com/photo-1500595046743-cd271d694d30?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7d279a3a08e6e5336aab8bd61e6bfd98&q=80&fm=jpg&crop=entropy&fit=max&w=2048",
+                    "height": 1360,
+                    "width": 2048,
+                    "longestSide": 2048
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1500595046743-cd271d694d30?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7d279a3a08e6e5336aab8bd61e6bfd98&q=80&fm=jpg&crop=entropy&fit=max&w=1600",
+                    "height": 1063,
+                    "width": 1600,
+                    "longestSide": 1600
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1500595046743-cd271d694d30?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7d279a3a08e6e5336aab8bd61e6bfd98&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                    "height": 680,
+                    "width": 1024,
+                    "longestSide": 1024
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1500595046743-cd271d694d30?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7d279a3a08e6e5336aab8bd61e6bfd98&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                    "height": 531,
+                    "width": 800,
+                    "longestSide": 800
+                  }
+                ],
+                "type": "image",
+                "thumbUrl": "https://images.unsplash.com/photo-1500595046743-cd271d694d30?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7d279a3a08e6e5336aab8bd61e6bfd98&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                "options": {
+                  "size": "small"
+                }
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "left",
+                    "size": "large",
+                    "style": "background",
+                    "theme": "white-over-black",
+                    "layout": "scroll-full"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">The dairy industry in Idaho is booming.</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">&nbsp;It has grown tenfold since the late 1980s.&nbsp;</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">Along with the growth of the dairy industry is the commodity increase in milk production&nbsp; - the largest agricultural sector in Idaho with a 2016 value of $2.36 billion (NASS, 2017)</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"> Idaho ranks first in the U.S. for production of certified organic hay, and is the second largest U.S. producer of alfalfa hay.&nbsp;</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">Alfalfa makes up more than 80% of Idaho’s total hay production, with over&nbsp; 4 million tons harvested per year (Idaho State Department of Agriculture).</p>"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "Background",
+                "global": true,
+                "style": {
+                  "shadow": false,
+                  "text": "dark",
+                  "background": "light"
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "url": "https://images.unsplash.com/photo-1465378295786-5cb1fca555ff?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                "width": 1024,
+                "height": 683,
+                "sizes": [
+                  {
+                    "url": "https://images.unsplash.com/photo-1465378295786-5cb1fca555ff?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=2048",
+                    "height": 1365,
+                    "width": 2048,
+                    "longestSide": 2048
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1465378295786-5cb1fca555ff?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=1600",
+                    "height": 1067,
+                    "width": 1600,
+                    "longestSide": 1600
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1465378295786-5cb1fca555ff?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                    "height": 683,
+                    "width": 1024,
+                    "longestSide": 1024
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1465378295786-5cb1fca555ff?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                    "height": 533,
+                    "width": 800,
+                    "longestSide": 800
+                  }
+                ],
+                "type": "image",
+                "thumbUrl": "https://images.unsplash.com/photo-1465378295786-5cb1fca555ff?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                "options": {
+                  "size": "small",
+                  "placement": {
+                    "type": "fill",
+                    "fill": {
+                      "x": 0.5,
+                      "y": 0.5
+                    }
+                  }
+                }
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "left",
+                    "size": "medium",
+                    "style": "background",
+                    "theme": "white-over-black",
+                    "layout": "scroll-full"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">While alfalfa is a profitable crop and needed to support the growing dairy industry, it is a very water intensive crop at an average of 46 inches of water per growing season (Shewmaker et al., 2013).&nbsp;</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"><br></p>"
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image": {
+                        "type": "image",
+                        "width": 311,
+                        "height": 230,
+                        "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/water%20needs__1520276303246.PNG",
+                        "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/water%20needs__1520276303246__thumb.PNG",
+                        "options": {
+                          "fitHeight": false,
+                          "size": "small"
+                        },
+                        "caption": ""
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"><i>Food and Agricultural Organization (FAO).</i></p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"><br></p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"><br></p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"><br></p>"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "Background",
+                "global": true,
+                "style": {
+                  "shadow": true,
+                  "text": "light",
+                  "background": null
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "url": "https://images.unsplash.com/photo-1471288959905-ab04748d274c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=d7617bc6f99c2d54b85d02d1ee8b7294&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                "width": 1024,
+                "height": 683,
+                "sizes": [
+                  {
+                    "url": "https://images.unsplash.com/photo-1471288959905-ab04748d274c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=d7617bc6f99c2d54b85d02d1ee8b7294&q=80&fm=jpg&crop=entropy&fit=max&w=2048",
+                    "height": 1365,
+                    "width": 2048,
+                    "longestSide": 2048
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1471288959905-ab04748d274c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=d7617bc6f99c2d54b85d02d1ee8b7294&q=80&fm=jpg&crop=entropy&fit=max&w=1600",
+                    "height": 1067,
+                    "width": 1600,
+                    "longestSide": 1600
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1471288959905-ab04748d274c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=d7617bc6f99c2d54b85d02d1ee8b7294&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                    "height": 683,
+                    "width": 1024,
+                    "longestSide": 1024
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1471288959905-ab04748d274c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=d7617bc6f99c2d54b85d02d1ee8b7294&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                    "height": 533,
+                    "width": 800,
+                    "longestSide": 800
+                  }
+                ],
+                "type": "image",
+                "thumbUrl": "https://images.unsplash.com/photo-1471288959905-ab04748d274c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=d7617bc6f99c2d54b85d02d1ee8b7294&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                "options": {
+                  "size": "small"
+                }
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "left",
+                    "size": "small",
+                    "style": "background",
+                    "theme": "white-over-black",
+                    "layout": "scroll-full"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">Water in alfalfa country in southern Idaho is already over allocated.</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">In fact, in a good water year, there is not enough water for all needs in the Magic Valley in southern Idaho.</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">Junior water users in the hierarchy of 'first in time, first in line' have already (2015) agreed to cut their consumptive use by ~13% so senior (often surface water users) can have their full water rights fulfilled.</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"><br></p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"><br></p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"><br></p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"><br></p>"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "Background",
+                "global": true,
+                "style": {
+                  "shadow": true,
+                  "text": "light",
+                  "background": null
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "url": "https://images.unsplash.com/photo-1505224526312-64368469c1f0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=2fa193b7b7095478c06402ee77c011da&q=80&fm=jpg&crop=entropy&fit=max&h=1024",
+                "width": 683,
+                "height": 1024,
+                "sizes": [
+                  {
+                    "url": "https://images.unsplash.com/photo-1505224526312-64368469c1f0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=2fa193b7b7095478c06402ee77c011da&q=80&fm=jpg&crop=entropy&fit=max&h=2048",
+                    "height": 2048,
+                    "width": 1365,
+                    "longestSide": 2048
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1505224526312-64368469c1f0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=2fa193b7b7095478c06402ee77c011da&q=80&fm=jpg&crop=entropy&fit=max&h=1600",
+                    "height": 1600,
+                    "width": 1067,
+                    "longestSide": 1600
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1505224526312-64368469c1f0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=2fa193b7b7095478c06402ee77c011da&q=80&fm=jpg&crop=entropy&fit=max&h=1024",
+                    "height": 1024,
+                    "width": 683,
+                    "longestSide": 1024
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1505224526312-64368469c1f0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=2fa193b7b7095478c06402ee77c011da&q=80&fm=jpg&crop=entropy&fit=max&h=800",
+                    "height": 800,
+                    "width": 533,
+                    "longestSide": 800
+                  }
+                ],
+                "type": "image",
+                "thumbUrl": "https://images.unsplash.com/photo-1505224526312-64368469c1f0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=2fa193b7b7095478c06402ee77c011da&q=80&fm=jpg&crop=entropy&fit=max&h=800",
+                "options": {
+                  "size": "small"
+                }
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "left",
+                    "size": "medium",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">Climate change is anticipated to increase surface and air temperature in the semi-arid region of southern Idaho (Abatzoglou, 2014).</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">With an increase in temperature comes an increase in evapotranspiration (ET), meaning even more thirsty alfalfa crops.&nbsp;</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">The estimated ET of alfalfa is between 36 - 55 inches per crop (Hansen, 2015).</p>"
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image": {
+                        "type": "image",
+                        "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/ET%20alfalfa__1520278523233.PNG",
+                        "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/ET%20alfalfa__1520278523233__thumb.PNG",
+                        "options": {
+                          "fitHeight": false,
+                          "size": "small"
+                        },
+                        "caption": "",
+                        "width": 289,
+                        "height": 221
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"><br></p>"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "Climate Change Impacts",
+                "global": true,
+                "style": {
+                  "shadow": true,
+                  "text": "light",
+                  "background": null
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "url": "https://images.unsplash.com/photo-1454165205744-3b78555e5572?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=8d2336b6bda34f8ceff0752f7261c7cb&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                "width": 1024,
+                "height": 683,
+                "sizes": [
+                  {
+                    "url": "https://images.unsplash.com/photo-1454165205744-3b78555e5572?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=8d2336b6bda34f8ceff0752f7261c7cb&q=80&fm=jpg&crop=entropy&fit=max&w=2048",
+                    "height": 1365,
+                    "width": 2048,
+                    "longestSide": 2048
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1454165205744-3b78555e5572?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=8d2336b6bda34f8ceff0752f7261c7cb&q=80&fm=jpg&crop=entropy&fit=max&w=1600",
+                    "height": 1067,
+                    "width": 1600,
+                    "longestSide": 1600
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1454165205744-3b78555e5572?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=8d2336b6bda34f8ceff0752f7261c7cb&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                    "height": 683,
+                    "width": 1024,
+                    "longestSide": 1024
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1454165205744-3b78555e5572?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=8d2336b6bda34f8ceff0752f7261c7cb&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                    "height": 533,
+                    "width": 800,
+                    "longestSide": 800
+                  }
+                ],
+                "type": "image",
+                "thumbUrl": "https://images.unsplash.com/photo-1454165205744-3b78555e5572?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=8d2336b6bda34f8ceff0752f7261c7cb&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                "options": {
+                  "size": "small"
+                }
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "left",
+                    "size": "medium",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">Magic Valley in southern Idaho</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">1. Who is growing alfalfa?</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">2. What type of water right do they have?</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">3. How many acres of alfalfa are being watered with that water right?</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">4. How much water&nbsp; is being used to water those acres of alfalfa?&nbsp;</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">5. What are the priority dates of the alfalfa growers?</p>"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "Overview of Interdisciplinary Data Collected and Questions Asked",
+                "global": true,
+                "style": {
+                  "shadow": false,
+                  "text": "dark",
+                  "background": "light"
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "url": "https://images.unsplash.com/photo-1500898957278-73fbc92a4c9c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=c7bd6d6b44a0c93b4bbd16dc6b857457&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                "width": 1024,
+                "height": 681,
+                "sizes": [
+                  {
+                    "url": "https://images.unsplash.com/photo-1500898957278-73fbc92a4c9c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=c7bd6d6b44a0c93b4bbd16dc6b857457&q=80&fm=jpg&crop=entropy&fit=max&w=2048",
+                    "height": 1363,
+                    "width": 2048,
+                    "longestSide": 2048
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1500898957278-73fbc92a4c9c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=c7bd6d6b44a0c93b4bbd16dc6b857457&q=80&fm=jpg&crop=entropy&fit=max&w=1600",
+                    "height": 1065,
+                    "width": 1600,
+                    "longestSide": 1600
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1500898957278-73fbc92a4c9c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=c7bd6d6b44a0c93b4bbd16dc6b857457&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                    "height": 681,
+                    "width": 1024,
+                    "longestSide": 1024
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1500898957278-73fbc92a4c9c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=c7bd6d6b44a0c93b4bbd16dc6b857457&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                    "height": 532,
+                    "width": 800,
+                    "longestSide": 800
+                  }
+                ],
+                "type": "image",
+                "thumbUrl": "https://images.unsplash.com/photo-1500898957278-73fbc92a4c9c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=c7bd6d6b44a0c93b4bbd16dc6b857457&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                "options": {
+                  "size": "small"
+                }
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "left",
+                    "size": "medium",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"><br></p>"
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image": {
+                        "type": "image",
+                        "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/big%20picture%20AOI__1520037615347.png",
+                        "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/big%20picture%20AOI__1520037615347__thumb.png",
+                        "options": {
+                          "fitHeight": false,
+                          "size": "small"
+                        },
+                        "caption": "",
+                        "width": 683,
+                        "height": 872
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">The  Magic Valley is defined as the six counties of  Cassia, Gooding, Jerome, Lincoln, Minidoka, and Twin Falls along the Snake River and above the Eastern Snake Plain Aquifer (ESPA).</p>"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "Who is Growing Alfalfa?",
+                "global": true,
+                "style": {
+                  "shadow": true,
+                  "text": "light",
+                  "background": null
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 896,
+                "height": 719,
+                "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/2_NASS%20Cropland%20Data%20Layer__1516654682264.PNG",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/2_NASS%20Cropland%20Data%20Layer__1516654682264__thumb.PNG",
+                "options": {
+                  "size": "small",
+                  "placement": {
+                    "type": "fit",
+                    "fit": {
+                      "color": "rgb(236, 251, 187)"
+                    }
+                  }
+                }
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "left",
+                    "size": "small",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">The Magic Valley of southern Idaho is home to a wide variety of irrigated agriculture and all of Idaho's alfalfa growth.&nbsp;</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">This image shows USDA National Agricultural Statistics Service (NASS) cropland cover in the Magic Valley.&nbsp;<br></p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"><br></p>"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "Who is Growing Alfalfa?",
+                "global": true,
+                "style": {
+                  "shadow": true,
+                  "text": "light",
+                  "background": null
+                }
+              }
+            }
+          },
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 890,
+                "height": 698,
+                "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/4_Alfalfa%20Reported%20in%20Area%20of%20Interest__1517978748043.PNG",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/4_Alfalfa%20Reported%20in%20Area%20of%20Interest__1517978748043__thumb.PNG",
+                "options": {
+                  "size": "small",
+                  "placement": {
+                    "type": "fit",
+                    "fit": {
+                      "color": "rgb(220, 252, 228)"
+                    }
+                  }
+                }
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "left",
+                    "size": "small",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">The green in this image represents the alfalfa farms reported to the&nbsp; NASS and is extracted from the most recent cropland data layer in 2016.</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">Each pixel represents a&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 30 x 30m area.</p>"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "url": "https://images.unsplash.com/photo-1504214773179-d03d431e4f83?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=bace51739a2476816a1e12ead5b5e9f1&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                "width": 1024,
+                "height": 683,
+                "sizes": [
+                  {
+                    "url": "https://images.unsplash.com/photo-1504214773179-d03d431e4f83?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=bace51739a2476816a1e12ead5b5e9f1&q=80&fm=jpg&crop=entropy&fit=max&w=2048",
+                    "height": 1365,
+                    "width": 2048,
+                    "longestSide": 2048
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1504214773179-d03d431e4f83?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=bace51739a2476816a1e12ead5b5e9f1&q=80&fm=jpg&crop=entropy&fit=max&w=1600",
+                    "height": 1067,
+                    "width": 1600,
+                    "longestSide": 1600
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1504214773179-d03d431e4f83?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=bace51739a2476816a1e12ead5b5e9f1&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                    "height": 683,
+                    "width": 1024,
+                    "longestSide": 1024
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1504214773179-d03d431e4f83?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=bace51739a2476816a1e12ead5b5e9f1&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                    "height": 533,
+                    "width": 800,
+                    "longestSide": 800
+                  }
+                ],
+                "type": "image",
+                "thumbUrl": "https://images.unsplash.com/photo-1504214773179-d03d431e4f83?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=bace51739a2476816a1e12ead5b5e9f1&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                "options": {
+                  "size": "small"
+                }
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "left",
+                    "size": "large",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">A water right is the right to divert the public waters of the state of Idaho and put them to a beneficial use, in accordance with one’s priority date.</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">For Place of Use (POU)&nbsp;&nbsp;</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">Water Right Permits:&nbsp; The POU is the legal location where you use your water right.&nbsp;<br></p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">For Point of Diversion (POD)&nbsp; &nbsp; &nbsp;&nbsp;</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">Water Right Permits:&nbsp; A POD is the legal location where you divert water from its source&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"><br></p>"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "What type of Water Right do they have? ",
+                "global": true,
+                "style": {
+                  "shadow": true,
+                  "text": "light",
+                  "background": null
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "url": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=5652f402e65ae9fb0dbbff77fd69193f&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                "width": 1024,
+                "height": 683,
+                "sizes": [
+                  {
+                    "url": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=5652f402e65ae9fb0dbbff77fd69193f&q=80&fm=jpg&crop=entropy&fit=max&w=2048",
+                    "height": 1367,
+                    "width": 2048,
+                    "longestSide": 2048
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=5652f402e65ae9fb0dbbff77fd69193f&q=80&fm=jpg&crop=entropy&fit=max&w=1600",
+                    "height": 1068,
+                    "width": 1600,
+                    "longestSide": 1600
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=5652f402e65ae9fb0dbbff77fd69193f&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                    "height": 683,
+                    "width": 1024,
+                    "longestSide": 1024
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=5652f402e65ae9fb0dbbff77fd69193f&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                    "height": 534,
+                    "width": 800,
+                    "longestSide": 800
+                  }
+                ],
+                "type": "image",
+                "thumbUrl": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=5652f402e65ae9fb0dbbff77fd69193f&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                "options": {
+                  "size": "small"
+                }
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "left",
+                    "size": "large",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"><br></p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">The assumption that a particular water right is used for an alfalfa crop is based on the following true statements:&nbsp;&nbsp;<br></p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">1.\tThe IDWR permitted right is of the type of Water Use category: “Irrigation”, “Irrigation from storage”, or “Irrigation storage”&nbsp;</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; AND</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">&nbsp;that water right overlaps with a NASS Cropland Data Layer pixel for the category “alfalfa”.</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; OR</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">2.\tThe IDWR permitted right is within 100 meters (creating a 200m diameter)&nbsp; of a NASS reported alfalfa crop pixel (at 30x30m grid, based on the most recent CDL, 2016).</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">&nbsp;- Limitations within query itself and sources of data acquisition.</p>"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "How do we know it is for alfalfa?",
+                "global": true,
+                "style": {
+                  "shadow": true,
+                  "text": "light",
+                  "background": null
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 1690,
+                "height": 648,
+                "options": {
+                  "size": "small",
+                  "placement": {
+                    "type": "fit",
+                    "fit": {
+                      "color": "rgb(250, 250, 249)"
+                    }
+                  }
+                },
+                "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/methods__1517996319872.jpg",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/methods__1517996319872__thumb.jpg"
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "left",
+                    "size": "small",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">Additional GIS layers created to look at a variety of variables that can help understand potential vulnerability to Idaho's dairy industry.</p>"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "",
+                "global": true,
+                "style": {
+                  "shadow": true,
+                  "text": "light",
+                  "background": null
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 1444,
+                "height": 922,
+                "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/pod_model_builder__1517996487005.PNG",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/pod_model_builder__1517996487005__thumb.PNG",
+                "options": {
+                  "size": "small",
+                  "placement": {
+                    "type": "fit",
+                    "fit": {
+                      "color": "rgb(252, 252, 251)"
+                    }
+                  }
+                }
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "left",
+                    "size": "small",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">Model Builder in ArcMap was used as a way to visualize processing tools and query generators for vulnerability assessment.&nbsp;</p>"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "How many acres do they have?",
+                "global": true,
+                "style": {
+                  "shadow": true,
+                  "text": "light",
+                  "background": null
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "url": "https://images.unsplash.com/photo-1506732176389-db44ff3b5c91?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=6aad123a4feefbc42e3d0daae8959d99&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                "width": 1024,
+                "height": 646,
+                "sizes": [
+                  {
+                    "url": "https://images.unsplash.com/photo-1506732176389-db44ff3b5c91?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=6aad123a4feefbc42e3d0daae8959d99&q=80&fm=jpg&crop=entropy&fit=max&w=2048",
+                    "height": 1292,
+                    "width": 2048,
+                    "longestSide": 2048
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1506732176389-db44ff3b5c91?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=6aad123a4feefbc42e3d0daae8959d99&q=80&fm=jpg&crop=entropy&fit=max&w=1600",
+                    "height": 1010,
+                    "width": 1600,
+                    "longestSide": 1600
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1506732176389-db44ff3b5c91?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=6aad123a4feefbc42e3d0daae8959d99&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                    "height": 646,
+                    "width": 1024,
+                    "longestSide": 1024
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1506732176389-db44ff3b5c91?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=6aad123a4feefbc42e3d0daae8959d99&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                    "height": 505,
+                    "width": 800,
+                    "longestSide": 800
+                  }
+                ],
+                "type": "image",
+                "thumbUrl": "https://images.unsplash.com/photo-1506732176389-db44ff3b5c91?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=6aad123a4feefbc42e3d0daae8959d99&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                "options": {
+                  "size": "small"
+                }
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "left",
+                    "size": "small",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">Two separate GIS layers were created to represent&nbsp;</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">Place of Use WR owners - 30 rights (dated 1969-2016)</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">                        Point of Diversion WR owners- 92 rights (dated 1969-2016)</p>"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "              What are the Priority Dates of the Water Rights?",
+                "global": true,
+                "style": {
+                  "shadow": true,
+                  "text": "light",
+                  "background": null
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 891,
+                "height": 697,
+                "options": {
+                  "size": "small",
+                  "placement": {
+                    "type": "fit",
+                    "fit": {
+                      "color": "rgb(177, 185, 158)"
+                    }
+                  }
+                },
+                "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POD_1969__1519598670182.PNG",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POD_1969__1519598670182__thumb.PNG"
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "right",
+                    "size": "small",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"><br></p>"
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image": {
+                        "type": "image",
+                        "width": 408,
+                        "height": 280,
+                        "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POD_table__1519602590396.PNG",
+                        "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POD_table__1519602590396__thumb.PNG",
+                        "options": {
+                          "fitHeight": false,
+                          "size": "small"
+                        },
+                        "caption": "Map data shown are cumulative. The individual numbers per year are separated out in above chart."
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1969</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"></p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"><br></p>"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "Priority Dates - Point of Diversion Water Rights ",
+                "global": true,
+                "style": {
+                  "shadow": true,
+                  "text": "light",
+                  "background": null
+                }
+              }
+            }
+          },
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 979,
+                "height": 787,
+                "options": {
+                  "size": "small",
+                  "placement": {
+                    "type": "fit",
+                    "fit": {
+                      "color": "rgb(178, 185, 156)"
+                    }
+                  }
+                },
+                "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POD_1979__1519598686348.PNG",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POD_1979__1519598686348__thumb.PNG"
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "right",
+                    "size": "small",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"></p>"
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image": {
+                        "type": "image",
+                        "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POD_table__1519602590396.PNG",
+                        "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POD_table__1519602590396__thumb.PNG",
+                        "options": {
+                          "fitHeight": false,
+                          "size": "small"
+                        },
+                        "caption": "",
+                        "width": 408,
+                        "height": 280
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1979</p>"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 1118,
+                "height": 821,
+                "options": {
+                  "size": "small",
+                  "placement": {
+                    "type": "fit",
+                    "fit": {
+                      "color": "rgb(177, 184, 156)"
+                    }
+                  }
+                },
+                "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POD_1989__1519598694878.PNG",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POD_1989__1519598694878__thumb.PNG"
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "right",
+                    "size": "small",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"></p>"
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image": {
+                        "type": "image",
+                        "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POD_table__1519602590396.PNG",
+                        "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POD_table__1519602590396__thumb.PNG",
+                        "options": {
+                          "fitHeight": false,
+                          "size": "small"
+                        },
+                        "caption": "",
+                        "width": 408,
+                        "height": 280
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1989</p>"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 1111,
+                "height": 827,
+                "options": {
+                  "size": "small",
+                  "placement": {
+                    "type": "fit",
+                    "fit": {
+                      "color": "rgb(175, 184, 157)"
+                    }
+                  }
+                },
+                "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POD_1999__1519598704540.PNG",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POD_1999__1519598704540__thumb.PNG"
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "right",
+                    "size": "small",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"></p>"
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image": {
+                        "type": "image",
+                        "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POD_table__1519602590396.PNG",
+                        "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POD_table__1519602590396__thumb.PNG",
+                        "options": {
+                          "fitHeight": false,
+                          "size": "small"
+                        },
+                        "caption": "",
+                        "width": 408,
+                        "height": 280
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1999</p>"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 1110,
+                "height": 828,
+                "options": {
+                  "size": "small",
+                  "placement": {
+                    "type": "fit",
+                    "fit": {
+                      "color": "rgb(199, 209, 195)"
+                    }
+                  }
+                },
+                "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POD_2009__1519598714415.PNG",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POD_2009__1519598714415__thumb.PNG"
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "right",
+                    "size": "small",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"></p>"
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image": {
+                        "type": "image",
+                        "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POD_table__1519602590396.PNG",
+                        "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POD_table__1519602590396__thumb.PNG",
+                        "options": {
+                          "fitHeight": false,
+                          "size": "small"
+                        },
+                        "caption": "",
+                        "width": 408,
+                        "height": 280
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2009</p>"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 1120,
+                "height": 799,
+                "options": {
+                  "size": "small",
+                  "placement": {
+                    "type": "fit",
+                    "fit": {
+                      "color": "rgb(177, 186, 158)"
+                    }
+                  }
+                },
+                "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POD_2016__1519598726711.PNG",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POD_2016__1519598726711__thumb.PNG"
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "right",
+                    "size": "small",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"></p>"
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image": {
+                        "type": "image",
+                        "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POD_table__1519602590396.PNG",
+                        "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POD_table__1519602590396__thumb.PNG",
+                        "options": {
+                          "fitHeight": false,
+                          "size": "small"
+                        },
+                        "caption": "",
+                        "width": 408,
+                        "height": 280
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2016</p>"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 1206,
+                "height": 719,
+                "options": {
+                  "size": "small",
+                  "placement": {
+                    "type": "fit",
+                    "fit": {
+                      "color": "rgb(201, 202, 191)"
+                    }
+                  }
+                },
+                "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POU_1969_new__1519600585699.PNG",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POU_1969_new__1519600585699__thumb.PNG"
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "right",
+                    "size": "small",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"><br></p>"
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image": {
+                        "type": "image",
+                        "width": 406,
+                        "height": 268,
+                        "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POU_table__1519602777027.PNG",
+                        "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POU_table__1519602777027__thumb.PNG",
+                        "options": {
+                          "fitHeight": false,
+                          "size": "small"
+                        },
+                        "caption": "Map data shown are cumulative. The individual numbers per year are separated out in above chart."
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1969</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"><br></p>"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "Priority Dates - Place of Use Water Rights ",
+                "global": true,
+                "style": {
+                  "shadow": true,
+                  "text": "light",
+                  "background": null
+                }
+              }
+            }
+          },
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 1125,
+                "height": 772,
+                "options": {
+                  "size": "small",
+                  "placement": {
+                    "type": "fit",
+                    "fit": {
+                      "color": "rgb(177, 185, 156)"
+                    },
+                    "fill": {
+                      "x": 0.5,
+                      "y": 0.5
+                    }
+                  }
+                },
+                "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POU_1979_new__1519600595012.PNG",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POU_1979_new__1519600595012__thumb.PNG"
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "right",
+                    "size": "small",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"></p>"
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image": {
+                        "type": "image",
+                        "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POU_table__1519602777027.PNG",
+                        "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POU_table__1519602777027.PNG",
+                        "options": {
+                          "fitHeight": false,
+                          "size": "small"
+                        },
+                        "caption": "",
+                        "width": 406,
+                        "height": 268
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1979</p>"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 1133,
+                "height": 802,
+                "options": {
+                  "size": "small",
+                  "placement": {
+                    "type": "fit",
+                    "fit": {
+                      "color": "rgb(176, 184, 158)"
+                    }
+                  }
+                },
+                "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POU_1989_new__1519600603458.PNG",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POU_1989_new__1519600603458__thumb.PNG"
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "right",
+                    "size": "small",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"></p>"
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image": {
+                        "type": "image",
+                        "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POU_table__1519602777027.PNG",
+                        "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POU_table__1519602777027.PNG",
+                        "options": {
+                          "fitHeight": false,
+                          "size": "small"
+                        },
+                        "caption": "",
+                        "width": 406,
+                        "height": 268
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1989</p>"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 1106,
+                "height": 783,
+                "options": {
+                  "size": "small",
+                  "placement": {
+                    "type": "fit",
+                    "fit": {
+                      "color": "rgb(199, 210, 194)"
+                    }
+                  }
+                },
+                "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POU_1999_new__1519600622498.PNG",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POU_1999_new__1519600622498__thumb.PNG"
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "right",
+                    "size": "small",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"></p>"
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image": {
+                        "type": "image",
+                        "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POU_table__1519602777027.PNG",
+                        "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POU_table__1519602777027.PNG",
+                        "options": {
+                          "fitHeight": false,
+                          "size": "small"
+                        },
+                        "caption": "",
+                        "width": 406,
+                        "height": 268
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1999</p>"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 1106,
+                "height": 783,
+                "options": {
+                  "size": "small",
+                  "placement": {
+                    "type": "fit",
+                    "fit": {
+                      "color": "rgb(199, 210, 194)"
+                    },
+                    "fill": {
+                      "x": 0.5,
+                      "y": 0.5
+                    }
+                  }
+                },
+                "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POU_1999_new__1519600683299.PNG",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POU_1999_new__1519600683299__thumb.PNG"
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "right",
+                    "size": "small",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"></p>"
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image": {
+                        "type": "image",
+                        "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POU_table__1519602777027.PNG",
+                        "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POU_table__1519602777027.PNG",
+                        "options": {
+                          "fitHeight": false,
+                          "size": "small"
+                        },
+                        "caption": "",
+                        "width": 406,
+                        "height": 268
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2009</p>"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 1127,
+                "height": 817,
+                "options": {
+                  "size": "small",
+                  "placement": {
+                    "type": "fit",
+                    "fit": {
+                      "color": "rgb(200, 209, 195)"
+                    },
+                    "fill": {
+                      "x": 0.5,
+                      "y": 0.5
+                    }
+                  }
+                },
+                "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POU_2015_new__1519600768675.PNG",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POU_2015_new__1519600768675__thumb.PNG"
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "right",
+                    "size": "small",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"></p>"
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image": {
+                        "type": "image",
+                        "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POU_table__1519602777027.PNG",
+                        "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/POU_table__1519602777027.PNG",
+                        "options": {
+                          "fitHeight": false,
+                          "size": "small"
+                        },
+                        "caption": "",
+                        "width": 406,
+                        "height": 268
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2016</p>"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "url": "https://images.unsplash.com/photo-1496112872005-7bb0b50dad9c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=61dbd3b3799543b0d903fa26241fd873&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                "width": 1024,
+                "height": 682,
+                "sizes": [
+                  {
+                    "url": "https://images.unsplash.com/photo-1496112872005-7bb0b50dad9c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=61dbd3b3799543b0d903fa26241fd873&q=80&fm=jpg&crop=entropy&fit=max&w=2048",
+                    "height": 1365,
+                    "width": 2048,
+                    "longestSide": 2048
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1496112872005-7bb0b50dad9c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=61dbd3b3799543b0d903fa26241fd873&q=80&fm=jpg&crop=entropy&fit=max&w=1600",
+                    "height": 1066,
+                    "width": 1600,
+                    "longestSide": 1600
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1496112872005-7bb0b50dad9c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=61dbd3b3799543b0d903fa26241fd873&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                    "height": 682,
+                    "width": 1024,
+                    "longestSide": 1024
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1496112872005-7bb0b50dad9c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=61dbd3b3799543b0d903fa26241fd873&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                    "height": 533,
+                    "width": 800,
+                    "longestSide": 800
+                  }
+                ],
+                "type": "image",
+                "thumbUrl": "https://images.unsplash.com/photo-1496112872005-7bb0b50dad9c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=61dbd3b3799543b0d903fa26241fd873&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                "options": {
+                  "size": "small"
+                }
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "right",
+                    "size": "medium",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">Since 2000, Idaho has declared drought nearly 150 times (IDWR, 2017), almost every year (minus 06, 09, 11).</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">In 2015 all of Idaho was in a drought (Idaho State Drought Monitor Report).</p>"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "Drought in Idaho",
+                "global": true,
+                "style": {
+                  "shadow": false,
+                  "text": "dark",
+                  "background": "light"
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 1510,
+                "height": 796,
+                "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/temp_PET__1524687293479.jpeg",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/temp_PET__1524687293479__thumb.jpeg",
+                "options": {
+                  "size": "small",
+                  "placement": {
+                    "type": "fit",
+                    "fit": {
+                      "color": "rgb(250, 250, 250)"
+                    }
+                  }
+                }
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "right",
+                    "size": "medium",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">For the semi-arid region in southern Idaho, the maximum temperature and the potential evapotranspiration are projected through 2080 showing an increase in both variables despite the emissions scenarios (Image Credit: The Northwest Climate Toolbox).<br></p>"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "",
+                "global": true,
+                "style": {
+                  "shadow": false,
+                  "text": "dark",
+                  "background": "light"
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 1650,
+                "height": 1275,
+                "url": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/streamflow70_99__1524691605498.jpg",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/545cd13f571b4ca087a3667951f9da44/resources/streamflow70_99__1524691605498__thumb.jpg",
+                "options": {
+                  "size": "small",
+                  "placement": {
+                    "type": "fit",
+                    "fit": {
+                      "color": "rgb(251, 251, 251)"
+                    },
+                    "fill": {
+                      "x": 0.5,
+                      "y": 0.5
+                    }
+                  }
+                }
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "right",
+                    "size": "medium",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">Additionally, peak runoff of snowmelt in northwest streams is occurring about a month earlier than the historical average (Dudley et al. 2017) . The lack of storage as snow and already full reservoirs has implications of increased sensitivity to future warming (Qualls 2013).&nbsp;</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">(Image Credit: The Northwest Climate Toolbox).<br></p>"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "",
+                "global": true,
+                "style": {
+                  "shadow": false,
+                  "text": "dark",
+                  "background": "light"
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "url": "https://images.unsplash.com/photo-1500595046743-cd271d694d30?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7d279a3a08e6e5336aab8bd61e6bfd98&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                "width": 1024,
+                "height": 680,
+                "sizes": [
+                  {
+                    "url": "https://images.unsplash.com/photo-1500595046743-cd271d694d30?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7d279a3a08e6e5336aab8bd61e6bfd98&q=80&fm=jpg&crop=entropy&fit=max&w=2048",
+                    "height": 1360,
+                    "width": 2048,
+                    "longestSide": 2048
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1500595046743-cd271d694d30?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7d279a3a08e6e5336aab8bd61e6bfd98&q=80&fm=jpg&crop=entropy&fit=max&w=1600",
+                    "height": 1063,
+                    "width": 1600,
+                    "longestSide": 1600
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1500595046743-cd271d694d30?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7d279a3a08e6e5336aab8bd61e6bfd98&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                    "height": 680,
+                    "width": 1024,
+                    "longestSide": 1024
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1500595046743-cd271d694d30?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7d279a3a08e6e5336aab8bd61e6bfd98&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                    "height": 531,
+                    "width": 800,
+                    "longestSide": 800
+                  }
+                ],
+                "type": "image",
+                "thumbUrl": "https://images.unsplash.com/photo-1500595046743-cd271d694d30?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=7d279a3a08e6e5336aab8bd61e6bfd98&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                "options": {
+                  "size": "small"
+                }
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "center",
+                    "size": "large",
+                    "style": "background",
+                    "theme": "white-over-black",
+                    "layout": "scroll-full"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">There is evidence that the dairy industry in Idaho is vulnerable to long-term drought given that:</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">1. There may be an increase in alfalfa farms to keep up with the booming dairy industry. According to NASS, 29 crops changed to alfalfa in 2016 in the Magic Valley (for a total of 373,164 acres).</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">2. There is an increase in temperature and evapotranspiration (ET). Drought may occur with greater frequency and magnitude given the current warming trends (Hamlet and Lettenmaier, 2007; Pagano and Garen, 2005).</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">3. There is not an increase in allocated water but a decline in natural water storage such as snow pack and aquifer levels. If Magic Valley junior users are already curtailed in non-drought years, additional water supplies or more efficient water users will need to be explored to sustain growth.</p>"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "Implications of Research",
+                "global": true,
+                "style": {
+                  "shadow": false,
+                  "text": "dark",
+                  "background": "light"
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "image",
+              "image": {
+                "url": "https://images.unsplash.com/photo-1521702335365-b6c01d1198dd?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=41cc0aee9ded287676f6ac5538653aef&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                "width": 1024,
+                "height": 683,
+                "sizes": [
+                  {
+                    "url": "https://images.unsplash.com/photo-1521702335365-b6c01d1198dd?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=41cc0aee9ded287676f6ac5538653aef&q=80&fm=jpg&crop=entropy&fit=max&w=2048",
+                    "height": 1365,
+                    "width": 2048,
+                    "longestSide": 2048
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1521702335365-b6c01d1198dd?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=41cc0aee9ded287676f6ac5538653aef&q=80&fm=jpg&crop=entropy&fit=max&w=1600",
+                    "height": 1067,
+                    "width": 1600,
+                    "longestSide": 1600
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1521702335365-b6c01d1198dd?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=41cc0aee9ded287676f6ac5538653aef&q=80&fm=jpg&crop=entropy&fit=max&w=1024",
+                    "height": 683,
+                    "width": 1024,
+                    "longestSide": 1024
+                  },
+                  {
+                    "url": "https://images.unsplash.com/photo-1521702335365-b6c01d1198dd?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=41cc0aee9ded287676f6ac5538653aef&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                    "height": 533,
+                    "width": 800,
+                    "longestSide": 800
+                  }
+                ],
+                "type": "image",
+                "thumbUrl": "https://images.unsplash.com/photo-1521702335365-b6c01d1198dd?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=41cc0aee9ded287676f6ac5538653aef&q=80&fm=jpg&crop=entropy&fit=max&w=800",
+                "options": {
+                  "size": "small"
+                }
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "center",
+                    "size": "large",
+                    "style": "background",
+                    "theme": "white-over-black",
+                    "layout": "scroll-full"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">In order to adequately address this issue, the climatological data (science) need to be coupled with water right allocation hierarchies (water law) to provide decision makers with information to make positive change (policy).&nbsp;</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">And that is exactly what this innovative research project is able to address.&nbsp;</p>"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "Implications of Research",
+                "global": true,
+                "style": {
+                  "shadow": false,
+                  "text": "dark",
+                  "background": "light"
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "title",
+        "layout": "title-regular",
+        "background": {
+          "type": "image",
+          "image": {
+            "url": "https://images.unsplash.com/photo-1491975474562-1f4e30bc9468?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=74e1a94d8d99536f41f6c77d37d11df5&q=80&fm=jpg&crop=entropy&fit=max&h=1024",
+            "width": 683,
+            "height": 1024,
+            "sizes": [
+              {
+                "url": "https://images.unsplash.com/photo-1491975474562-1f4e30bc9468?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=74e1a94d8d99536f41f6c77d37d11df5&q=80&fm=jpg&crop=entropy&fit=max&h=2048",
+                "height": 2048,
+                "width": 1365,
+                "longestSide": 2048
+              },
+              {
+                "url": "https://images.unsplash.com/photo-1491975474562-1f4e30bc9468?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=74e1a94d8d99536f41f6c77d37d11df5&q=80&fm=jpg&crop=entropy&fit=max&h=1600",
+                "height": 1600,
+                "width": 1067,
+                "longestSide": 1600
+              },
+              {
+                "url": "https://images.unsplash.com/photo-1491975474562-1f4e30bc9468?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=74e1a94d8d99536f41f6c77d37d11df5&q=80&fm=jpg&crop=entropy&fit=max&h=1024",
+                "height": 1024,
+                "width": 683,
+                "longestSide": 1024
+              },
+              {
+                "url": "https://images.unsplash.com/photo-1491975474562-1f4e30bc9468?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=74e1a94d8d99536f41f6c77d37d11df5&q=80&fm=jpg&crop=entropy&fit=max&h=800",
+                "height": 800,
+                "width": 533,
+                "longestSide": 800
+              }
+            ],
+            "type": "image",
+            "thumbUrl": "https://images.unsplash.com/photo-1491975474562-1f4e30bc9468?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjMzNTd9&s=74e1a94d8d99536f41f6c77d37d11df5&q=80&fm=jpg&crop=entropy&fit=max&h=800",
+            "options": {
+              "size": "small"
+            }
+          }
+        },
+        "foreground": {
+          "title": "Thank you",
+          "credits": "",
+          "options": {
+            "titleStyle": {
+              "shadow": false,
+              "text": "dark",
+              "background": "light"
+            }
+          }
+        }
+      },
+      {
+        "type": "sequence",
+        "layout": "sequence-1",
+        "background": {
+          "type": "color",
+          "color": {
+            "value": "white"
+          }
+        },
+        "foreground": {
+          "blocks": [
+            {
+              "type": "text",
+              "text": {
+                "value": "<h2 class=\"block\" style=\"text-align: left; \">This work was made possible with funding from the Idaho Water Resources Research Institute (IWRRI) USGS 104(b) grant.</h2>"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

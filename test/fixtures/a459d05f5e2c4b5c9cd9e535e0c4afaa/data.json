@@ -1,0 +1,1300 @@
+{
+  "values": {
+    "config": {
+      "author": {
+        "name": ""
+      }
+    },
+    "settings": {
+      "theme": {
+        "colors": {
+          "id": "black-on-white-1",
+          "label": "Light",
+          "themeMajor": "light",
+          "themeContrast": "dark",
+          "bgMain": "white",
+          "textMain": "#4c4c4c"
+        },
+        "fonts": {
+          "titleFont": {
+            "label": "Open Sans",
+            "fontFamily": "'open_sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+          },
+          "bodyFont": {
+            "label": "Noto Serif",
+            "fontFamily": "'noto_serif', 'Georgia', 'Hoefler Text', 'Palatino', cursive"
+          }
+        }
+      },
+      "header": {
+        "logo": {}
+      }
+    },
+    "template": {
+      "name": "Story Map Cascade",
+      "createdWith": "1.7.2",
+      "editedWith": "1.10.0",
+      "dataVersion": "1.0.0"
+    },
+    "sections": [
+      {
+        "type": "cover",
+        "foreground": {
+          "title": "CLOSURE OF SYRINGA",
+          "subtitle": "                a case study for issues surrounding mobile home parks. By Denessy Rodriguez, University of Idaho '19",
+          "options": {
+            "titleStyle": {
+              "shadow": true,
+              "text": "light",
+              "background": null
+            }
+          }
+        },
+        "options": {},
+        "layout": "cover-1",
+        "background": {
+          "type": "image",
+          "image": {
+            "type": "image",
+            "width": 1920,
+            "height": 1440,
+            "options": {
+              "size": "small",
+              "placement": {
+                "type": "fill",
+                "fit": {
+                  "color": "rgb(199, 206, 205)"
+                },
+                "fill": {
+                  "x": 0.487625,
+                  "y": 0.5452127659574468
+                }
+              }
+            },
+            "url": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/no%20text__1536781130572.jpg",
+            "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/no%20text__1536781130572__thumb.jpg"
+          }
+        }
+      },
+      {
+        "type": "sequence",
+        "background": {
+          "type": "color",
+          "color": {
+            "value": "white"
+          }
+        },
+        "foreground": {
+          "blocks": [
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">Syringa was a mobile home park located three miles outside of Moscow, Idaho in Latah County.</p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">Syringa was open from 1968 to June 5, 2018.&nbsp;</p>"
+              }
+            },
+            {
+              "type": "image-gallery",
+              "image-gallery": {
+                "images": [
+                  {
+                    "url": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/Copy%20of%20IMG_0266__1529013849557.JPG",
+                    "width": 1920,
+                    "height": 1440,
+                    "instanceID": "1544214352325-b163877c-c062-36cf-e5bd-b5a4b66c06bf"
+                  },
+                  {
+                    "height": 995,
+                    "width": 1475,
+                    "url": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/Trailer%20Move%201980s__1529013945661.jpg",
+                    "instanceID": "1544214353361-092a27b3-4261-574c-9687-74a8c18eb67a"
+                  }
+                ],
+                "caption": "Left: Welcome sign at entrance of Syringa. (January 2018) Right: Mobile home being installed in Syringa. (1987) Photo Courtesy of Anne Thompson.&nbsp;"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "webmap",
+              "webmap": {
+                "type": "webmap",
+                "id": "91e92ffdab6f4558bf8d8ad734c1bd6f",
+                "options": {
+                  "interaction": "enabled"
+                },
+                "extras": {
+                  "locate": {
+                    "enabled": false
+                  },
+                  "search": {
+                    "enabled": false
+                  },
+                  "legend": {
+                    "enabled": false
+                  }
+                },
+                "layers": []
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "left",
+                    "size": "medium",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">This map displays mobile home parks in Idaho and ACS data on household poverty by county.</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">According to sociologist Esther Sullivan, manufactured housing is the largest form of unsubsidized affordable housing in the US.&nbsp;</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"><i>This map is interactive, zoom, pan, or click or click on icons to learn more.</i>&nbsp;</p>"
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image": {
+                        "type": "image",
+                        "width": 266,
+                        "height": 170,
+                        "url": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/legend6__1536949184301.JPG",
+                        "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/legend6__1536949184301__thumb.JPG",
+                        "options": {
+                          "fitHeight": false,
+                          "size": "small"
+                        },
+                        "caption": ""
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "Mobile Home Parks in Idaho ",
+                "global": true,
+                "style": {
+                  "shadow": false,
+                  "text": "dark",
+                  "background": "light"
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "title",
+        "layout": "title-regular",
+        "background": {
+          "type": "image",
+          "image": {
+            "type": "image",
+            "width": 1494,
+            "height": 990,
+            "url": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/Child%20with%20Mountain%20Bground%201980s__1529014148725.jpg",
+            "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/Child%20with%20Mountain%20Bground%201980s__1529014148725__thumb.jpg",
+            "options": {
+              "size": "small",
+              "placement": {
+                "type": "fill",
+                "fill": {
+                  "x": 0.580125,
+                  "y": 0.026261295180722892
+                }
+              }
+            }
+          }
+        },
+        "foreground": {
+          "title": "History of Syringa",
+          "credits": "",
+          "options": {
+            "titleStyle": {
+              "shadow": false,
+              "text": "dark",
+              "background": "light"
+            }
+          }
+        }
+      },
+      {
+        "type": "sequence",
+        "layout": "sequence-1",
+        "background": {
+          "type": "color",
+          "color": {
+            "value": "white"
+          }
+        },
+        "foreground": {
+          "blocks": [
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">Those who remember Syringa from its early days speak of it with fondness. Accompanying the beautiful scenery of Syringa was a community pool and happy, friendly neighbors.&nbsp;</p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">In the early 1980's, Magar E. Magar purchased the park, a person who had already been sued for mismanagement at another mobile home park he owned in Oregon.  After years of neglect, problems within the park became more and more visible. The park slowly became filled with potholes, the community pool closed down, and water and sewage systems were not maintained properly-– all of which were responsibilities residents’ monthly lot payments were supposed to cover per their signed leases with Mr. Magar.  On December 18, 2013 the water crisis began.&nbsp;</p>"
+              }
+            },
+            {
+              "type": "image-gallery",
+              "image-gallery": {
+                "images": [
+                  {
+                    "url": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/law%20photo%202__1529014900315.jpg",
+                    "width": 1920,
+                    "height": 1440,
+                    "instanceID": "1544214352331-be718673-87f3-e1ae-bf83-e693b159846a"
+                  },
+                  {
+                    "height": 1440,
+                    "width": 1920,
+                    "url": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/empty%20pool__1529090661861.jpg",
+                    "instanceID": "1544214353345-fe98a513-ede0-7f29-a7b5-2883f811a856"
+                  }
+                ],
+                "caption": "Left: Inside Syringa (Photographer Denessy Rodriguez, October 31, 2017) Right: Derelict swimming pool in community center at Syringa&nbsp;(Photographer Denessy Rodriguez, October 31, 2017) "
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "webmap",
+              "webmap": {
+                "type": "webmap",
+                "id": "e8b80011907d471da85b6b781f5f9cf9",
+                "options": {
+                  "interaction": "enabled"
+                },
+                "extras": {
+                  "locate": {
+                    "enabled": false
+                  },
+                  "search": {
+                    "enabled": false
+                  },
+                  "legend": {
+                    "enabled": false
+                  }
+                },
+                "layers": [
+                  {
+                    "id": "MobileHomes_Tract_2012_2016_8410",
+                    "visibility": true
+                  }
+                ]
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "left",
+                    "size": "medium",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">This map shows the distribution of people who live in mobile homes. Data is from 2012-2016 American Community Survey.</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">Mobile home parks are a key component to affordable housing across the United States.&nbsp;&nbsp;</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"><i>This map is interactive, zoom, pan, or click or click on icons to learn more.&nbsp;</i><br></p>"
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image": {
+                        "type": "image",
+                        "width": 256,
+                        "height": 188,
+                        "url": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/legend1__1532463725382.JPG",
+                        "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/legend1__1532463725382__thumb.JPG",
+                        "options": {
+                          "fitHeight": false,
+                          "size": "small"
+                        },
+                        "caption": ""
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "Mobile Home Population and Poverty Levels ",
+                "global": true,
+                "style": {
+                  "shadow": false,
+                  "text": "dark",
+                  "background": "light"
+                }
+              }
+            }
+          },
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "webmap",
+              "webmap": {
+                "type": "webmap",
+                "id": "4959c9f7735845fcb4bf3d407a18b72c",
+                "options": {
+                  "interaction": "enabled"
+                },
+                "extras": {
+                  "locate": {
+                    "enabled": false
+                  },
+                  "search": {
+                    "enabled": false
+                  },
+                  "legend": {
+                    "enabled": false
+                  }
+                },
+                "layers": []
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "left",
+                    "size": "medium",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">This map shows the predominant income range of households in the United States. This is shown by census tract and county point centroids. The data is from the 2016 5-year American Community Survey.</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">The predominant income range in Latah County is 25,000 and below.</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"><i>This map is interactive, zoom, pan, or click or click on icons to learn more.&nbsp;</i><br></p>"
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image": {
+                        "type": "image",
+                        "width": 316,
+                        "height": 413,
+                        "url": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/legend2__1532464099015.JPG",
+                        "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/legend2__1532464099015__thumb.JPG",
+                        "options": {
+                          "fitHeight": false,
+                          "size": "small"
+                        },
+                        "caption": ""
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "webmap",
+              "webmap": {
+                "type": "webmap",
+                "id": "0908f719d0754bae9260a50b486777e8",
+                "options": {
+                  "interaction": "enabled"
+                },
+                "extras": {
+                  "locate": {
+                    "enabled": false
+                  },
+                  "search": {
+                    "enabled": false
+                  },
+                  "legend": {
+                    "enabled": false
+                  }
+                },
+                "layers": []
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "left",
+                    "size": "medium",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">This map shows how each county, tract, and block group compare to the national average amount of households below the poverty level. The map highlights if areas are better or worse off than the average American household.</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">Latah County has a poverty index of 162 with 23.4% of households below the poverty level.&nbsp;</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"><i>This map is interactive, zoom, pan, or click or click on icons to learn more.&nbsp;</i><br></p>"
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image": {
+                        "type": "image",
+                        "width": 274,
+                        "height": 541,
+                        "url": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/legend3__1532464303744.JPG",
+                        "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/legend3__1532464303744__thumb.JPG",
+                        "options": {
+                          "fitHeight": false,
+                          "size": "small"
+                        },
+                        "caption": ""
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "type": "title",
+        "layout": "title-regular",
+        "background": {
+          "type": "image",
+          "image": {
+            "type": "image",
+            "width": 1494,
+            "height": 990,
+            "url": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/Child%20with%20Mountain%20Bground%201980s__1529014148725.jpg",
+            "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/Child%20with%20Mountain%20Bground%201980s__1529014148725__thumb.jpg",
+            "options": {
+              "size": "small",
+              "placement": {
+                "type": "fill",
+                "fill": {
+                  "x": 0.580125,
+                  "y": 0.026261295180722892
+                }
+              }
+            }
+          }
+        },
+        "foreground": {
+          "title": "The Water Crisis ",
+          "credits": "",
+          "options": {
+            "titleStyle": {
+              "shadow": false,
+              "text": "dark",
+              "background": "light"
+            }
+          }
+        }
+      },
+      {
+        "type": "sequence",
+        "layout": "sequence-1",
+        "background": {
+          "type": "color",
+          "color": {
+            "value": "white"
+          }
+        },
+        "foreground": {
+          "blocks": [
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">The \"Water Crisis\" refers to a period of 90 days, December 18, 2013, to March 20, 2014, when residents of Syringa went without running water. </p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">When residents awoke the morning of December 18 to no running water, they were alarmed, but water had often been shut down, and boil orders administered, in the past. This time, though, things were different.Water at the park was shut down after tests following this shutdown revealed the drinking water had been exposed to unsafe levels of coliform bacteria – a bacteria linked to human feces – and possibly lead. Different from boil orders in the past, residents were told even boiling their water was not sufficient for safe consumption, leaving only bathing, laundering, and toilet use. </p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">The situation got much worse. Before packing up and abandoning the park right before Christmas, the people managing the park poured chlorine directly into the well pump system to get rid of the coliform bacteria, which led to high chlorine levels, too. Residents – adults and children -- who continued to drink the water reported abdominal cramps, diarrhea, vomiting, and sore throats. </p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">As though residents hadn’t dealt with enough hardship, a dramatic cold snap hit the region in February 2014, leading to frozen sewage and water pipes. Residents were left without running toilets for at least two weeks, left to haul water to the park simply to flush toilets. Sewage backed up into people’s bathtubs. Several residents reported having to take showers at hotels, the University of Idaho, and friends’ places.&nbsp;</p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">Even after the water crisis ended, residents often received boil orders that were typically issued when the water pressure in the pipes dropped too much or a well pump malfunctioned.  </p>"
+              }
+            },
+            {
+              "type": "image-gallery",
+              "image-gallery": {
+                "images": [
+                  {
+                    "url": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/2017-10-31%2008.21.13__1529088861679.jpg",
+                    "width": 1920,
+                    "height": 1440,
+                    "instanceID": "1544214352333-289931d6-fd25-d598-95ad-663545d74a34"
+                  },
+                  {
+                    "height": 1440,
+                    "width": 1920,
+                    "url": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/idaho%20ice%20boxes__1529090604533.jpg",
+                    "instanceID": "1544214353300-dacaf67f-b04f-6b15-edb6-ea7e68abeaae"
+                  }
+                ],
+                "caption": "Once off-site management was arranged in August 2016, Syringa’s community center was locked, no longer available for socials and resident gatherings. Photographed here are cases of bottled water that the park’s trustee purchased December 27, 2016, to distribute to residents during yet another boil order. Taken October 31, 2017, these photographs show that the bottled water was never given to residents, instead they were simply stored amidst construction materials inside the locked community center. (Photographer Denessy Rodriguez, October 31, 2017)"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "title",
+        "layout": "title-regular",
+        "background": {
+          "type": "image",
+          "image": {
+            "type": "image",
+            "url": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/Child%20with%20Mountain%20Bground%201980s__1529014148725.jpg",
+            "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/Child%20with%20Mountain%20Bground%201980s__1529014148725__thumb.jpg",
+            "options": {
+              "size": "small",
+              "placement": {
+                "type": "fill",
+                "fill": {
+                  "x": 0.528125,
+                  "y": 0
+                }
+              }
+            },
+            "width": 1494,
+            "height": 990
+          }
+        },
+        "foreground": {
+          "title": "Red Tagging",
+          "credits": "",
+          "options": {
+            "titleStyle": {
+              "shadow": false,
+              "text": "dark",
+              "background": "light"
+            }
+          }
+        }
+      },
+      {
+        "type": "sequence",
+        "layout": "sequence-1",
+        "background": {
+          "type": "color",
+          "color": {
+            "value": "white"
+          }
+        },
+        "foreground": {
+          "blocks": [
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">Following the water crisis, some residents – generally those who were short-timers in the park – began to move out. In an effort to limit people’s exposure to health hazards, Latah County officials began to issue “red tags,” which were posted each time a family vacated a home. Red tags prohibited the use of these homes for residency, even for those who held title. Because they were left empty, the public perception was that these red-tagged homes were condemned. They were not. A homeowner could enter a home to remove belongings and to renovate, and they could move the home out of the park (this latter fact was not clear to homeowners, though). Homes were often structurally sound, but had poor water and sewage services due to the park owner’s neglect. Thus, the county considered red tagging a temporary measure that would halt once the park’s owner Magar E. Magar resolved the water and sewage issues illuminated in the lawsuits filed by the Idaho Conservation League and the UI Legal Aid Clinic. Once resolved, homeowners could resume renting out or moving back in.</p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">Though red tags isolated the water issue, they also created unintended consequences for homeowners. Because moving a mobile home can be quite expensive and sometimes impossible, many of those homeowners who moved out were forced to abandon their homes. This inevitably cost many their upward mobility,&nbsp;since they had no financial assets to carry forward into their next housing situation. </p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">For those who stayed, mostly because they lacked housing options in the area, red tags led to a dramatic depreciation of home values. In 2014, the assessed values for occupied homes in Syringa were halved. For example, a home valued in 2013 at $8,000 was assessed at $4,000 in 2014. Red-tagged homes were zeroed out, reduced to simply the lot rent, which was $260. As a way to mediate all the hardships that stemmed from the water crisis, the University of Idaho Legal Aid Clinic filed a civil lawsuit against Magar E. Magar on behalf of residents who lived their during that time. </p>"
+              }
+            },
+            {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 1920,
+                "height": 1080,
+                "options": {
+                  "fitHeight": false,
+                  "size": "medium"
+                },
+                "url": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/Red%20Tags%20Sign%201__1536706225670.jpg",
+                "caption": "",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/Red%20Tags%20Sign%201__1536706225670__thumb.jpg"
+              }
+            },
+            {
+              "type": "image-gallery",
+              "image-gallery": {
+                "images": [
+                  {
+                    "height": 1440,
+                    "width": 1920,
+                    "url": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/smiley%20face%20red%20tag__1529091121125.JPG",
+                    "instanceID": "1544214352333-b3ce2305-9d0c-f6bf-7ce9-5eb21e773c06"
+                  },
+                  {
+                    "height": 1440,
+                    "width": 1920,
+                    "url": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/IMG_0183__1529091188597.JPG",
+                    "instanceID": "1544214353360-8a639344-8157-4953-008c-f3ce7b3162fa"
+                  }
+                ],
+                "caption": "Red tags issued by the county. Latah County issued over 50 red tags between 2014 and 2017. They were issued immediately after residents moved out of homes. By the time the park’s trustee announced plans to close the park, a majority of homes were red tagged. (Photo credits: Top photo by Cynthia Ballesteros, December 2016; Bottom photos by Denessy Rodriguez, January 6, 2018)"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "webmap",
+              "webmap": {
+                "type": "webmap",
+                "id": "86d2a5c0bc954abda1296851b161ecc7",
+                "options": {
+                  "interaction": "enabled"
+                },
+                "extras": {
+                  "locate": {
+                    "enabled": false
+                  },
+                  "search": {
+                    "enabled": false
+                  },
+                  "legend": {
+                    "enabled": false
+                  }
+                },
+                "layers": []
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "left",
+                    "size": "medium",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">This map displays the amount of Idaho households under the poverty line in 2012. Many mobile home parks can be found in counties with the highest amount of poverty.&nbsp;</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"><i>This map is interactive, zoom, pan, or click or click on icons to learn more.&nbsp;</i><br></p>"
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image": {
+                        "type": "image",
+                        "width": 319,
+                        "height": 223,
+                        "url": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/legend%204__1532464620780.JPG",
+                        "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/legend%204__1532464620780__thumb.JPG",
+                        "options": {
+                          "fitHeight": false,
+                          "size": "small"
+                        },
+                        "caption": ""
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "Household Poverty in Idaho ",
+                "global": true,
+                "style": {
+                  "shadow": false,
+                  "text": "dark",
+                  "background": "light"
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "immersive",
+        "options": {},
+        "views": [
+          {
+            "transition": "fade-fast",
+            "background": {
+              "type": "webmap",
+              "webmap": {
+                "type": "webmap",
+                "id": "a97269f7da474c859a86b770d96940e4",
+                "options": {
+                  "interaction": "enabled"
+                },
+                "extras": {
+                  "locate": {
+                    "enabled": false
+                  },
+                  "search": {
+                    "enabled": false
+                  },
+                  "legend": {
+                    "enabled": false
+                  }
+                },
+                "layers": []
+              }
+            },
+            "foreground": {
+              "panels": [
+                {
+                  "layout": "scroll-full",
+                  "settings": {
+                    "position-x": "left",
+                    "size": "medium",
+                    "style": "background",
+                    "theme": "white-over-black"
+                  },
+                  "blocks": [
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">This map displays the density of mobile home parks per county in Idaho.&nbsp;</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">The highest amount of mobile home parks is found in Ada county, with 66 parks. There are five counties in Idaho that do not have mobile home parks.&nbsp;</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\">This data comes from&nbsp;Homeland Infrastructure Foundation-Level Data (HIFLD).</p>"
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "text": {
+                        "value": "<p class=\"block\"><i>This map is interactive, zoom, pan, or click or click on icons to learn more.&nbsp;</i><br></p>"
+                      }
+                    },
+                    {
+                      "type": "image",
+                      "image": {
+                        "type": "image",
+                        "width": 92,
+                        "height": 183,
+                        "url": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/legend5__1536775282465.JPG",
+                        "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/legend5__1536775282465__thumb.JPG",
+                        "options": {
+                          "fitHeight": false,
+                          "size": "small"
+                        },
+                        "caption": ""
+                      }
+                    }
+                  ]
+                }
+              ],
+              "title": {
+                "value": "Heat Map of Mobile Home Parks",
+                "global": true,
+                "style": {
+                  "shadow": false,
+                  "text": "dark",
+                  "background": "light"
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "title",
+        "layout": "title-regular",
+        "background": {
+          "type": "image",
+          "image": {
+            "type": "image",
+            "url": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/Child%20with%20Mountain%20Bground%201980s__1529014148725.jpg",
+            "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/Child%20with%20Mountain%20Bground%201980s__1529014148725__thumb.jpg",
+            "options": {
+              "size": "small",
+              "placement": {
+                "type": "fill",
+                "fill": {
+                  "x": 0.540125,
+                  "y": 0
+                },
+                "fit": {
+                  "color": "rgb(219, 197, 193)"
+                }
+              }
+            },
+            "width": 1494,
+            "height": 990
+          }
+        },
+        "foreground": {
+          "title": "The Class Action Suit ",
+          "credits": "",
+          "options": {
+            "titleStyle": {
+              "shadow": false,
+              "text": "dark",
+              "background": "light"
+            }
+          }
+        }
+      },
+      {
+        "type": "sequence",
+        "layout": "sequence-1",
+        "background": {
+          "type": "color",
+          "color": {
+            "value": "white"
+          }
+        },
+        "foreground": {
+          "blocks": [
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">On February 25, 2014, in the middle of the water crisis, the University of Idaho Legal Aid Clinic filed a class action lawsuit on behalf of Syringa residents&nbsp;</p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">The suit was filed in order to prove Mr. Magar's negligence created the water issues. The suit was also filed in order to hold Mr. Magar financially responsible by providing compensations to residents and fixing the water issues.&nbsp;</p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">It took over a year for a partial settlement to be reached in early spring 2015. The settlement was structured into three tiers. Tier One required Mr. Magar to give $2,000 to each resident affected by the water crisis. Tier Two required Mr. Magar to compensate for the lost values of the homes, described in an earlier section. Finally, Tier Three mandated Mr. Magar to compensate residents for expenses that resulted as a result of the water crisis.&nbsp;</p>"
+              }
+            },
+            {
+              "type": "image-gallery",
+              "image-gallery": {
+                "images": [
+                  {
+                    "url": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/IMG_0244__1530824715652.JPG",
+                    "width": 1920,
+                    "height": 1440,
+                    "instanceID": "1544214352336-807a939d-7927-400d-1e15-dbc42f2df6c0"
+                  },
+                  {
+                    "height": 1440,
+                    "width": 1920,
+                    "url": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/red%20tag%20white%20home__1530825108195.JPG",
+                    "instanceID": "1544214353319-2e4dd155-9f53-a744-8af5-d787e04f6a9e"
+                  }
+                ],
+                "caption": "Left: Notice of corrected water problem in a Syringa resident's home. (Photographed by Denessy Rodriguez, January 6, 2018) Right: Red tagged home surrounded by litter. (Photographed by Denessy Rodriguez, January 6, 2018)"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">In 2015, Magar transferred ownership of the park to his daughter, Shelley Magar, and filed for bankruptcy. The bankruptcy halted the class action lawsuit. However, after the UI Legal Aid Clinic contacted the Washington bankruptcy court, it was decided Magar was still responsible for compensating residents for damages arising from the water crisis.</p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">Finally, in November 2017, a settlement was completely reached with Shelley Magar. In February 2018, the settlement was approved and Magar E. Magar was ordered to compensate residents for the damages incurred during the water crisis and recent years.&nbsp;In a stunning gesture of generosity, both the Idaho Conservation League and Idaho Department of Environmental Quality stepped back from priority compensation to ensure that Syringa residents were given first priority in compensation. A sum of $282,000 was to be distributed to residents according to each household’s calculated damages.&nbsp;</p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">However, due to the large expense of repairing the park's sewage lagoons and water infrastructure, Magar decided keeping Syringa open was not economically feasible.&nbsp;</p>"
+              }
+            },
+            {
+              "type": "image-gallery",
+              "image-gallery": {
+                "images": [
+                  {
+                    "url": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/IMG_0112__1529094461827.JPG",
+                    "width": 1920,
+                    "height": 1440,
+                    "instanceID": "1544214352336-9ee3168b-1eba-893b-2b72-19ab0ef6b3ab"
+                  },
+                  {
+                    "height": 1440,
+                    "width": 1920,
+                    "url": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/IMG_0189__1529094535259.JPG",
+                    "instanceID": "1544214353653-4bb13ccf-2710-1038-b922-5f867eaa4688"
+                  }
+                ],
+                "caption": "Photos of Syringa Mobile Home Park. (Denessy Rodriguez, January 6, 2018)"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\"></p>"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "title",
+        "layout": "title-regular",
+        "background": {
+          "type": "image",
+          "image": {
+            "type": "image",
+            "url": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/Child%20with%20Mountain%20Bground%201980s__1529014148725.jpg",
+            "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/Child%20with%20Mountain%20Bground%201980s__1529014148725__thumb.jpg",
+            "options": {
+              "size": "small",
+              "placement": {
+                "type": "fill",
+                "fill": {
+                  "x": 0.504125,
+                  "y": 0.002164909638554217
+                },
+                "fit": {
+                  "color": "rgb(219, 197, 193)"
+                }
+              }
+            },
+            "width": 1494,
+            "height": 990
+          }
+        },
+        "foreground": {
+          "title": "Park Closure",
+          "credits": "",
+          "options": {
+            "titleStyle": {
+              "shadow": false,
+              "text": "dark",
+              "background": "light"
+            }
+          }
+        }
+      },
+      {
+        "type": "sequence",
+        "layout": "sequence-1",
+        "background": {
+          "type": "color",
+          "color": {
+            "value": "white"
+          }
+        },
+        "foreground": {
+          "blocks": [
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">On September 29, 2017, it was announced Syringa Mobile Home Park would be closing with a six month notice to residents.&nbsp;The legal notices were officially distributed to residents November 5, 2017, which meant residents would need to be out of the park by May 5, 2018. The closest city is Moscow, Idaho, with a rental market dominated by the rhythms of university student housing. Thus, early May is a terrible time for anyone to try to move into rentals in the area. Negotiations during the bankruptcy hearing in late November resulted in a one-month extension of park closure, moving from May 5 to June 5, 2018. </p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">With limited housing options in Latah County, residents were left to scramble. They had the option to find a new place to live on a limited income, or find the resources needed to move a manufactured home.&nbsp;<br></p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">According to Idaho law, manufactured homes built before 1976 must go through Mobile Home Rehabilitation. This is a costly process that must be done before it can be moved to ensure it meets federal safety regulations. Moving the actual home can cost, on average, around $5,000. Furthermore, rent in Latah County can be pricey, especially for those on a limited income. According to the National Low Income Association, residents in Latah County must make $13.44 an hour in order to afford a two-bedroom apartment.&nbsp;</p>"
+              }
+            },
+            {
+              "type": "image-gallery",
+              "image-gallery": {
+                "images": [
+                  {
+                    "url": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/IMG_0210__1530826193978.JPG",
+                    "width": 1920,
+                    "height": 1440,
+                    "instanceID": "1544214352337-73cd5c2c-6cce-7ea2-900e-ffa6f814760b"
+                  },
+                  {
+                    "height": 1440,
+                    "width": 1920,
+                    "url": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/IMG_0196__1530826219202.JPG",
+                    "instanceID": "1544214353260-ae152594-47e6-3fe1-3a16-d355d4733132"
+                  }
+                ],
+                "caption": "Photos of Syringa Mobile Home Park. (Denessy Rodriguez, January 6, 2018)"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">Many factors forced many families to stay at the park until the very last few weeks, and some beyond, the June 5, 2018 deadline.&nbsp;</p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">Resident's received some financial help from the lawsuit,&nbsp;though the payments were not initiated until March 19, 2018. and These funds were a significant financial resource for several families, who were able to afford moving into apartments in Moscow and some were even able to put together financial resources to acquire home mortgages. Many other families, however, needed more support. Leontina Hormel partnered with Lysa Salsbury, Director of the UI Women’s Center; Anne Zabala, Moscow City Council Member; and Sojourner’s Alliance, a homelessness prevention non-profit organization, to combine resources from community fundraising and government programs to maximize resource options for residents who fell through the cracks. These funds, though, were not available until the third week of May, just two weeks before the park’s official closure Mother nature played a major factor. as well. Due to heavy snow and rainfall throughout April, the first mobile home, a double-wide owned by a retired military veteran and his wife, was could not moved out of the park until mid-May. The ground was too soft to bear the weight of the hauling equipment. </p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">While some waited for their mobile home to be moved, paper work at their new home to be finished, or simply still trying to figure it out, the June 5 deadline came and went.&nbsp;The University of Idaho Legal Aid Clinic was able to get the move out deadline extended to June 22. Unfortunately, despite the extension, water was promptly shut off on June 6.&nbsp;Trash collection, in fact, was halted on June 1st, leaving residents to either dump garbage in the park, or pay $10 and gas to haul garbage to the county landfill. </p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">Through community action, portable toilets and water were brought out to residents who remained in the park.&nbsp;Avista energy company kindly donated portable toilets and a handwashing station for residents who remained in the park. Avista also made sure residents’ power remained on. Both measures were vital to residents’ safety. The Latah County Sheriff’s Department stepped in at a critical moment, too, as scavenging and theft grew while people were trying to move belongings between the park and their new homes. Between July and November 2018, Sheriff Richie Skiles and the department’s deputies made regular visits to the park, getting to know the residents, and making their presence visible. After a few weeks over the month of July, criminal activity declined significantly.</p>"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "title",
+        "layout": "title-regular",
+        "background": {
+          "type": "image",
+          "image": {
+            "type": "image",
+            "url": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/Child%20with%20Mountain%20Bground%201980s__1529014148725.jpg",
+            "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/Child%20with%20Mountain%20Bground%201980s__1529014148725__thumb.jpg",
+            "options": {
+              "size": "small",
+              "placement": {
+                "type": "fill",
+                "fill": {
+                  "x": 0.452125,
+                  "y": 0
+                }
+              }
+            },
+            "width": 1494,
+            "height": 990
+          }
+        },
+        "foreground": {
+          "title": "Coming Together",
+          "credits": "",
+          "options": {
+            "titleStyle": {
+              "shadow": false,
+              "text": "dark",
+              "background": "light"
+            }
+          }
+        }
+      },
+      {
+        "type": "sequence",
+        "layout": "sequence-1",
+        "background": {
+          "type": "color",
+          "color": {
+            "value": "white"
+          }
+        },
+        "foreground": {
+          "blocks": [
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">University of Idaho sociology professor Dr. Leontina Hormel has been working with residents since 2015 after learning that two of her students lived in the park. Her goal was to study the park and find ways for resident's to cooperatively own the park.&nbsp;</p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">Once the park closure was announced, Dr. Hormel focused her efforts on assisting residents and quickly became a well-known community advocate.&nbsp;</p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">Dr. Hormel, along with Steve Bonnar, Director of Sojourner’s Alliance, a non-profit transitional housing service; University of Idaho Women's Center Director Lysa Salsbury; and Moscow City Council member Anne Zabala partnered in leading community organization to support Syringa residents. University of Idaho sociology students were part of all of these efforts, including conducting survey interviews with residents, attending community organizing meetings, creating a video documentary, and pitching-in for the fundraising event. Student researchers include Denessy Rodriguez, Cynthia Ballesteros, Haylee Brister, Ashley Webb, Makayla Sundquist, Kelsey Stevenson, Kaela Watson, and Jackie Sedano. &nbsp;</p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">Community efforts included identifying local resources and providing information, a community event, \"Syringa Speaks\" in January 2018 that allowed residents to share their stories, an online fundraiser, and a community fundraiser event.</p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">Syringa is not a unique case. Owning a home but not the land it is on leaves mobile home park resident's vulnerable to&nbsp; depreciating home values and eviction.&nbsp; Mobile home parks across the county are closing due to aging infrastructure, park mismanagement, and land development. In the majority of states, mobile home park residents can be evicted with only a 30-day notice.</p>"
+              }
+            },
+            {
+              "type": "image",
+              "image": {
+                "type": "image",
+                "width": 606,
+                "height": 767,
+                "url": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/MHP%20Tenant%20Rights__1536879063133.JPG",
+                "thumbUrl": "https://www.arcgis.com/sharing/rest/content/items/a459d05f5e2c4b5c9cd9e535e0c4afaa/resources/MHP%20Tenant%20Rights__1536879063133__thumb.JPG",
+                "options": {
+                  "fitHeight": false,
+                  "size": "medium"
+                },
+                "caption": "Maps of parks and tenant protections by state created by Esther Sullivan.&nbsp;"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\">Mobile homes has been an affordable housing solution in the United States for many decades. There are ways to improve the terms of ownership, including changing the loan terms for mobile home ownership and shifting toward homeowner cooperative models for park management. The trend of park closure observed across the country is yet another way that housing insecurity is intensifying. Experiences like those of Syringa Mobile Home park residents illuminate the need for communities and legislators to work toward strategic housing solutions for working-class families. </p>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<blockquote style=\"text-align: left;\" class=\"block\">The story of Syringa illustrates the need to&nbsp;preserve mobile home parks and to mitigate impacts of dislocation.&nbsp;</blockquote>"
+              }
+            },
+            {
+              "type": "text",
+              "text": {
+                "value": "<p class=\"block\"><br></p>"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "credits",
+        "layout": "credits-1",
+        "background": {
+          "type": "color",
+          "color": {
+            "value": "#000"
+          }
+        },
+        "foreground": {
+          "panels": [
+            {
+              "type": "blocks",
+              "blocks": [
+                {
+                  "type": "text",
+                  "text": {
+                    "value": "<p class=\"block\" style=\"text-align: center;\"></p>"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "credits",
+              "credits": []
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

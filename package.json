@@ -1,0 +1,38 @@
+{
+  "name": "storymap-archiver",
+  "version": "0.1.0",
+  "description": "Migrate a retired Esri Story Map Cascade project into a self-contained static site.",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "bin": {
+    "storymap-migrate": "bin/migrate.js",
+    "storymap-dev": "bin/dev.js"
+  },
+  "scripts": {
+    "migrate": "node bin/migrate.js",
+    "dev": "node bin/dev.js",
+    "test": "node --test"
+  },
+  "keywords": [
+    "esri",
+    "story-map",
+    "arcgis",
+    "archive"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "11.25.0",
+      "onFail": "download"
+    }
+  },
+  "packageManager": "pnpm@11.25.0",
+  "dependencies": {
+    "@esri/arcgis-to-geojson-utils": "^1.3.0",
+    "leaflet": "^1.9.4"
+  }
+}
