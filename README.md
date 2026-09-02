@@ -8,6 +8,36 @@ Provide the ArcGIS "appid" for a retired Cascade Esri Story Map and the migrator
 
 To use storymap-archiver, you will need `pnpm`.
 
+## Repository Contents
+
+- "Storymaps-Cascade-1.23.0" - this is the source code of the original Esri Story Maps Cascade layout for reference. It can be used to view old stories in their original form for recovery or reference. See "docs/use-cascade.md" for info.
+
+## Project Aims
+
+- Capture and download retired content accurately to avoid loss of data.
+- Recreate the original Cascade theme interactions and presentation in a self-contained static web package with no external dependencies.
+- Improve the theme with modernized html, css, best practices, and accessibility to ensure long term useability.
+
+## Migrating a story
+
+1. Install storymap-archiver dependencies: `pnpm install`
+2. Find the retired Story Map's appid.
+3. Run the migration script, e.g.:
+   ```
+   pnpm migrate --appid 545cd13f571b4ca087a3667951f9da44 --site https://cdil.lib.uidaho.edu --base /loggerettes
+   ```
+   Any warnings (a map layer that's gone, an image that failed to download,
+   ...) are listed at the end — the migration still completes, review these
+   before publishing since some content may be missing or degraded.
+4. Run the dev server to review the output in "output/" (new project directory is named following the `base` value, or the story's title if `--base` wasn't given):
+   ```
+   pnpm dev
+   ```
+   (Pass `--project <name>` or `--dir <path>` if `output/` has more than one migrated project.)
+5. Manually copy the new project directory to its production location on your server.
+
+## Full Options
+
 Options:
 
 - `--appid` - ArcGIS appid for a retired Story Map, e.g. `545cd13f571b4ca087a3667951f9da44`.
@@ -25,34 +55,6 @@ Options:
 
 Run `pnpm migrate --help` or `pnpm dev --help` for the full list of options.
 
-## Repository Contents
-
-- "Storymaps-Cascade-1.23.0" - this is the source code of the original Esri Story Maps Cascade layout for reference. It can be used to view old stories in their original form for recovery or reference. See "docs/use-cascade.md" for info.
-
-## Project Aims
-
-- Capture and download retired content accurately to avoid loss of data.
-- Recreate the original Cascade theme interactions and presentation in a self-contained static web package with no external dependencies.
-- Improve the theme with modernized html, css, best practices, and accessibility to ensure long term useability.
-
-## Migrating a story
-
-1. Install storymap-archiver dependencies: `pnpm install`
-2. Find the retired Story Map's appid.
-3. Run the migration script, e.g.:
-   ```
-   pnpm migrate --appid 545cd13f571b4ca087a3667951f9da44 \
-     --site https://cdil.lib.uidaho.edu --base /loggerettes
-   ```
-   Any warnings (a map layer that's gone, an image that failed to download,
-   ...) are listed at the end — the migration still completes, review these
-   before publishing since some content may be missing or degraded.
-4. Run the dev server to review the output in "output/" (new project directory is named following the `base` value, or the story's title if `--base` wasn't given):
-   ```
-   pnpm dev
-   ```
-   (Pass `--project <name>` or `--dir <path>` if `output/` has more than one migrated project.)
-5. Manually copy the new project directory to its production location on your server.
 
 ## Examples 
 
