@@ -1,0 +1,406 @@
+:root {
+  --title-font: var(--story-title-font, system-ui, sans-serif);
+  --body-font: var(--story-body-font, Georgia, serif);
+  --bg-main: var(--story-bg-main, #fff);
+  --text-main: var(--story-text-main, #222);
+  --accent: #2b6cb0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--body-font);
+  background: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--title-font);
+  line-height: 1.2;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--accent);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: #fff;
+  color: #000;
+  padding: 0.75rem 1rem;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+}
+
+/* Nav */
+
+.story-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 0.75rem 1rem;
+  /* Solid, not translucent: an opacity/rgba background here can't guarantee
+     WCAG 1.4.3 contrast against whatever scrolls underneath it (this nav is
+     sticky over the whole page, including photos and live maps). */
+  background: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.story-nav a {
+  white-space: nowrap;
+  text-decoration: none;
+  font-family: var(--title-font);
+  font-size: 0.9rem;
+  /* A solid, adequately-contrasted color rather than opacity, which would
+     reintroduce the same guaranteed-contrast problem as the background above. */
+  color: #555;
+}
+
+.story-nav a.is-current,
+.story-nav a:hover {
+  color: var(--accent);
+}
+
+/* Hero (cover / title sections) */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #111;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  text-align: center;
+  color: #fff;
+}
+
+.hero .background-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.55));
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 44rem;
+  padding: 2rem;
+}
+
+.hero-title {
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  margin: 0 0 0.75rem;
+}
+
+.hero-subtitle {
+  font-size: 1.15rem;
+  margin: 0;
+  opacity: 0.95;
+}
+
+.hero-credits {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+.hero-scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 2rem;
+  z-index: 1;
+  transform: translateX(-50%);
+  color: #fff;
+  opacity: 0.85;
+  animation: hero-scroll-cue-bounce 1.8s ease-in-out infinite;
+}
+
+@keyframes hero-scroll-cue-bounce {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, 8px);
+  }
+}
+
+/* Sequence (linear narrative) */
+
+.sequence {
+  position: relative;
+  padding: 4rem 1.5rem;
+}
+
+.sequence-content {
+  position: relative;
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.block-text {
+  margin-bottom: 1.5rem;
+}
+
+.block-text :first-child {
+  margin-top: 0;
+}
+
+figure.block-image,
+figure.gallery-image {
+  margin: 0 0 1.5rem;
+}
+
+figure.block-image figcaption,
+figure.gallery-image figcaption,
+figure.block-image-gallery figcaption {
+  font-size: 0.85rem;
+  opacity: 0.75;
+  margin-top: 0.5rem;
+}
+
+.block-image-gallery .gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+}
+
+/* Immersive (scroll-driven sticky background + floating panels) */
+
+.immersive {
+  position: relative;
+}
+
+.immersive-view {
+  position: relative;
+  min-height: 100vh;
+  background-color: #111;
+  background-size: cover;
+  background-position: center;
+}
+
+.immersive-bg {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.immersive-bg .background-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.storymap-map {
+  width: 100%;
+  height: 100%;
+  background: #ddd;
+}
+
+.background-unavailable,
+.background-unsupported {
+  color: #fff;
+  max-width: 30rem;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.immersive-panels {
+  position: relative;
+  z-index: 1;
+  margin-top: -100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 4rem 1.5rem;
+  pointer-events: none;
+}
+
+.immersive-title {
+  pointer-events: auto;
+  color: #fff;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+  max-width: 34rem;
+}
+
+.immersive-panel {
+  pointer-events: auto;
+  max-width: 26rem;
+  padding: 1.5rem 1.75rem;
+  border-radius: 0.5rem;
+  /* Nearly opaque rather than fully: these panels float over a photo or a
+     pannable/zoomable live map, so a translucent background can't guarantee
+     WCAG 1.4.3 contrast against arbitrary content underneath — but full
+     opacity would lose the intended "floating over the scene" look. */
+  background: rgba(255, 255, 255, 0.97);
+  color: #1a1a1a;
+}
+
+.immersive-panel.theme-white-over-black {
+  background: rgba(20, 20, 20, 0.95);
+  color: #fff;
+}
+
+.immersive-panel.position-left {
+  margin-right: auto;
+}
+
+.immersive-panel.position-right {
+  margin-left: auto;
+}
+
+.immersive-panel img {
+  border-radius: 0.25rem;
+}
+
+/* Credits */
+
+.credits {
+  padding: 4rem 1.5rem;
+  text-align: center;
+}
+
+.credits-content {
+  max-width: 34rem;
+  margin: 0 auto;
+}
+
+.credits-list {
+  list-style: none;
+  padding: 0;
+}
+
+/* Unsupported content fallback */
+
+.block-unsupported,
+.section-unsupported {
+  border: 1px dashed #c00;
+  background: #fff4f4;
+  padding: 1rem;
+  margin: 1rem 0;
+  color: #900;
+}
+
+.block-unsupported pre,
+.section-unsupported pre {
+  overflow-x: auto;
+  font-size: 0.75rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Footer */
+
+.story-footer {
+  padding: 2rem 1.5rem 3rem;
+  max-width: 40rem;
+  margin: 0 auto;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.story-footer p {
+  /* meta.credit is plain text (unlike block text) and can carry real
+     newlines from the source item — preserve them instead of collapsing
+     to one line. */
+  white-space: pre-line;
+}
+
+/* Map popups (Leaflet) */
+
+table.map-popup {
+  border-collapse: collapse;
+  font-size: 0.8rem;
+}
+
+table.map-popup th {
+  text-align: left;
+  padding: 0.15rem 0.5rem 0.15rem 0;
+  color: #555;
+}
+
+table.map-popup td {
+  padding: 0.15rem 0;
+}
+
+/* Leaflet's default attribution control is only 80% opaque, so its text
+   contrast depends on whatever map tile happens to be underneath it —
+   flagged by a pa11y/WCAG2AA contrast pass (G18.Alpha). Make it fully
+   opaque with darker text so contrast holds regardless of the basemap. */
+.leaflet-control-attribution {
+  background: #fff !important;
+  color: #111 !important;
+}
+
+.leaflet-control-attribution a {
+  /* !important: leaflet.css loads after this stylesheet and has its own
+     `.leaflet-container a` color rule of equal specificity, which would
+     otherwise win purely on source order. */
+  color: #0b4f8a !important;
+}
+
+@media (max-width: 640px) {
+  .immersive-panel {
+    max-width: 100%;
+  }
+}

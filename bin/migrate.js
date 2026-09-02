@@ -6,6 +6,7 @@ import { resolvePortal } from "../src/fetch/portal.js";
 import { getItem, getItemData, listItemResources } from "../src/fetch/item.js";
 import { normalizeStory } from "../src/normalize/manifest.js";
 import { localizeAssets } from "../src/assets/localize.js";
+import { renderSite } from "../src/render/site.js";
 import { writeJsonCache } from "../src/cache/store.js";
 import { slugify } from "../src/util/slug.js";
 
@@ -88,6 +89,8 @@ async function main() {
   const resources = await listItemResources(options.appid, { portalHost: options.portalHost });
   console.log(`  resources: ${resources.length}`);
 
+  const allWarnings = [];
+
   console.log("Normalizing story content...");
   const { manifest, warnings } = normalizeStory({
     item,
@@ -102,12 +105,9 @@ async function main() {
   for (const [kind, count] of Object.entries(kindCounts)) {
     console.log(`  ${kind}: ${count}`);
   }
-
   if (warnings.length > 0) {
-    console.warn(`  ${warnings.length} warning(s) during normalization:`);
-    for (const warning of warnings) {
-      console.warn(`    [${warning.path}] ${warning.message}`);
-    }
+    console.log(`  ${warnings.length} warning(s) (see summary below)`);
+    allWarnings.push(...warnings.map((w) => ({ phase: "normalize", ...w })));
   }
 
   await writeJsonCache(options.appid, "manifest", manifest);
@@ -123,18 +123,27 @@ async function main() {
     outputDir,
   });
   if (assetWarnings.length > 0) {
-    console.warn(`  ${assetWarnings.length} warning(s) during asset localization:`);
-    for (const warning of assetWarnings) {
-      console.warn(`    [${warning.path}] ${warning.message}`);
-    }
+    console.log(`  ${assetWarnings.length} warning(s) (see summary below)`);
+    allWarnings.push(...assetWarnings.map((w) => ({ phase: "assets", ...w })));
   }
 
   await writeFile(path.join(outputDir, "manifest.json"), JSON.stringify(manifest, null, 2));
 
+  console.log("Rendering site...");
+  await renderSite(manifest, { outputDir, site: options.site, base: options.base });
+
   console.log();
-  console.log(`Assets and manifest written to output/${projectSlug}/`);
-  console.log("Rendering the new site is not implemented yet — see docs/todo.md, Phase 5.");
-  process.exitCode = 1;
+  if (allWarnings.length > 0) {
+    console.log(`${allWarnings.length} warning(s) during migration:`);
+    for (const warning of allWarnings) {
+      console.log(`  [${warning.phase}] [${warning.path}] ${warning.message}`);
+    }
+    console.log();
+    console.log("Review these before publishing — some content may be missing or degraded.");
+    console.log();
+  }
+  console.log(`Done. New site written to output/${projectSlug}/`);
+  console.log(`Review it with: storymap-dev --dir output/${projectSlug}`);
 }
 
 main().catch((err) => {

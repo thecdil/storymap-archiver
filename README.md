@@ -8,11 +8,22 @@ Provide the ArcGIS "appid" for a retired Cascade Esri Story Map and the migrator
 
 To use storymap-archiver, you will need `pnpm`.
 
-Options: 
+Options:
 
-- `appid` - ArcGIS appid for a retired Story Map, e.g. `545cd13f571b4ca087a3667951f9da44`
-- `site` - the domain where the new site will be deployed, e.g. `https://cdil.lib.uidaho.edu`
-- `base` - the path where the new site will be deployed, e.g. `/loggerettes`
+- `--appid` - ArcGIS appid for a retired Story Map, e.g. `545cd13f571b4ca087a3667951f9da44`.
+  Also accepts the story's old Cascade URL directly, e.g.
+  `https://uidaho.maps.arcgis.com/apps/Cascade/index.html?appid=545cd13f571b4ca087a3667951f9da44`
+  (the appid is read out of it).
+- `--site` - the domain where the new site will be deployed, e.g. `https://cdil.lib.uidaho.edu`.
+  Optional; only used to fill in canonical/OG tags.
+- `--base` - the path where the new site will be deployed, e.g. `/loggerettes`.
+  Optional; used to name the output folder under `output/` (falling back to
+  the story's own title if not given). The generated site itself uses only
+  relative paths, so it doesn't need to know its deployment path to work.
+- `--portal` - the ArcGIS portal host to query, if not `www.arcgis.com` (or
+  the host from an `--appid` URL), e.g. `uidaho.maps.arcgis.com`.
+
+Run `pnpm migrate --help` or `pnpm dev --help` for the full list of options.
 
 ## Repository Contents
 
@@ -26,10 +37,21 @@ Options:
 
 ## Migrating a story
 
-1. Install storymap-archiver dependencies `pnpm install`
+1. Install storymap-archiver dependencies: `pnpm install`
 2. Find the retired Story Map's appid.
-3. Run the migration script.
-4. Run the dev server to review the output in "output/" (new project directory is named following the `base` value).
+3. Run the migration script, e.g.:
+   ```
+   pnpm migrate --appid 545cd13f571b4ca087a3667951f9da44 \
+     --site https://cdil.lib.uidaho.edu --base /loggerettes
+   ```
+   Any warnings (a map layer that's gone, an image that failed to download,
+   ...) are listed at the end — the migration still completes, review these
+   before publishing since some content may be missing or degraded.
+4. Run the dev server to review the output in "output/" (new project directory is named following the `base` value, or the story's title if `--base` wasn't given):
+   ```
+   pnpm dev
+   ```
+   (Pass `--project <name>` or `--dir <path>` if `output/` has more than one migrated project.)
 5. Manually copy the new project directory to its production location on your server.
 
 ## Examples 

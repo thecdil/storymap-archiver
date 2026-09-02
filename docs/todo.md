@@ -260,52 +260,181 @@ inspection alone:
   (the local path is only known once the download completes), so a separate
   "rewrite" module would just pass the same url→path map back and forth.
 
-## Phase 5 — Render the new static site
+## Phase 5 — Render the new static site ✅
 
-- [ ] Build fresh, semantic, accessible HTML/CSS from the manifest — not a
+- [x] Build fresh, semantic, accessible HTML/CSS from the manifest — not a
       reskin of Cascade's markup. Target: correct landmarks/heading order,
       keyboard-navigable scroll/immersive interactions, `prefers-reduced-motion`
       support, alt text carried over from Esri media captions where present.
-- [ ] Recreate the core Cascade *interactions* called out in the README aim:
+- [x] Recreate the core Cascade *interactions* called out in the README aim:
       cover section, scroll-driven immersive narrative panels, in-page
       navigation/bookmarks — using modern vanilla JS (IntersectionObserver
       instead of whatever legacy scroll-binding Cascade used).
-  - [ ] Cross-check the rendered result against the original by running the
+  - [x] Cross-check the rendered result against the original by running the
         story through `Storymaps-Cascade-1.23.0/` per `docs/use-cascade.md`,
         side by side, for each of the 3 example stories.
-- [ ] Map sections render via the vendored map library reading the local
+- [x] Map sections render via the vendored map library reading the local
       GeoJSON snapshots; basemap tiles are the one live network dependency
-      (see Known limitations) with a config option to swap tile providers.
-- [ ] Inject `site`/`base` CLI options into `<base href>`, canonical/OG tags,
+      (see Known limitations). A tile-provider config option was **not**
+      added — no real need for it surfaced, and it's easy to add later
+      (`src/render/background.js`'s `buildTileLayers`).
+- [x] Inject `site`/`base` CLI options into `<base href>`, canonical/OG tags,
       and any absolute internal links so the output folder is portable to
-      the documented deployment path.
-- [ ] Generate a minimal `robots.txt`/meta noindex by default (matches the
-      original template's disabled-SEO default) unless told otherwise.
+      the documented deployment path. **Skipped the literal `<base href>`
+      tag** — every asset/script/data reference is already a relative path,
+      which makes the output folder portable to *any* deployment path with
+      zero configuration (more robust than requiring `--base` to be correct
+      in advance); `site`/`base` are only used to build absolute canonical/OG
+      URLs when `--site` is given.
+- [x] Generate a minimal `robots.txt`/meta noindex by default (matches the
+      original template's disabled-SEO default) unless told otherwise. (No
+      flag to invert this exists yet — add one if a real story needs to be
+      indexable.)
 
-## Phase 6 — CLI wiring
+Implementation: `src/render/{escape,blocks,background,sections,site}.js`
+build the HTML from the manifest; `src/render/assets/{site.css,site.js}` are
+static files copied as-is into every output (not templated — all per-story
+theming goes through a small `<style>` block of CSS custom properties, and
+all per-map data goes through embedded `<script type="application/json">`
+config blocks that `site.js` reads at runtime). Immersive scrollytelling uses
+a `position: sticky` background + negative-margin-overlaid floating panels,
+a standard CSS-only technique — no scroll-linked JS/animation library needed.
 
-- [ ] `pnpm migrate --appid <id> [--site <url>] [--base </path>] [--portal <host>]`
+Findings from actually rendering + visually verifying all 3 example stories
+(via a headless-Chromium screenshot harness driven over the DevTools
+Protocol — see below; not just reading the generated HTML):
+
+- **The original Cascade viewer is *already* broken for at least one of the
+  3 example stories.** Running "Closure of Syringa" through
+  `Storymaps-Cascade-1.23.0/` for the side-by-side comparison, its cover
+  rendered fine, but its first map section now shows an ArcGIS "Please sign
+  in to ArcGIS Online" prompt instead of the map — Esri has apparently
+  tightened anonymous access to the map-loading path since the story was
+  authored. storymap-archiver's own output renders that same map (data +
+  basemap tiles) with no login, from the GeoJSON snapshotted in Phase 4.
+  This isn't a hypothetical: the source is actively rotting *now*, which is
+  the whole reason this tool exists.
+- **A real caption-escaping bug**, caught only by looking at a screenshot
+  (grep/DOM-dump checks didn't show it): Esri's `caption` fields on images
+  are rich-text-editor output — the same trust level as a `text` block's
+  `html` — not plain strings. Escaping them for display produced literal
+  `&nbsp;` text in captions instead of a space. Fixed in
+  `src/render/blocks.js`/`background.js`: captions render as trusted HTML
+  (matching block text), and a new `htmlToPlainText()` helper
+  (`src/render/escape.js`) derives a real plain-text `alt` from them.
+  Regression-tested in `test/escape.test.js` against the actual source
+  caption that exposed it.
+- Added a scroll-down chevron to hero (cover/title) sections after noticing
+  the original had one and the migrated version didn't — a cheap, direct
+  match to the "recreate the core interactions" aim.
+- **Font vendoring was deliberately skipped.** All 3 example stories use the
+  same theme ("Open Sans" / "Noto Serif"), and those exact webfont files
+  happen to already be vendored locally in `Storymaps-Cascade-1.23.0/resources/fonts/`
+  — vendoring them into new output too was considered but cut for scope; the
+  theme's own fallback stacks (already captured in Phase 3's manifest) give
+  a readable, correctly-themed system-font result instead. Worth revisiting
+  if pixel-level typographic fidelity ever matters.
+- **Visual verification method**: no browser automation library is a
+  dependency of this project (nor should it be, for a CLI tool), so
+  verification here used a throwaway Node+CDP script (native `WebSocket`,
+  Node ≥ 22) driving a system-installed headless Chromium — real navigation,
+  real `window.scrollTo`, real screenshots, not just HTML/DOM inspection.
+  That script isn't part of the repo; it was scratch tooling for this
+  session. A real regression suite for rendered *visuals* is out of scope
+  for now (see Phase 7) but the technique is worth remembering if one is
+  ever wanted.
+
+## Phase 6 — CLI wiring ✅
+
+- [x] `pnpm migrate --appid <id> [--site <url>] [--base </path>] [--portal <host>]`
       runs fetch → normalize → localize → render, writing to
-      `output/<base-or-slugified-title>/`.
-- [ ] Clear progress output per phase; a final summary listing any warnings
+      `output/<base-or-slugified-title>/`. (Already wired incrementally as
+      each earlier phase landed — nothing new needed here.)
+- [x] Clear progress output per phase; a final summary listing any warnings
       (unhandled section types, failed asset downloads, external embeds kept).
-- [ ] `pnpm dev [--dir <output-folder>]` serves the chosen output folder
+      Previously each phase printed its own warnings inline as it found them;
+      `bin/migrate.js` now collects every warning (tagged by phase) and
+      prints one consolidated list at the end instead, with a short "N
+      warning(s), see summary below" note left in place during each phase so
+      it's still clear *when* something went wrong, not just that it did.
+      Exit code stays 0 on a run with warnings (they're a degraded-but-usable
+      result, not a failure) — see the message telling the user to review
+      them before publishing.
+- [x] `pnpm dev [--dir <output-folder>]` serves the chosen output folder
       statically on localhost, honoring the folder's `base` path so relative
-      links behave the same as in production.
-- [ ] `--help` documents all options; keep in sync with README.
+      links behave the same as in production. Built in Phase 1; needed no
+      changes — Phase 5's decision to use only relative paths (never a
+      literal `<base href>`) means the output folder behaves identically
+      whether it's served from `/` in dev or `/loggerettes` in production,
+      with no base-path-aware serving logic required at all.
+- [x] `--help` documents all options; keep in sync with README. Updated
+      `README.md`'s "Options" and "Migrating a story" sections, which had
+      drifted (missing `--portal`, no actual command syntax, didn't mention
+      that `--appid` also accepts an old Cascade URL) — now match `--help`
+      output for both `storymap-migrate` and `storymap-dev`.
 
-## Phase 7 — Testing & validation
+## Phase 7 — Testing & validation ✅
 
-- [ ] Fixture-based tests using cached raw JSON for the 3 README example
+- [x] Fixture-based tests using cached raw JSON for the 3 README example
       appids (checked into `test/fixtures/`, refreshed manually — don't hit
-      live ArcGIS in CI).
-- [ ] End-to-end smoke test: run the full pipeline against fixtures, assert
+      live ArcGIS in CI). Already in place since Phase 3
+      (`test/normalize.test.js`).
+- [x] End-to-end smoke test: run the full pipeline against fixtures, assert
       the manifest and output folder contain everything expected (no dropped
       sections, all asset references resolve to files that exist on disk).
-- [ ] Manual accessibility pass (e.g. axe DevTools or `pa11y`) on rendered
+      Added `test/pipeline.test.js`: it reuses the real "Aly - Dairy Drought"
+      fixture (relabeled to a fake, cache-isolated appid via a global
+      string-replace so it never touches `.cache/` for the real story or the
+      live API) with `globalThis.fetch` mocked, then runs the *real*
+      `getItem`/`getItemData`/`normalizeStory`/`localizeAssets`/`renderSite`
+      — the same functions `bin/migrate.js` calls — end to end into a temp
+      directory. Asserts every image reference in the final manifest is a
+      relative `assets/images/...` path that actually exists on disk, all
+      expected output files are present, and there's no dropped/`unknown`
+      section. This is also the first automated test of `src/assets/*`
+      (download/localize) at all — Phase 4 was validated live but had no
+      regression coverage until now.
+- [x] Manual accessibility pass (e.g. axe DevTools or `pa11y`) on rendered
       output for at least one example story, per the "improve accessibility"
-      aim.
-- [ ] Manually re-run all 3 README examples end-to-end before calling v1 done.
+      aim. Ran `pa11y` (WCAG2AA, `htmlcs` runner) via `pnpm dlx` — a one-off
+      tool, not added as a project dependency — against the rendered
+      "Closure of Syringa" output (the richest example: cover, chapter
+      dividers, narrative panels, live maps, credits). **Zero errors.**
+      Warnings broke down into 3 categories, each actually investigated
+      rather than mass-ignored:
+      - **Real, fixed**: `.story-nav` used `opacity: 0.6` on links over a
+        translucent, blurred nav background, and `.immersive-panel` used
+        `rgba()` backgrounds over a live, pannable/zoomable map — both mean
+        contrast can't be *guaranteed* against arbitrary content underneath
+        (WCAG 1.4.3, checked via the `G18.Alpha` technique). Nav is now a
+        solid, opaque background with solid-color (not opacity-based) text.
+        Panel backgrounds went from 0.92/0.85 alpha to 0.97/0.95 — a
+        judgment call, not fully opaque: at 0.97 the practical contrast risk
+        is negligible, and full opacity would lose the intentional
+        "floating over the scene" look; pa11y still flags any alpha < 1 on
+        principle; this is a considered tradeoff, not an oversight. Also
+        fixed a genuine cascade bug while at it: `leaflet.css` loads *after*
+        `site.css`, so an equal-specificity Leaflet rule
+        (`.leaflet-container a`) was silently winning over an attribution
+        link color override — needed `!important` to actually apply an
+        override against a vendored stylesheet loaded later in the page.
+      - **Third-party, not ours to fix**: Leaflet's own zoom-control markup
+        triggers a generic "mark up as a list" notice, and its small
+        attribution "flag" icon has its own low-contrast SVG fill — both are
+        inside the vendored library's own DOM/CSS, not something to patch
+        without forking Leaflet.
+      - **Source-data limitation, not a renderer defect**: ~208 `<img>`
+        elements render with `alt=""`, because the *original story* never
+        provided caption text for them (confirmed directly against the
+        fixture — most of these images have no `caption` field at all).
+        `alt=""` is the WCAG-correct choice when no text alternative exists;
+        inventing alt text would misrepresent Esri's original content. This
+        is a real, honest gap in what can be automatically recovered from a
+        classic Story Map, not something to silently paper over.
+- [x] Manually re-run all 3 README examples end-to-end before calling v1
+      done — clean runs, zero unexpected warnings (Syringa's 8 warnings are
+      the already-understood, disclosed webmap/token/link-rot cases from
+      Phase 4), full test suite green (48 tests).
 
 ## Known limitations / open decisions to revisit
 
