@@ -123,8 +123,37 @@ test("full pipeline (fetch -> normalize -> localize -> render) produces a comple
     assert.ok(existsSync(path.join(outputDir, ref)), `referenced asset should exist on disk: ${ref}`);
   }
 
+  // Background images with responsive variants (this fixture's Unsplash
+  // covers/backgrounds list 2048/1600/1024/800px) should now be served at
+  // their largest size, with every retained variant localized on disk.
+  const backgroundImages = manifest.sections.flatMap((section) => [
+    ...(section.background?.type === "image" ? [section.background.image] : []),
+    ...(section.views ?? []).filter((v) => v.background?.type === "image").map((v) => v.background.image),
+  ]);
+  const withVariants = backgroundImages.filter((image) => image.sizes.length > 0);
+  assert.ok(withVariants.length >= 10, "sanity check: this fixture has many Unsplash backgrounds");
+  for (const image of withVariants) {
+    assert.equal(Math.max(image.width, image.height), 2048, "primary url should be the largest variant");
+    assert.equal(image.url, image.sizes[0].url);
+    assert.notEqual(image.sizes[0].url, image.sizes.at(-1).url, "original default-size file is kept as a smaller candidate");
+    for (const variant of image.sizes) {
+      assert.match(variant.url, /^assets\/images\//);
+      assert.ok(existsSync(path.join(outputDir, variant.url)), `variant should exist on disk: ${variant.url}`);
+    }
+  }
+  // Uploaded item resources never list variants — nothing should be invented for them.
+  const uploaded = backgroundImages.filter((image) => image.sizes.length === 0);
+  assert.ok(uploaded.length > 0);
+  for (const image of uploaded) {
+    assert.equal(image.url, image.thumbUrl, "a single-size image is served from its one local file");
+  }
+
+  // No remote URL may survive anywhere in the manifest's image nodes.
+  const manifestText = JSON.stringify(manifest.sections);
+  assert.doesNotMatch(manifestText, /images\.unsplash\.com/, "remote size variants must not remain in the manifest");
+
   // The site's own static files should all be present.
-  for (const file of ["index.html", "manifest.json", "robots.txt", "assets/css/site.css", "assets/js/site.js"]) {
+  for (const file of ["index.html", "manifest.json", "robots.txt", "assets/css/site.css", "assets/js/engine.js", "assets/js/site.js"]) {
     assert.ok(existsSync(path.join(outputDir, file)), `expected output file: ${file}`);
   }
 

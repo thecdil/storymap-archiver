@@ -1,5 +1,5 @@
 import { fetchArcGisJson } from "./portal.js";
-import { getItemData } from "./item.js";
+import { getItem, getItemData } from "./item.js";
 
 const DEFAULT_PAGE_SIZE = 1000;
 // A safety cap on how many features a single archived layer will hold.
@@ -71,10 +71,29 @@ function classifyOperationalLayer(layer) {
   };
 }
 
-/** Fetch a Web Map item's operational layers + basemap, normalized for downstream use. */
+/**
+ * The webmap's saved extent as `[[xmin, ymin], [xmax, ymax]]` in WGS84
+ * lon/lat. Webmap JSON itself carries no extent; the *item* record does,
+ * and that is what the Cascade viewer framed each map with on load.
+ */
+function normalizeItemExtent(extent) {
+  if (!Array.isArray(extent) || extent.length !== 2) return null;
+  const [[xmin, ymin], [xmax, ymax]] = extent.map((pair) => (Array.isArray(pair) ? pair : [NaN, NaN]));
+  if (![xmin, ymin, xmax, ymax].every(Number.isFinite)) return null;
+  return [
+    [xmin, ymin],
+    [xmax, ymax],
+  ];
+}
+
+/** Fetch a Web Map item's operational layers + basemap + saved extent, normalized for downstream use. */
 export async function getWebmapLayers(webmapItemId, { portalHost, useCache = true } = {}) {
-  const webmap = await getItemData(webmapItemId, { portalHost, useCache });
+  const [item, webmap] = await Promise.all([
+    getItem(webmapItemId, { portalHost, useCache }),
+    getItemData(webmapItemId, { portalHost, useCache }),
+  ]);
   return {
+    initialExtent: normalizeItemExtent(item?.extent),
     baseMap: normalizeBaseMap(webmap.baseMap),
     layers: (webmap.operationalLayers ?? []).map(classifyOperationalLayer),
   };

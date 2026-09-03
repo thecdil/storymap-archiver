@@ -26,6 +26,11 @@ export function normalizeBackground(background, ctx, path) {
         },
         // Per-view visibility overrides for specific layers within the webmap.
         layerOverrides: Array.isArray(webmap.layers) ? webmap.layers : [],
+        // Optional per-view extent (Esri JSON envelope) and popup config the
+        // viewer applies on view change. Absent in every reference story but
+        // read by the original viewer, so pass them through untouched.
+        extent: webmap.extent ?? null,
+        popup: webmap.popup ?? null,
       };
     }
 

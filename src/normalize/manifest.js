@@ -1,22 +1,69 @@
 import { normalizeBackground } from "./background.js";
 import { normalizeBlocks } from "./blocks.js";
+import { resolveTransitions } from "./transitions.js";
+
+/**
+ * Cascade's `titleStyle` object (cover/title sections' foreground.options,
+ * and an immersive view's foreground.title.style):
+ *   shadow      boolean  — keep the 8px text-shadow
+ *   text        "light" | "dark" — text color (dark = black w/ white glow)
+ *   background  "light" | "dark" | null — translucent box behind the text
+ * See docs/polish.md §1.2. Absent in older stories → viewer default is
+ * "white text with shadow, no box".
+ */
+function normalizeTitleStyle(style) {
+  if (!style || typeof style !== "object") return null;
+  return {
+    shadow: Boolean(style.shadow),
+    text: style.text === "dark" ? "dark" : "light",
+    background: style.background === "light" || style.background === "dark" ? style.background : null,
+  };
+}
+
+/**
+ * Whether the author enabled this section as a header bookmark, and the
+ * short label they gave it. Cascade lists *only* enabled bookmarks in its
+ * header — none are enabled in the 3 reference stories.
+ */
+function normalizeBookmark(bookmark) {
+  return {
+    enabled: Boolean(bookmark?.enabled),
+    title: typeof bookmark?.title === "string" ? bookmark.title.trim() : "",
+  };
+}
+
+function sectionCommon(section) {
+  return {
+    layout: section.layout ?? null,
+    bookmark: normalizeBookmark(section.bookmark),
+  };
+}
 
 function normalizeCover(section, ctx, path) {
   return {
     kind: "cover",
+    ...sectionCommon(section),
     title: section.foreground?.title ?? "",
     subtitle: section.foreground?.subtitle ?? "",
+    titleStyle: normalizeTitleStyle(section.foreground?.options?.titleStyle),
     background: normalizeBackground(section.background, ctx, `${path}.background`),
   };
 }
 
+const TITLE_SIZES = ["small", "medium", "large"];
+
 // Esri's "title" sections are mid-story chapter dividers (distinct from the
-// story's own manifest.meta.title).
+// story's own manifest.meta.title): a short banner band whose height comes
+// from options.size (90/200/400px), not a full-screen hero.
 function normalizeTitle(section, ctx, path) {
+  const size = section.options?.size;
   return {
     kind: "title",
+    ...sectionCommon(section),
     title: section.foreground?.title ?? "",
     credits: section.foreground?.credits ?? "",
+    titleStyle: normalizeTitleStyle(section.foreground?.options?.titleStyle),
+    size: TITLE_SIZES.includes(size) ? size : "medium",
     background: normalizeBackground(section.background, ctx, `${path}.background`),
   };
 }
@@ -24,10 +71,29 @@ function normalizeTitle(section, ctx, path) {
 function normalizeSequence(section, ctx, path) {
   return {
     kind: "sequence",
+    ...sectionCommon(section),
     background: normalizeBackground(section.background, ctx, `${path}.background`),
     blocks: normalizeBlocks(section.foreground?.blocks, ctx, `${path}.foreground.blocks`),
   };
 }
+
+/** Text content of a block's HTML, whitespace/nbsp collapsed — Cascade's `getPreviewText()`. */
+function textBlockPreview(html) {
+  return String(html ?? "")
+    .replace(/<[^>]*>/g, "")
+    .replace(/&nbsp;| /g, " ")
+    .trim();
+}
+
+/**
+ * A panel holding nothing but one blank text block is how an author makes
+ * a "background only" view; the viewer hides its card entirely.
+ */
+function isEmptyPanel(blocks) {
+  return blocks.length === 1 && blocks[0].type === "text" && textBlockPreview(blocks[0].html) === "";
+}
+
+const PANEL_LAYOUTS = ["scroll-full", "scroll-partial"];
 
 function normalizeImmersive(section, ctx, path) {
   const views = (section.views ?? []).map((view, i) => {
@@ -39,23 +105,35 @@ function normalizeImmersive(section, ctx, path) {
         ? {
             value: view.foreground.title.value ?? "",
             global: Boolean(view.foreground.title.global),
+            style: normalizeTitleStyle(view.foreground.title.style),
           }
         : null,
       panels: (view.foreground?.panels ?? []).map((panel, j) => {
         const panelPath = `${viewPath}.foreground.panels[${j}]`;
+        const blocks = normalizeBlocks(panel.blocks, ctx, `${panelPath}.blocks`);
+        const layout = panel.layout ?? panel.settings?.layout;
         return {
-          layout: panel.layout ?? null,
+          layout: PANEL_LAYOUTS.includes(layout) ? layout : "scroll-full",
           position: panel.settings?.["position-x"] ?? null,
           size: panel.settings?.size ?? null,
           style: panel.settings?.style ?? null,
           theme: panel.settings?.theme ?? null,
-          blocks: normalizeBlocks(panel.blocks, ctx, `${panelPath}.blocks`),
+          isEmpty: isEmptyPanel(blocks),
+          blocks,
         };
       }),
     };
   });
 
-  return { kind: "immersive", views };
+  // The transition the viewer would actually play, after its same-media
+  // overrides (src/normalize/transitions.js). The authored value is kept
+  // alongside so nothing is lost.
+  const effective = resolveTransitions(views);
+  for (const [i, view] of views.entries()) {
+    view.effectiveTransition = effective[i];
+  }
+
+  return { kind: "immersive", ...sectionCommon(section), views };
 }
 
 function normalizeCredits(section, ctx, path) {
@@ -79,6 +157,7 @@ function normalizeCredits(section, ctx, path) {
 
   return {
     kind: "credits",
+    ...sectionCommon(section),
     background: normalizeBackground(section.background, ctx, `${path}.background`),
     panels,
   };
@@ -105,6 +184,32 @@ function normalizeSection(section, ctx, index) {
   }
 
   return normalizer(section, ctx, path);
+}
+
+/**
+ * `values.settings.header`: the fixed top bar's optional logo, tagline link,
+ * and share button. The logo URL is only meaningful when `enabled`; the
+ * builder's default value is a *relative* path to Esri's own logo inside
+ * the Cascade app, which isn't a story asset — flagged as `builtin` so the
+ * localizer/renderer can skip it rather than 404.
+ */
+function normalizeHeader(header) {
+  const logo = header?.logo ?? {};
+  const link = header?.link ?? {};
+  const logoUrl = typeof logo.url === "string" ? logo.url : null;
+  return {
+    logo: {
+      enabled: Boolean(logo.enabled),
+      url: logoUrl,
+      builtin: logoUrl !== null && !/^https?:\/\//i.test(logoUrl),
+      link: typeof logo.link === "string" ? logo.link : null,
+    },
+    link: {
+      url: typeof link.url === "string" ? link.url : null,
+      title: typeof link.title === "string" ? link.title : null,
+    },
+    social: { enabled: Boolean(header?.social?.enabled) },
+  };
 }
 
 /**
@@ -139,6 +244,7 @@ export function normalizeStory({ item, data, appid, portalHost }) {
       sourcePortal: portalHost,
       template: values.template ?? null,
       theme: values.settings?.theme ?? null,
+      header: normalizeHeader(values.settings?.header),
     },
     sections,
   };

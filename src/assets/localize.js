@@ -11,21 +11,25 @@ const DATA_DIR = "assets/data";
 
 function collectImagesFromBlocks(blocks, sink) {
   for (const block of blocks ?? []) {
-    if (block.type === "image" && block.image) sink.push(block.image);
+    if (block.type === "image" && block.image) sink.push({ image: block.image, role: "block" });
     if (block.type === "image-gallery") {
       for (const image of block.images ?? []) {
-        if (image) sink.push(image);
+        if (image) sink.push({ image, role: "block" });
       }
     }
   }
 }
 
-/** Every NormalizedImage node in the manifest, by reference (mutated in place once localized). */
+/**
+ * Every NormalizedImage node in the manifest, by reference (mutated in
+ * place once localized), tagged with how it's used: a full-viewport
+ * `background` (cover, title band, immersive view) or an inline `block`.
+ */
 function collectImages(manifest) {
   const images = [];
   for (const section of manifest.sections) {
     if (section.background?.type === "image" && section.background.image) {
-      images.push(section.background.image);
+      images.push({ image: section.background.image, role: "background" });
     }
     if (section.kind === "sequence") {
       collectImagesFromBlocks(section.blocks, images);
@@ -38,7 +42,7 @@ function collectImages(manifest) {
     if (section.kind === "immersive") {
       for (const view of section.views) {
         if (view.background?.type === "image" && view.background.image) {
-          images.push(view.background.image);
+          images.push({ image: view.background.image, role: "background" });
         }
         for (const panel of view.panels) {
           collectImagesFromBlocks(panel.blocks, images);
@@ -61,35 +65,98 @@ function collectWebmapBackgrounds(manifest) {
   return backgrounds;
 }
 
-async function localizeImage(image, { appid, portalHost, outputDir, cache, warn }) {
+/**
+ * Download one URL into assets/images (once per distinct URL per run) and
+ * return its output-relative path. Throws on failure; callers decide how
+ * much of the manifest one failed download should degrade.
+ */
+async function downloadImageFile(url, source, { appid, portalHost, outputDir, cache }) {
+  const cached = cache.get(url);
+  if (cached) return cached;
+
+  const { data, sourceName } = await fetchAssetBytes({ url, source, appid, portalHost });
+  const filename = localAssetFilename(sourceName, url);
+  const relPath = `${IMAGES_DIR}/${filename}`;
+  await mkdir(path.join(outputDir, IMAGES_DIR), { recursive: true });
+  await writeFile(path.join(outputDir, IMAGES_DIR, filename), data);
+
+  cache.set(url, relPath);
+  return relPath;
+}
+
+/**
+ * Localize one image node in place. `image.url` is always fetched. For a
+ * `background` image that lists responsive `sizes[]` (Unsplash/Flickr
+ * sources — the default `url` is typically only 1024px wide), the largest
+ * variant is fetched too and becomes the primary `url`, mirroring the
+ * original viewer's pick of the smallest variant ≥ viewport width on a
+ * large screen. `sizes` is rewritten to the localized variants actually on
+ * disk (largest first) so the renderer can emit a `srcset`; remote-only
+ * variants are never left in the manifest.
+ */
+async function localizeImage(image, role, { appid, portalHost, outputDir, cache, warn }) {
   if (!image?.url) return;
 
-  const cached = cache.get(image.url);
-  if (cached) {
-    image.url = cached;
-    image.thumbUrl = cached;
-    delete image.source;
+  const originalUrl = image.url;
+  const original = { width: image.width, height: image.height };
+  const largest = role === "background" ? (image.sizes?.[0] ?? null) : null;
+  const wantsLargest = largest && largest.url !== originalUrl;
+
+  let localOriginal;
+  try {
+    localOriginal = await downloadImageFile(originalUrl, image.source, { appid, portalHost, outputDir, cache });
+  } catch (err) {
+    warn(`image:${originalUrl}`, `Failed to download image: ${err.message}`);
     return;
   }
 
-  try {
-    const { data, sourceName } = await fetchAssetBytes({
-      url: image.url,
-      source: image.source,
-      appid,
-      portalHost,
-    });
-    const filename = localAssetFilename(sourceName, image.url);
-    const relPath = `${IMAGES_DIR}/${filename}`;
-    await mkdir(path.join(outputDir, IMAGES_DIR), { recursive: true });
-    await writeFile(path.join(outputDir, IMAGES_DIR, filename), data);
+  let localLargest = null;
+  if (wantsLargest) {
+    try {
+      // sizes[] variants are always external CDN URLs (item resources never
+      // list sizes), so they go through the external-download path.
+      localLargest = await downloadImageFile(largest.url, "external", { appid, portalHost, outputDir, cache });
+    } catch (err) {
+      // Degrade to the default-size image rather than failing the section.
+      warn(`image:${largest.url}`, `Failed to download largest variant (using default size): ${err.message}`);
+    }
+  }
 
-    cache.set(image.url, relPath);
-    image.url = relPath;
-    image.thumbUrl = relPath;
-    delete image.source;
+  const variants = [];
+  if (localLargest) {
+    variants.push({ url: localLargest, width: largest.width, height: largest.height, longestSide: largest.longestSide });
+  }
+  variants.push({
+    url: localOriginal,
+    width: original.width,
+    height: original.height,
+    longestSide: original.width || original.height ? Math.max(original.width ?? 0, original.height ?? 0) : null,
+  });
+
+  const primary = variants[0];
+  image.url = primary.url;
+  image.thumbUrl = localOriginal;
+  image.width = primary.width;
+  image.height = primary.height;
+  image.sizes = variants.length > 1 ? variants : [];
+  delete image.source;
+}
+
+/** Download the header logo if the author enabled one from an external URL. */
+async function localizeHeaderLogo(header, ctx) {
+  const logo = header?.logo;
+  if (!logo?.enabled || !logo.url) return;
+  if (logo.builtin) {
+    // The Cascade app's own bundled Esri logo — not a story asset, and not
+    // something the archive should impersonate. Leave the record, drop the URL.
+    logo.url = null;
+    return;
+  }
+  try {
+    logo.url = await downloadImageFile(logo.url, "external", ctx);
   } catch (err) {
-    warn(`image:${image.url}`, `Failed to download image: ${err.message}`);
+    ctx.warn(`header:logo:${logo.url}`, `Failed to download header logo: ${err.message}`);
+    logo.url = null;
   }
 }
 
@@ -143,15 +210,28 @@ function convertFeatureCollectionLayer(layer, warn, warnPath) {
 async function localizeWebmap(webmapId, { portalHost, outputDir, warn }) {
   console.log(`  webmap ${webmapId}...`);
 
-  let layers, baseMap;
+  let layers, baseMap, initialExtent;
   try {
-    ({ layers, baseMap } = await getWebmapLayers(webmapId, { portalHost }));
+    ({ layers, baseMap, initialExtent } = await getWebmapLayers(webmapId, { portalHost }));
   } catch (err) {
     // The story item can still be public even if a webmap it references has
     // since been deleted or made private — don't let that take down the
     // whole migration, just this one map section.
     warn(`webmap:${webmapId}`, `Failed to fetch webmap: ${err.message}`);
-    return { baseMap: null, layers: [], unavailable: true };
+    return { baseMap: null, layers: [], initialExtent: null, unavailable: true };
+  }
+
+  const basemapLayers = baseMap?.baseMapLayers ?? [];
+  if (basemapLayers.length > 0 && !basemapLayers.some((l) => l.layerType === "ArcGISTiledMapServiceLayer" && l.url)) {
+    // e.g. an Esri vector-tile basemap: the vendored map library renders
+    // raster tiles only, so the site falls back to Esri's raster Light Gray
+    // Canvas (src/render/background.js) — the data still shows, the
+    // cartography underneath it differs from the original.
+    warn(
+      `webmap:${webmapId}:basemap`,
+      `Basemap "${baseMap.title ?? basemapLayers.map((l) => l.layerType).join("/")}" has no raster tile layer ` +
+        "(vector tiles aren't supported) — the archived map uses Esri's raster Light/Dark Gray Canvas instead",
+    );
   }
 
   const dir = path.join(outputDir, DATA_DIR, webmapId);
@@ -208,7 +288,7 @@ async function localizeWebmap(webmapId, { portalHost, outputDir, warn }) {
     });
   }
 
-  return { baseMap, layers: resolvedLayers, unavailable: false };
+  return { baseMap, layers: resolvedLayers, initialExtent, unavailable: false };
 }
 
 async function localizeWebmapBackground(background, { portalHost, outputDir, webmapCache, warn }) {
@@ -221,10 +301,11 @@ async function localizeWebmapBackground(background, { portalHost, outputDir, web
   if (!webmapCache.has(webmapId)) {
     webmapCache.set(webmapId, localizeWebmap(webmapId, { portalHost, outputDir, warn }));
   }
-  const { baseMap, layers, unavailable } = await webmapCache.get(webmapId);
+  const { baseMap, layers, initialExtent, unavailable } = await webmapCache.get(webmapId);
 
   const overridesById = new Map((background.layerOverrides ?? []).map((o) => [o.id, o.visibility]));
   background.baseMap = baseMap;
+  background.initialExtent = initialExtent ?? null;
   background.unavailable = unavailable;
   background.layers = layers.map((layer) => ({
     ...layer,
@@ -244,9 +325,11 @@ export async function localizeAssets(manifest, { appid, portalHost, outputDir })
   const warn = (path_, message) => warnings.push({ path: path_, message });
 
   const imageCache = new Map();
-  for (const image of collectImages(manifest)) {
-    await localizeImage(image, { appid, portalHost, outputDir, cache: imageCache, warn });
+  const imageCtx = { appid, portalHost, outputDir, cache: imageCache, warn };
+  for (const { image, role } of collectImages(manifest)) {
+    await localizeImage(image, role, imageCtx);
   }
+  await localizeHeaderLogo(manifest.meta?.header, imageCtx);
 
   const webmapBackgrounds = collectWebmapBackgrounds(manifest);
   const webmapCache = new Map();

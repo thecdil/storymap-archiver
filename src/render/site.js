@@ -26,10 +26,51 @@ function themeStyle(theme) {
   return declarations.length ? `<style>:root{${declarations.join(" ")}}</style>` : "";
 }
 
-function renderNav(nav) {
-  if (nav.length === 0) return "";
-  const links = nav.map((item) => `<a href="#${item.id}">${escapeHtml(item.label)}</a>`).join("\n");
-  return `<nav class="story-nav" aria-label="Story sections">${links}</nav>`;
+/**
+ * Cascade's fixed 50px header: logo (if the author enabled one), story
+ * title, the author's enabled bookmarks, and the optional tagline link.
+ * Starts `compact` (transparent, title/bookmarks hidden) when the story
+ * opens on a cover; site.js flips that once the reader scrolls past it.
+ * The share button is deliberately not reproduced (see docs/polish.md).
+ */
+function renderHeader(meta, bookmarks, { hasCover }) {
+  const header = meta.header ?? {};
+  const title = escapeHtml(meta.title || "Untitled Story");
+
+  const logo =
+    header.logo?.enabled && header.logo.url
+      ? `<div class="story-logo">${
+          header.logo.link
+            ? `<a href="${escapeHtml(header.logo.link)}"><img src="${escapeHtml(header.logo.url)}" alt="Logo"></a>`
+            : `<img src="${escapeHtml(header.logo.url)}" alt="Logo">`
+        }</div>`
+      : "";
+
+  const nav =
+    bookmarks.length > 0
+      ? `<nav class="story-bookmarks" aria-label="Story bookmarks">
+      <ul>
+${bookmarks.map((item) => `        <li><a href="#${item.id}">${escapeHtml(item.label)}</a></li>`).join("\n")}
+      </ul>
+    </nav>`
+      : "";
+
+  const link =
+    header.link?.url && header.link.title
+      ? `<div class="story-link"><a href="${escapeHtml(header.link.url)}">${escapeHtml(header.link.title)}</a></div>`
+      : header.link?.title
+        ? `<div class="story-link">${escapeHtml(header.link.title)}</div>`
+        : "";
+
+  return `<div class="story-progress" aria-hidden="true"><div class="story-progress-bar"></div></div>
+  <header class="story-header${hasCover ? " compact" : ""}" data-has-cover="${hasCover}">
+    <div class="story-brand">
+      ${logo}
+      <a class="story-title" href="#top">${title}</a>
+    </div>
+    ${nav}
+    ${link}
+  </header>`;
 }
 
 function renderFooter(meta) {
@@ -73,9 +114,10 @@ function hasMaps(manifest) {
   );
 }
 
-function renderDocument(manifest, options) {
-  const { html: sectionsHtml, nav } = renderSections(manifest.sections);
+export function renderDocument(manifest, options = {}) {
+  const { html: sectionsHtml, bookmarks } = renderSections(manifest.sections);
   const needsLeaflet = hasMaps(manifest);
+  const hasCover = manifest.sections[0]?.kind === "cover";
 
   return `<!doctype html>
 <html lang="en">
@@ -83,14 +125,15 @@ function renderDocument(manifest, options) {
   ${renderHead({ meta: manifest.meta, site: options.site, base: options.base })}
   ${needsLeaflet ? '<link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">' : ""}
 </head>
-<body>
+<body id="top">
   <a class="skip-link" href="#main">Skip to content</a>
-  ${renderNav(nav)}
+  ${renderHeader(manifest.meta, bookmarks, { hasCover })}
   <main id="main">
 ${sectionsHtml}
   </main>
   ${renderFooter(manifest.meta)}
   ${needsLeaflet ? '<script src="assets/vendor/leaflet/leaflet.js"></script>' : ""}
+  <script src="assets/js/engine.js"></script>
   <script src="assets/js/site.js"></script>
 </body>
 </html>
@@ -111,6 +154,7 @@ export async function renderSite(manifest, { outputDir, site = null, base = null
 
   await writeFile(path.join(outputDir, "index.html"), html);
   await copyFile(path.join(ASSETS_DIR, "site.css"), path.join(outputDir, "assets/css/site.css"));
+  await copyFile(path.join(ASSETS_DIR, "engine.js"), path.join(outputDir, "assets/js/engine.js"));
   await copyFile(path.join(ASSETS_DIR, "site.js"), path.join(outputDir, "assets/js/site.js"));
   await writeFile(path.join(outputDir, "robots.txt"), "User-agent: *\nDisallow: /\n");
 }

@@ -70,36 +70,212 @@ button:focus-visible {
   top: 0.5rem;
 }
 
-/* Nav */
+/* Progress bar: a 2px line across the very top showing how far through
+   the story the reader is (Cascade used progress.js's "blue" theme). */
 
-.story-nav {
-  position: sticky;
+.story-progress {
+  position: fixed;
   top: 0;
-  z-index: 50;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 1001;
+  pointer-events: none;
+}
+
+.story-progress-bar {
+  height: 100%;
+  width: 0;
+  background: #3498db;
+  transition: width 0.3s ease-out;
+}
+
+/* Header: Cascade's fixed 50px black bar. While the cover is on screen it
+   is "compact" — transparent, with the title and bookmarks hidden — and
+   turns solid as the reader scrolls into the story. */
+
+.story-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  padding: 0.75rem 1rem;
-  /* Solid, not translucent: an opacity/rgba background here can't guarantee
-     WCAG 1.4.3 contrast against whatever scrolls underneath it (this nav is
-     sticky over the whole page, including photos and live maps). */
-  background: #fff;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.story-nav a {
-  white-space: nowrap;
-  text-decoration: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  height: 50px;
+  padding: 5px;
+  background: #000;
+  color: #fff;
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.75);
+  transition: background 1s linear, box-shadow 1s linear;
   font-family: var(--title-font);
-  font-size: 0.9rem;
-  /* A solid, adequately-contrasted color rather than opacity, which would
-     reintroduce the same guaranteed-contrast problem as the background above. */
-  color: #555;
 }
 
-.story-nav a.is-current,
-.story-nav a:hover {
-  color: var(--accent);
+.story-header.compact {
+  background: transparent;
+  box-shadow: none;
+}
+
+.story-brand {
+  display: flex;
+  align-items: center;
+  flex: 0 1 auto;
+  max-width: 75%;
+  min-width: 0;
+}
+
+.story-logo {
+  flex: 0 1 auto;
+  margin-right: 4px;
+}
+
+.story-logo img {
+  max-width: 210px;
+  max-height: 42px;
+  display: block;
+}
+
+.story-header.compact .story-logo img {
+  filter: drop-shadow(0 0 3px #000);
+}
+
+.story-title {
+  font-size: 2.1em;
+  line-height: 38px;
+  height: 42px;
+  margin-left: 14px;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: opacity 1s linear;
+}
+
+.story-header.compact .story-title {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.story-bookmarks {
+  flex: 1 1 0;
+  min-width: 40px;
+  margin: 2px 30px 0;
+}
+
+.story-bookmarks ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.story-bookmarks a {
+  display: inline-block;
+  margin-left: 12px;
+  padding-bottom: 1px;
+  font-size: 14px;
+  color: #ccc;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+}
+
+.story-bookmarks a:hover,
+.story-bookmarks a.is-current {
+  border-bottom-color: #3b8fc4;
+}
+
+.story-bookmarks a.is-current {
+  color: #fff;
+}
+
+.story-header.compact .story-bookmarks {
+  visibility: hidden;
+}
+
+.story-link {
+  flex: 0 0 auto;
+  margin-right: 8px;
+  font-size: 14px;
+  color: #cecece;
+}
+
+.story-link a {
+  color: inherit;
+}
+
+.story-link a:hover {
+  color: #acacac;
+}
+
+.story-header.compact .story-link {
+  color: #fff;
+  text-shadow: 0 0 8px #000;
+}
+
+@media (max-width: 767px) {
+  .story-title {
+    font-size: 1.3em;
+    margin-left: 5px;
+  }
+  .story-bookmarks {
+    margin: 0 10px;
+  }
+  .story-link {
+    display: none;
+  }
+}
+
+/* Sections stack above the pinned cover (see .hero-cover below), so each
+   needs its own opaque background; anchor targets clear the fixed header. */
+
+main > section {
+  position: relative;
+  z-index: 1;
+  scroll-margin-top: 60px;
+}
+
+/* titleStyle (cover, title bands, immersive global title): an optional
+   translucent box around the text, light or dark text, optional glow. */
+
+.text-background {
+  display: inline-block;
+  max-width: 90%;
+}
+
+.text-background.background-light,
+.text-background.background-dark {
+  padding: 10px 30px;
+}
+
+.text-background.background-light {
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.text-background.background-dark {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.title-text {
+  color: #fff;
+  text-shadow: none;
+}
+
+.title-text.text-shadow {
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.95);
+}
+
+.title-text.text-dark {
+  color: #000;
+}
+
+.title-text.text-dark.text-shadow {
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.95);
 }
 
 /* Hero (cover / title sections) */
@@ -118,7 +294,19 @@ button:focus-visible {
   color: #fff;
 }
 
-.hero .background-image {
+/* The cover stays pinned while later sections slide up over it — the
+   same effect as Cascade's fixed cover wrapper, without any JS. */
+.hero-cover {
+  position: sticky;
+  top: 0;
+  z-index: 0;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+}
+
+.hero .background-image,
+.hero .background-fit {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -126,54 +314,122 @@ button:focus-visible {
   object-fit: cover;
 }
 
-.hero-scrim {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.55));
-}
-
 .hero-content {
   position: relative;
   z-index: 1;
-  max-width: 44rem;
-  padding: 2rem;
+  width: calc(100% - 20px);
+  padding: 0;
 }
 
-.hero-title {
-  font-size: clamp(1.75rem, 5vw, 3rem);
-  margin: 0 0 0.75rem;
+.hero-cover .hero-content {
+  margin-top: -50px;
 }
 
-.hero-subtitle {
-  font-size: 1.15rem;
+.hero-cover .text-background.background-light,
+.hero-cover .text-background.background-dark {
+  padding: 20px 35px;
+  min-width: 300px;
+}
+
+.cover-title {
+  font-size: 7em;
+  line-height: 1.2;
+  font-weight: 300;
   margin: 0;
-  opacity: 0.95;
+  overflow-wrap: break-word;
 }
 
-.hero-credits {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  opacity: 0.85;
+.cover-subtitle {
+  font-size: 1.7em;
+  line-height: 1.4;
+  margin: 30px 0 0;
+  overflow-wrap: break-word;
 }
 
-.hero-scroll-cue {
+@media (max-width: 1200px) {
+  .cover-title {
+    font-size: 5em;
+  }
+}
+
+@media (max-width: 767px) {
+  .cover-title {
+    font-size: 2.7em;
+  }
+  .cover-subtitle {
+    font-size: 1.1em;
+    margin-top: 10px;
+  }
+  .hero-cover .text-background.background-light,
+  .hero-cover .text-background.background-dark {
+    min-width: 140px;
+    padding: 10px 20px;
+  }
+}
+
+.fg-title {
+  font-size: 52px;
+  line-height: 1.05;
+  font-weight: 300;
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+.fg-credits {
   position: absolute;
-  left: 50%;
-  bottom: 2rem;
+  bottom: 5px;
+  left: 5px;
   z-index: 1;
-  transform: translateX(-50%);
+  font-size: 14px;
   color: #fff;
-  opacity: 0.85;
-  animation: hero-scroll-cue-bounce 1.8s ease-in-out infinite;
+  opacity: 0.65;
 }
 
-@keyframes hero-scroll-cue-bounce {
+.fg-credits p {
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .fg-title {
+    font-size: 34px;
+  }
+}
+
+/* Scroll invite: a pulsing white chevron at the foot of the cover. */
+
+.scroll-invite {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  padding: 15px;
+  text-align: center;
+}
+
+.scroll-invite-btn {
+  display: inline-block;
+  height: 52px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #fff;
+  cursor: pointer;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.6));
+  animation: scroll-invite-blink 2.5s cubic-bezier(0.5, 0, 1, 1) infinite;
+}
+
+.scroll-invite-btn svg {
+  display: block;
+}
+
+@keyframes scroll-invite-blink {
   0%,
   100% {
-    transform: translate(-50%, 0);
+    opacity: 1;
   }
   50% {
-    transform: translate(-50%, 8px);
+    opacity: 0.6;
   }
 }
 
@@ -182,6 +438,9 @@ button:focus-visible {
 .sequence {
   position: relative;
   padding: 4rem 1.5rem;
+  /* Opaque by default (a story's own color background overrides inline):
+     this section slides over the pinned cover. */
+  background-color: var(--bg-main);
 }
 
 .sequence-content {
@@ -217,31 +476,65 @@ figure.block-image-gallery figcaption {
   gap: 0.75rem;
 }
 
-/* Immersive (scroll-driven sticky background + floating panels) */
+/* Immersive (scrollytelling): a sticky full-viewport stage holding every
+   unique background, only one visible at a time, with the narrative panels
+   scrolling over it. Numbers mirror Cascade's viewer (docs/polish.md §1.5). */
 
 .immersive {
   position: relative;
 }
 
-.immersive-view {
-  position: relative;
-  min-height: 100vh;
-  background-color: #111;
-  background-size: cover;
-  background-position: center;
+.immersive-stage {
+  position: sticky;
+  top: 0;
+  z-index: 0;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background-color: var(--bg-main);
+}
+
+.immersive-filler {
+  position: absolute;
+  inset: 0;
+  background-color: var(--bg-main);
 }
 
 .immersive-bg {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow: hidden;
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #111;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
-.immersive-bg .background-image {
+.immersive-bg.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* The outgoing background stays put underneath while the incoming one
+   fades over it (site.js drops the class once the transition ends). */
+.immersive-bg.was-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.immersive-bg[data-transition="fade-fast"] {
+  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+.immersive-bg[data-transition="fade-slow"] {
+  transition: opacity 1.5s ease-in-out, visibility 1.5s ease-in-out;
+}
+
+.immersive-bg .background-image,
+.background-fit {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -249,10 +542,47 @@ figure.block-image-gallery figcaption {
   object-fit: cover;
 }
 
+.background-fit .background-image {
+  object-fit: contain;
+}
+
+/* The shadow line at the reveal edge of a swipe transition. */
+.immersive-swipe-edge {
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.immersive-swipe-edge.is-vertical {
+  left: 0;
+  right: 0;
+  height: 10px;
+  margin-top: -10px;
+  box-shadow: inset 0 -24px 26px -30px #000;
+}
+
+.immersive-swipe-edge.is-horizontal {
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  margin-left: -10px;
+  box-shadow: inset -24px 0 26px -30px #000;
+}
+
 .storymap-map {
   width: 100%;
   height: 100%;
   background: #ddd;
+}
+
+.storymap-map.interaction-disabled {
+  pointer-events: none;
+}
+
+/* The stage sits under the fixed 50px header; keep Leaflet's controls
+   (zoom, top-left) clear of it. */
+.immersive-stage .leaflet-top {
+  top: 50px;
 }
 
 .background-unavailable,
@@ -263,54 +593,189 @@ figure.block-image-gallery figcaption {
   text-align: center;
 }
 
-.immersive-panels {
-  position: relative;
-  z-index: 1;
-  margin-top: -100vh;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 1.5rem;
-  padding: 4rem 1.5rem;
+/* Global title: pinned 60px from the top of the stage, fades in with the
+   section and out as its last view scrolls away. */
+.immersive-title {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 1s ease-out;
   pointer-events: none;
 }
 
-.immersive-title {
+.immersive.is-active .immersive-title {
+  opacity: 1;
+}
+
+.immersive.is-leaving .immersive-title {
+  opacity: 0;
+}
+
+.immersive-title h2 {
+  margin: 0;
+  font-size: 36px;
+  line-height: 1.05;
+  font-weight: 300;
+  pointer-events: auto;
+}
+
+/* Panels: each view is at least a viewport tall plus a 380px dwell so the
+   background lingers after the text ends; the stage's own 100vh in flow
+   provides the background-only lead-in before the first panel. */
+.immersive-panels {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+  font-size: 1.3em;
+  line-height: 1.6;
+  color: #fff;
+}
+
+.imm-panel {
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 20px 0 380px;
+}
+
+.imm-card {
+  position: relative;
+  box-sizing: border-box;
+  min-width: 250px;
+  max-width: 400px;
+  margin-left: 30px;
+  padding: 15px;
+  min-height: 100px;
   pointer-events: auto;
   color: #fff;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
-  max-width: 34rem;
+  background-color: rgba(0, 0, 0, 0.75);
 }
 
-.immersive-panel {
-  pointer-events: auto;
-  max-width: 26rem;
-  padding: 1.5rem 1.75rem;
-  border-radius: 0.5rem;
-  /* Nearly opaque rather than fully: these panels float over a photo or a
-     pannable/zoomable live map, so a translucent background can't guarantee
-     WCAG 1.4.3 contrast against arbitrary content underneath — but full
-     opacity would lose the intended "floating over the scene" look. */
-  background: rgba(255, 255, 255, 0.97);
-  color: #1a1a1a;
+.imm-panel.size-small .imm-card {
+  width: 28%;
+  max-width: 300px;
 }
 
-.immersive-panel.theme-white-over-black {
-  background: rgba(20, 20, 20, 0.95);
-  color: #fff;
+.imm-panel.size-medium .imm-card {
+  width: 38%;
 }
 
-.immersive-panel.position-left {
+.imm-panel.size-large .imm-card {
+  width: 48%;
+  max-width: 600px;
+}
+
+.imm-panel.placement-right .imm-card {
+  margin-left: auto;
+  margin-right: 30px;
+}
+
+.imm-panel.placement-center .imm-card {
+  margin-left: auto;
   margin-right: auto;
 }
 
-.immersive-panel.position-right {
-  margin-left: auto;
+.imm-panel.theme-black-over-white .imm-card {
+  color: #000;
+  background-color: rgba(255, 255, 255, 0.75);
 }
 
-.immersive-panel img {
-  border-radius: 0.25rem;
+.imm-panel.style-text-shadow .imm-card {
+  background-color: transparent;
+  text-shadow: 0 0 8px #000;
+}
+
+.imm-panel.style-text-shadow.theme-black-over-white .imm-card {
+  text-shadow: 0 0 8px #fff;
+}
+
+.imm-card a {
+  color: #56a5d8;
+}
+
+.imm-card > * + * {
+  margin-top: 15px;
+}
+
+.imm-card .block-text > :first-child {
+  margin-top: 0;
+}
+
+.imm-card .block-text > :last-child {
+  margin-bottom: 0;
+}
+
+.imm-card img {
+  max-width: 100%;
+  height: auto;
+}
+
+.imm-panel.size-large .imm-card figure.block-image.portrait,
+.imm-panel.size-medium .imm-card figure.block-image.portrait {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.imm-panel.size-large .imm-card figure.block-image.portrait {
+  width: 70%;
+}
+
+/* scroll-full: the panel is invisible until the reader is 5% of a
+   viewport into the view, then fades in over 1s (replays on scroll-back). */
+.imm-panel.layout-scroll-full:not(.bring-in) {
+  opacity: 0;
+}
+
+.imm-panel.layout-scroll-full.bring-in {
+  animation: fade-in-media 1s;
+}
+
+/* scroll-partial: site.js drives the card's opacity from its position. */
+.imm-panel.layout-scroll-partial .imm-card {
+  opacity: 0;
+}
+
+@keyframes fade-in-media {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 767px) {
+  .imm-card,
+  .imm-panel.size-small .imm-card,
+  .imm-panel.size-medium .imm-card,
+  .imm-panel.size-large .imm-card,
+  .imm-panel.placement-right .imm-card {
+    width: auto;
+    max-width: none;
+    margin: 0 10px;
+    padding: 5px;
+  }
+  .immersive-panels {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .immersive-title h2 {
+    font-size: 1.4em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .immersive-bg,
+  .immersive-title {
+    transition: none;
+  }
+  .imm-panel.layout-scroll-full.bring-in {
+    animation: none;
+  }
 }
 
 /* Credits */
@@ -318,6 +783,7 @@ figure.block-image-gallery figcaption {
 .credits {
   padding: 4rem 1.5rem;
   text-align: center;
+  background-color: var(--bg-main);
 }
 
 .credits-content {
@@ -336,6 +802,7 @@ figure.block-image-gallery figcaption {
 .section-unsupported {
   border: 1px dashed #c00;
   background: #fff4f4;
+  /* .section-unsupported also stacks over the pinned cover, so stay opaque. */
   padding: 1rem;
   margin: 1rem 0;
   color: #900;
@@ -399,8 +866,3 @@ table.map-popup td {
   color: #0b4f8a !important;
 }
 
-@media (max-width: 640px) {
-  .immersive-panel {
-    max-width: 100%;
-  }
-}

@@ -1,6 +1,8 @@
 import { escapeHtml } from "./escape.js";
 import { renderBlocks } from "./blocks.js";
 import { renderBackground } from "./background.js";
+import { titleStyleClasses } from "./title-style.js";
+import { renderImmersive } from "./immersive.js";
 import { slugify } from "../util/slug.js";
 
 function uniqueId(text, used) {
@@ -15,32 +17,54 @@ function uniqueId(text, used) {
   return id;
 }
 
-function renderHero({ id, kind, title, subtitle, credits, background }) {
-  const bg = renderBackground(background);
-  return `<section id="${id}" class="hero hero-${kind}" style="${bg.style}">
+// The cover's pulsing "scroll down" invite — Cascade's is a 130×52 white
+// chevron PNG; drawn here as SVG so it scales and needs no asset copy.
+const SCROLL_INVITE_ICON = `<svg viewBox="0 0 130 52" width="130" height="52" aria-hidden="true" focusable="false">
+      <path d="M22 8 L65 44 L108 8" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>`;
+
+/**
+ * The cover: a full-viewport stage that stays pinned (position: sticky)
+ * while every later section slides up over it, exactly like Cascade's
+ * fixed `.wrapper`. Title + subtitle share one `titleStyle` box.
+ */
+function renderCover(section, id) {
+  const bg = renderBackground(section.background);
+  const style = titleStyleClasses(section.titleStyle);
+  const title = section.title?.trim();
+  const subtitle = section.subtitle?.trim();
+  return `<section id="${id}" class="hero hero-cover" style="${bg.style}">
   ${bg.html}
-  <div class="hero-scrim"></div>
   <div class="hero-content">
-    ${title ? `<h1 class="hero-title">${escapeHtml(title.trim())}</h1>` : ""}
-    ${subtitle ? `<p class="hero-subtitle">${escapeHtml(subtitle.trim())}</p>` : ""}
-    ${credits ? `<div class="hero-credits">${credits}</div>` : ""}
+    <div class="${style.wrapper}">
+      ${title ? `<h1 class="cover-title ${style.text}">${escapeHtml(title)}</h1>` : ""}
+      ${subtitle ? `<p class="cover-subtitle ${style.text}">${escapeHtml(subtitle)}</p>` : ""}
+    </div>
   </div>
-  <div class="hero-scroll-cue" aria-hidden="true">
-    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M4 8l8 8 8-8" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
+  <div class="scroll-invite">
+    <button type="button" class="scroll-invite-btn" data-scroll-invite aria-label="Scroll down to start reading">${SCROLL_INVITE_ICON}</button>
   </div>
 </section>`;
 }
 
-function renderCover(section, id) {
-  return renderHero({ id, kind: "cover", title: section.title, subtitle: section.subtitle, background: section.background });
-}
-
+// Chapter divider. Still rendered as a full-height hero here — Phase D
+// (docs/polish.md) turns it into Cascade's 90/200/400px banner band; the
+// titleStyle box already matches so that change is layout-only.
 function renderTitle(section, id) {
+  const bg = renderBackground(section.background);
+  const style = titleStyleClasses(section.titleStyle);
+  const title = section.title?.trim();
   // section.credits is pre-authored HTML from the story (may be empty), not
   // escaped — same trust level as block text, see src/render/blocks.js.
-  return renderHero({ id, kind: "title", title: section.title, credits: section.credits, background: section.background });
+  return `<section id="${id}" class="hero hero-title size-${escapeHtml(section.size ?? "medium")}" style="${bg.style}">
+  ${bg.html}
+  <div class="hero-content">
+    <div class="${style.wrapper}">
+      ${title ? `<h2 class="fg-title ${style.text}">${escapeHtml(title)}</h2>` : ""}
+    </div>
+  </div>
+  ${section.credits ? `<div class="fg-credits">${section.credits}</div>` : ""}
+</section>`;
 }
 
 function renderSequence(section, id) {
@@ -50,34 +74,6 @@ function renderSequence(section, id) {
   <div class="sequence-content">
     ${renderBlocks(section.blocks)}
   </div>
-</section>`;
-}
-
-function renderImmersiveView(view, index) {
-  const bg = renderBackground(view.background);
-  const panels = (view.panels ?? [])
-    .map((panel) => {
-      const position = panel.position ? `position-${panel.position}` : "";
-      const theme = panel.theme ? `theme-${panel.theme}` : "";
-      return `<div class="immersive-panel ${position} ${theme}">
-      ${renderBlocks(panel.blocks)}
-    </div>`;
-    })
-    .join("\n");
-
-  return `<div class="immersive-view" style="${bg.style}">
-    <div class="immersive-bg">${bg.html}</div>
-    <div class="immersive-panels">
-      ${view.title?.value ? `<h2 class="immersive-title">${escapeHtml(view.title.value.trim())}</h2>` : ""}
-      ${panels}
-    </div>
-  </div>`;
-}
-
-function renderImmersive(section, id) {
-  const views = (section.views ?? []).map(renderImmersiveView).join("\n");
-  return `<section id="${id}" class="immersive">
-  ${views}
 </section>`;
 }
 
@@ -135,24 +131,27 @@ const SECTION_RENDERERS = {
 };
 
 /**
- * Render every section, returning both the concatenated HTML and a nav
- * outline (cover/title sections only — matching which sections Cascade
- * itself surfaced as "bookmarks").
+ * Render every section, returning both the concatenated HTML and the list
+ * of header bookmarks: exactly the sections whose author enabled
+ * `bookmark` (Cascade lists nothing else — no automatic outline), labelled
+ * with the author's short bookmark title, falling back to the section's
+ * own title when the bookmark label is blank.
  */
 export function renderSections(sections) {
   const usedIds = new Set();
-  const nav = [];
+  const bookmarks = [];
   const html = sections
     .map((section) => {
-      const navLabel = section.title?.trim();
-      const id = uniqueId(navLabel, usedIds);
+      const heading = section.title?.trim();
+      const id = uniqueId(heading || section.bookmark?.title, usedIds);
       const renderer = SECTION_RENDERERS[section.kind] ?? renderUnknownSection;
-      if ((section.kind === "cover" || section.kind === "title") && navLabel) {
-        nav.push({ id, label: navLabel });
+      if (section.bookmark?.enabled) {
+        const label = section.bookmark.title || heading;
+        if (label) bookmarks.push({ id, label });
       }
       return renderer(section, id);
     })
     .join("\n");
 
-  return { html, nav };
+  return { html, bookmarks };
 }
