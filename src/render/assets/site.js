@@ -94,6 +94,40 @@
     });
   }
 
+  // Sequence media (images/galleries only — text is never hidden) fades in
+  // once it's within 100px of the viewport bottom, and resets if the
+  // reader scrolls back up past it while it's still below the viewport —
+  // Cascade's isNearViewportBottom/_loadBlocks (docs/polish.md §1.4).
+  function initSequenceReveal() {
+    var items = Array.prototype.slice.call(document.querySelectorAll(".sequence-content [data-reveal]"));
+    if (items.length === 0) return;
+    if (!("IntersectionObserver" in window)) {
+      items.forEach(function (el) {
+        el.classList.add("bring-in");
+      });
+      return;
+    }
+
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("bring-in");
+          } else if (entry.boundingClientRect.top >= 0) {
+            // Only reset when it has scrolled back below the viewport —
+            // Cascade never re-hides content already scrolled past upward.
+            entry.target.classList.remove("bring-in");
+          }
+        });
+      },
+      { rootMargin: "0px 0px 100px 0px" },
+    );
+
+    items.forEach(function (el) {
+      observer.observe(el);
+    });
+  }
+
   /* ---------- maps (Leaflet, one instance per unique webmap per section) ---------- */
 
   function popupHtml(properties) {
@@ -354,6 +388,7 @@
     initHeader();
     initScrollInvite();
     initNavHighlighting();
+    initSequenceReveal();
     initMaps();
     initImmersives();
     startScrollLoop();

@@ -422,34 +422,102 @@ Findings:
   new fields are optional in the renderer) — no need to regenerate old
   outputs just to get the new header/cover.
 
-### Phase C — Sequence typography and media motion
+### Phase C — Sequence typography and media motion ✅
 
-- [ ] Column widths: text blocks `width: 40%; max-width: 768px` (50% tablet,
-      90% mobile), 20px/150%; `h1.block` 110%; `blockquote` 35%/672px 24px
-      body font; `.block + .block` 30px gap; `.first-letter-huge` drop cap.
-      Since block HTML is pre-authored (`<p class="block">…`), style by tag
-      inside `.sequence-content` rather than wrapping.
-- [ ] Image/gallery blocks: apply `block-size-{small|medium|large}` from
-      `image.options.size` (default medium) with the 40/80/100% widths and
-      the portrait variants (27%/57%, decided from `width < height`).
-      Caption styling (14px, `.65`).
-- [ ] Media fade-in: mark `figure`/gallery blocks `data-reveal`; a shared
-      `IntersectionObserver` (rootMargin `0px 0px 100px 0px` to mirror the
-      100px look-ahead) adds `.bring-in` on entry and removes it when the
-      element leaves through the bottom. CSS: `[data-reveal]:not(.bring-in)
-      { opacity: 0 } .bring-in { animation: fade-in-media 1s }`.
-      Text blocks are never hidden — this matters for both fidelity and for
-      screen-reader/print robustness.
+`src/render/blocks.js`, `src/render/sections.js`, `site.css`, `site.js`.
 
-### Phase D — Title band
+- [x] Column widths, scoped under `.sequence-content` by tag rather than a
+      wrapping container (percentages are relative to the section, not a
+      narrowed shared column — `.sequence-content`'s own `max-width` was
+      removed for exactly this reason): `p.block`/`h2.block`/`h3.block`
+      40%/768px, 20px/150%; `h1.block` 40%/768px, 110%; `blockquote.block`
+      35%/672px, 24px body font; every block (text or media) gets a 30px
+      `margin-top` (20px on mobile — Cascade doesn't exempt the first
+      block, so neither do we); `.first-letter-huge::first-letter` drop
+      cap. Tablet (≤1024px): 50%/45%/50% widths. Mobile (≤767px): 90%/80%
+      widths, 16/30/20px text.
+- [x] Image/gallery blocks (`renderBlock`/`renderImage` now take
+      `{ sized, reveal }`): standalone images get `block-size-{small|
+      medium|large}` from `image.options.size` (default medium) with the
+      40/80/100% widths, `518/1094px` portrait caps (`width < height`),
+      `min-width: 170px`; galleries stay at the fixed 80%/1536px Cascade
+      uses regardless of size (no reference story sets a per-image size
+      inside a gallery, confirmed against all 3 fixtures — matches the
+      original, which has no such option either). Captions: 14px, `.65`
+      opacity, centered.
+- [x] Media fade-in: `renderBlock(block, { reveal: true })` — passed only
+      from `renderSequence` — adds `data-reveal="image"` /
+      `data-reveal="gallery"` to standalone image/gallery figures (one
+      `data-reveal` per gallery, not per photo inside it, matching
+      Cascade's per-`div.block` fade). `initSequenceReveal()` in site.js:
+      an `IntersectionObserver` with `rootMargin: "0px 0px 100px 0px"`
+      adds `.bring-in` on entry; removed only when the element re-enters
+      "below the viewport" territory (`boundingClientRect.top >= 0`), so
+      scrolling past something upward never re-hides it — ported from
+      Cascade's `isNearViewportBottom`/`_loadBlocks`. Text blocks never
+      carry `data-reveal` and are never hidden.
+- [x] Tests: `test/blocks.test.js` (+5: size default/override/unknown,
+      portrait, reveal-only-when-asked, gallery-as-one-unit),
+      `test/sections.test.js` (+1: sequence media gets `data-reveal`,
+      credits/immersive media sharing the same block renderer does not).
+      96 tests green.
+- Verified visually (Loggerettes' first sequence, the richest example:
+  2 images + 5 paragraphs) at 1440×900 and 390×844 — 40%/80%-width
+  columns, left-aligned justified-feeling text, centered captions, full
+  reveal on load (page opens already scrolled past them, so the observer
+  fires immediately — expected), and correct mobile stacking. Confirmed
+  immersive/credits block rendering is untouched (no `data-reveal`, no
+  `.sequence-content`-scoped width rules leaking in) since those panels
+  never pass `reveal: true` and use their own `.imm-card`/`.credits-content`
+  selectors.
 
-- [ ] New `renderTitle` output: `<section class="title-band size-medium">`
-      with `height` 90/200/400px by `size`, background image with placement
-      (Phase F), `h2.fg-title` 52px (34px mobile) with `titleStyle`
-      classes, `.fg-credits` bottom-left. Not a hero; no scroll cue.
-- [ ] Heading levels: cover stays `h1`; title bands and immersive global
-      titles are `h2`; text-block headings inside stay whatever the author
-      wrote (`h1.block` is common — accept it; don't rewrite authored HTML).
+Findings:
+
+- The generic (unscoped) `.block-text`/`figure.block-image` rules from
+  before this phase are kept as the fallback for contexts that render the
+  same block HTML outside a sequence (immersive panels, credits) — only
+  `.sequence-content`-scoped selectors got Cascade's real numbers.
+  Specificity, not source order, is what makes the scoped rules win inside
+  a sequence (`.sequence-content .block-text p.block` beats the older
+  `.block-text :first-child` reset); verified this holds rather than
+  assumed it.
+- No `first-letter-huge`, `h1.block`, or per-gallery-image size ever
+  appears in the 3 reference stories — implemented anyway (cheap, and the
+  CSS/data already exist for them) but unverified against a real story;
+  flag if a future migration surfaces one and it looks off.
+
+### Phase D — Title band ✅
+
+`src/render/sections.js`, `site.css`.
+
+- [x] `renderTitle` now emits `<section class="title-band size-{small|
+      medium|large}">` — a `.title-band-bg` layer (image/color/placeholder,
+      same `renderBackground` output as everything else) behind a flex-
+      centered `.title-band-content` holding the `titleStyle` box and
+      `h2.fg-title`, plus `.fg-credits` absolutely positioned bottom-left
+      over the whole band. Not a hero: no `position: sticky`, no scroll
+      cue, `min-height` (not `height`) 90/200/400px by `size` — Cascade's
+      own numbers, and a floor, not a cap, so an unusually long title that
+      wraps to two lines still grows the band rather than clipping (the
+      original's `.foreground` behaves the same way: `min-height` +
+      `overflow: hidden` on a block box that isn't actually capped).
+      Background fill color is the theme's own `--bg-main` (white unless
+      dark-themed), matching Cascade's `.background{background-color:#FFF}`
+      default — the cover kept its earlier `#111` choice from Phase B,
+      out of scope here.
+- [x] Heading levels were already right from Phase B (cover `h1`, title
+      band + immersive global title `h2`, authored block headings
+      untouched) — nothing left to do for that bullet.
+- [x] Tests: `test/sections.test.js` rewritten for the new markup
+      (`title-band size-large`, the empty `.title-band-bg` wrapper,
+      `doesNotMatch(/class="hero/)`) plus a default-size case. 97 tests
+      green.
+- Verified visually on Loggerettes (4 title sections, all `size-medium`
+  since none of the 3 references ever set `options.size`) at 1440×900 and
+  390×844: a ~200px banner sitting right under the fixed header with the
+  pinned cover sliding beneath it, box centered on the image, correct
+  34px mobile title size and full-width stacking. `size-small`/`size-large`
+  are exercised only by the unit tests — no reference story uses them.
 
 ### Phase E — Immersive engine ✅
 

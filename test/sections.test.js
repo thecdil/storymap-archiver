@@ -58,13 +58,20 @@ test("renderSections renders the cover pinned with its titleStyle box and a real
   assert.doesNotMatch(html, /hero-scrim/, "Cascade has no gradient scrim over the cover");
 });
 
-test("renderSections renders a title section with the viewer's default titleStyle when none was authored", () => {
+test("renderSections renders a title section as a banner band (not a full-height hero), sized and positioned per Cascade", () => {
   const { html } = renderSections([
     { kind: "title", title: "Chapter", credits: "<p>Photo: someone</p>", size: "large", background: null },
   ]);
-  assert.match(html, /class="hero hero-title size-large"/);
+  assert.match(html, /class="title-band size-large"/);
+  assert.match(html, /<div class="title-band-bg"><\/div>/);
   assert.match(html, /<h2 class="fg-title title-text text-light text-shadow">Chapter<\/h2>/);
   assert.match(html, /<div class="fg-credits"><p>Photo: someone<\/p><\/div>/);
+  assert.doesNotMatch(html, /class="hero/, "a title band is not a hero");
+});
+
+test("renderSections defaults a title band to size-medium when the story didn't specify one", () => {
+  const { html } = renderSections([{ kind: "title", title: "Chapter", credits: "", background: null }]);
+  assert.match(html, /class="title-band size-medium"/);
 });
 
 test("renderSections renders a visible fallback for an unrecognized section kind, not silence", () => {
@@ -101,8 +108,44 @@ test("renderSections renders every known section kind without throwing", () => {
 
   const { html } = renderSections(sections);
   assert.match(html, /class="hero hero-cover"/);
-  assert.match(html, /class="hero hero-title size-medium"/);
+  assert.match(html, /class="title-band size-medium"/);
   assert.match(html, /class="sequence"/);
   assert.match(html, /class="immersive"/);
   assert.match(html, /class="credits"/);
+});
+
+test("renderSections marks a sequence's media blocks for scroll reveal but leaves credits/immersive blocks alone", () => {
+  const { html } = renderSections([
+    {
+      kind: "sequence",
+      background: null,
+      blocks: [
+        { type: "text", html: "<p>Text is never hidden</p>" },
+        { type: "image", image: { url: "seq.jpg" } },
+      ],
+    },
+    {
+      kind: "credits",
+      background: null,
+      panels: [{ type: "blocks", blocks: [{ type: "image", image: { url: "credits.jpg" } }] }],
+    },
+    {
+      kind: "immersive",
+      views: [
+        {
+          transition: "fade-fast",
+          background: null,
+          panels: [{ layout: "scroll-full", blocks: [{ type: "image", image: { url: "panel.jpg" } }] }],
+        },
+      ],
+    },
+  ]);
+
+  const seqFigure = html.match(/<figure[^>]*>\s*<img src="seq\.jpg"/)[0];
+  assert.match(seqFigure, /data-reveal="image"/);
+  assert.doesNotMatch(html, /credits\.jpg"[^>]*>[\s\S]{0,80}?data-reveal/);
+  const creditsFigure = html.match(/<figure[^>]*>\s*<img src="credits\.jpg"/)[0];
+  assert.doesNotMatch(creditsFigure, /data-reveal/);
+  const panelFigure = html.match(/<figure[^>]*>\s*<img src="panel\.jpg"/)[0];
+  assert.doesNotMatch(panelFigure, /data-reveal/);
 });

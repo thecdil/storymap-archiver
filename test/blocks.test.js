@@ -27,6 +27,42 @@ test("renderBlock omits alt/figcaption gracefully when there is no caption", () 
   assert.doesNotMatch(html, /<figcaption>/);
 });
 
+test("renderBlock sizes a standalone image block from its options.size, defaulting to medium", () => {
+  const small = renderBlock({ type: "image", image: { url: "a.jpg", options: { size: "small" } } });
+  assert.match(small, /<figure class="block-image block-size-small">/);
+
+  const large = renderBlock({ type: "image", image: { url: "a.jpg", options: { size: "large" } } });
+  assert.match(large, /<figure class="block-image block-size-large">/);
+
+  const noSize = renderBlock({ type: "image", image: { url: "a.jpg" } });
+  assert.match(noSize, /<figure class="block-image block-size-medium">/);
+
+  const badSize = renderBlock({ type: "image", image: { url: "a.jpg", options: { size: "huge" } } });
+  assert.match(badSize, /<figure class="block-image block-size-medium">/, "an unrecognized size falls back to medium");
+});
+
+test("renderBlock marks a portrait image (width < height) so it gets the narrower column", () => {
+  const portrait = renderBlock({ type: "image", image: { url: "a.jpg", width: 400, height: 900 } });
+  assert.match(portrait, /<figure class="block-image block-size-medium portrait">/);
+
+  const landscape = renderBlock({ type: "image", image: { url: "a.jpg", width: 900, height: 400 } });
+  assert.doesNotMatch(landscape, /portrait/);
+
+  const unknownDimensions = renderBlock({ type: "image", image: { url: "a.jpg" } });
+  assert.doesNotMatch(unknownDimensions, /portrait/);
+});
+
+test("renderBlock marks a standalone image for scroll-driven reveal only when asked, never a gallery image", () => {
+  const revealed = renderBlock({ type: "image", image: { url: "a.jpg" } }, { reveal: true });
+  assert.match(revealed, /<figure class="block-image block-size-medium" data-reveal="image">/);
+
+  const notRevealed = renderBlock({ type: "image", image: { url: "a.jpg" } });
+  assert.doesNotMatch(notRevealed, /data-reveal/);
+
+  const gallery = renderBlock({ type: "image-gallery", images: [{ url: "a.jpg" }] }, { reveal: true });
+  assert.doesNotMatch(gallery, /class="gallery-image[^"]*" data-reveal/, "individual gallery images never carry a size or their own reveal");
+});
+
 test("renderBlock returns empty string for an image block with no image", () => {
   assert.equal(renderBlock({ type: "image", image: null }), "");
 });
@@ -43,6 +79,15 @@ test("renderBlock renders an image-gallery with all images and a shared caption"
   assert.match(html, /assets\/images\/a\.jpg/);
   assert.match(html, /assets\/images\/b\.jpg/);
   assert.match(html, /<figcaption>Shared caption<\/figcaption>/);
+});
+
+test("renderBlock reveals an image-gallery as one unit, not per image", () => {
+  const html = renderBlock(
+    { type: "image-gallery", images: [{ url: "a.jpg" }, { url: "b.jpg" }] },
+    { reveal: true },
+  );
+  assert.match(html, /<figure class="block-image-gallery" data-reveal="gallery">/);
+  assert.equal((html.match(/data-reveal/g) ?? []).length, 1, "only the outer gallery figure carries data-reveal");
 });
 
 test("renderBlock falls back to a visible, non-silent placeholder for an unknown block type", () => {

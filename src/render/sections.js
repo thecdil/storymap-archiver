@@ -47,18 +47,19 @@ function renderCover(section, id) {
 </section>`;
 }
 
-// Chapter divider. Still rendered as a full-height hero here — Phase D
-// (docs/polish.md) turns it into Cascade's 90/200/400px banner band; the
-// titleStyle box already matches so that change is layout-only.
+// Chapter divider: a short banner band (90/200/400px by `size`), not a
+// full-screen hero — the title sits centered within that band, over its
+// own cropped background, with no scroll cue.
 function renderTitle(section, id) {
   const bg = renderBackground(section.background);
   const style = titleStyleClasses(section.titleStyle);
   const title = section.title?.trim();
+  const size = escapeHtml(section.size ?? "medium");
   // section.credits is pre-authored HTML from the story (may be empty), not
   // escaped — same trust level as block text, see src/render/blocks.js.
-  return `<section id="${id}" class="hero hero-title size-${escapeHtml(section.size ?? "medium")}" style="${bg.style}">
-  ${bg.html}
-  <div class="hero-content">
+  return `<section id="${id}" class="title-band size-${size}" style="${bg.style}">
+  <div class="title-band-bg">${bg.html}</div>
+  <div class="title-band-content">
     <div class="${style.wrapper}">
       ${title ? `<h2 class="fg-title ${style.text}">${escapeHtml(title)}</h2>` : ""}
     </div>
@@ -72,7 +73,7 @@ function renderSequence(section, id) {
   return `<section id="${id}" class="sequence" style="${bg.style}">
   ${bg.html}
   <div class="sequence-content">
-    ${renderBlocks(section.blocks)}
+    ${renderBlocks(section.blocks, { reveal: true })}
   </div>
 </section>`;
 }
