@@ -6,15 +6,26 @@ import { renderSections } from "./sections.js";
 
 const ASSETS_DIR = path.join(path.dirname(fileURLToPath(import.meta.url)), "assets");
 
+// Cascade's own dark preset (THEME_COLOR_OPTIONS' "white-on-black-1") — used
+// only as a fallback if a theme somehow sets themeMajor:"dark" without its
+// own bgMain/textMain, which none of the 3 reference stories do (every
+// preset, built-in or custom, has always carried both in practice). Every
+// section that fills with the theme's background (sequence, credits, title
+// band, immersive stage — see site.css) already reads `--bg-main`/
+// `--text-main` directly, so a dark theme "just works" without a separate
+// `.theme-major-dark` class the way Cascade's own CSS needed one.
+const DARK_THEME_DEFAULTS = { bgMain: "#0E0E0E", textMain: "#DDD" };
+
 function themeStyle(theme) {
   // Defensive: these values come from the story's own theme JSON (a
   // controlled Esri vocabulary), but this text lands inside a <style>
   // block, so guard against it ever containing a stray "</style>".
   const safe = (value) => String(value ?? "").replace(/<\//g, "<\\/");
+  const isDark = theme?.colors?.themeMajor === "dark";
   const titleFont = safe(theme?.fonts?.titleFont?.fontFamily);
   const bodyFont = safe(theme?.fonts?.bodyFont?.fontFamily);
-  const bgMain = safe(theme?.colors?.bgMain);
-  const textMain = safe(theme?.colors?.textMain);
+  const bgMain = safe(theme?.colors?.bgMain || (isDark ? DARK_THEME_DEFAULTS.bgMain : ""));
+  const textMain = safe(theme?.colors?.textMain || (isDark ? DARK_THEME_DEFAULTS.textMain : ""));
 
   const declarations = [
     titleFont && `--story-title-font: ${titleFont};`,
@@ -98,6 +109,11 @@ function renderHead({ meta, site, base }) {
     <meta property="og:url" content="${escapeHtml(canonicalUrl)}">`
     : "";
 
+  // Only present when localizeAssets actually vendored a webfont for this
+  // story's theme (Georgia/Arial need no file; an unrecognized custom
+  // font gets a migration warning instead — see src/assets/vendor.js).
+  const fontsLink = meta.vendoredFonts?.length > 0 ? '<link rel="stylesheet" href="assets/fonts/fonts.css">' : "";
+
   return `<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${title}</title>
@@ -105,6 +121,7 @@ function renderHead({ meta, site, base }) {
   <meta name="robots" content="noindex, nofollow">
   ${ogTags}
   ${themeStyle(meta.theme)}
+  ${fontsLink}
   <link rel="stylesheet" href="assets/css/site.css">`;
 }
 

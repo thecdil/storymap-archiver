@@ -36,6 +36,10 @@ To use storymap-archiver, you will need `pnpm`.
    (Pass `--project <name>` or `--dir <path>` if `output/` has more than one migrated project.)
 5. Manually copy the new project directory to its production location on your server.
 
+The output folder is fully self-contained: images, map data, and (when the
+story's theme uses one) the Open Sans / Noto Serif webfonts are all vendored
+locally under `assets/`. The only remaining live dependency is basemap tiles for any interactive map sections.
+
 ## Full Options
 
 Options:

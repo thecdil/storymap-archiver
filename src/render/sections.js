@@ -106,9 +106,16 @@ function renderCreditsPanel(panel) {
 }
 
 function renderCredits(section, id) {
+  // Cascade always renders credits on a fixed dark band (#323232 on
+  // #f8f8f8 text) regardless of the section's own authored background
+  // color — confirmed against the real viewer, where an author-chosen
+  // background (e.g. "#000") never actually shows through it. `bg.html`
+  // is still rendered underneath for the unobserved case of an image/map
+  // background; `bg.style`'s background-color is dropped since the fixed
+  // band always covers it anyway.
   const bg = renderBackground(section.background);
   const panels = (section.panels ?? []).map(renderCreditsPanel).join("\n");
-  return `<section id="${id}" class="credits" style="${bg.style}">
+  return `<section id="${id}" class="credits">
   ${bg.html}
   <div class="credits-content">
     ${panels}

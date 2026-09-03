@@ -2,7 +2,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { arcgisToGeoJSON } from "@esri/arcgis-to-geojson-utils";
 import { fetchAssetBytes, localAssetFilename } from "./download.js";
-import { vendorLeaflet } from "./vendor.js";
+import { vendorLeaflet, vendorFonts, unvendorableFontFamilies, hasUnsupportedGlyphs } from "./vendor.js";
 import { isWebMercatorWkid, reprojectWebMercatorGeometry } from "./geometry.js";
 import { getWebmapLayers, queryFeatureLayerAsGeoJson } from "../fetch/webmap.js";
 
@@ -63,6 +63,46 @@ function collectWebmapBackgrounds(manifest) {
     }
   }
   return backgrounds;
+}
+
+/**
+ * Every piece of author-visible text in the manifest, concatenated, for the
+ * vendored-font glyph-coverage check. HTML markup is left in rather than
+ * stripped — every character HTML syntax itself can use is already inside
+ * the vendored fonts' Latin subset, so it can't produce a false positive.
+ */
+function collectStoryText(manifest) {
+  const parts = [manifest.meta.title, manifest.meta.snippet, manifest.meta.description, manifest.meta.credit];
+  const pushBlocks = (blocks) => {
+    for (const block of blocks ?? []) {
+      if (block.type === "text") parts.push(block.html);
+      if (block.type === "image") parts.push(block.image?.caption);
+      if (block.type === "image-gallery") {
+        parts.push(block.caption);
+        for (const image of block.images ?? []) parts.push(image?.caption);
+      }
+    }
+  };
+
+  for (const section of manifest.sections) {
+    parts.push(section.title, section.subtitle, section.credits);
+    if (section.background?.image) parts.push(section.background.image.caption);
+    if (section.kind === "sequence") pushBlocks(section.blocks);
+    if (section.kind === "credits") {
+      for (const panel of section.panels ?? []) {
+        if (panel.type === "blocks") pushBlocks(panel.blocks);
+      }
+    }
+    if (section.kind === "immersive") {
+      for (const view of section.views ?? []) {
+        parts.push(view.title?.value);
+        if (view.background?.image) parts.push(view.background.image.caption);
+        for (const panel of view.panels ?? []) pushBlocks(panel.blocks);
+      }
+    }
+  }
+
+  return parts.filter(Boolean).join("\n");
 }
 
 /**
@@ -339,6 +379,22 @@ export async function localizeAssets(manifest, { appid, portalHost, outputDir })
 
   if (webmapBackgrounds.length > 0) {
     await vendorLeaflet(outputDir);
+  }
+
+  manifest.meta.vendoredFonts = await vendorFonts(outputDir, manifest.meta.theme);
+  for (const family of unvendorableFontFamilies(manifest.meta.theme)) {
+    warn(
+      "fonts",
+      `Theme uses an unrecognized font family "${family}" — none of the 3 reference stories use anything ` +
+        "besides Open Sans, Noto Serif, Georgia, or Arial, so it will render in a browser fallback font instead.",
+    );
+  }
+  if (manifest.meta.vendoredFonts.length > 0 && hasUnsupportedGlyphs(collectStoryText(manifest))) {
+    warn(
+      "fonts",
+      "This story's text includes characters outside the vendored fonts' Latin subset (e.g. Polish/Czech/Turkish " +
+        "letters, Greek, Cyrillic, Vietnamese tone marks) — those characters will render in a fallback system font.",
+    );
   }
 
   return { manifest, warnings };

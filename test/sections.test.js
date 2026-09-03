@@ -114,6 +114,23 @@ test("renderSections renders every known section kind without throwing", () => {
   assert.match(html, /class="credits"/);
 });
 
+test("renderSections ignores the credits section's own authored background color, matching the original's fixed dark band", () => {
+  // Cascade always renders credits on its own #323232/#f8f8f8 band,
+  // regardless of what background color the author picked for the
+  // section — confirmed against the real viewer (docs/polish.md Phase H).
+  // An inline background-color here would otherwise sit under text
+  // styled for that fixed dark band and fail contrast.
+  const { html } = renderSections([
+    {
+      kind: "credits",
+      background: { type: "color", value: "#000" },
+      panels: [{ type: "blocks", blocks: [{ type: "text", html: "<p>Thanks</p>" }] }],
+    },
+  ]);
+  assert.match(html, /<section id="[^"]*" class="credits">/);
+  assert.doesNotMatch(html, /class="credits" style=/);
+});
+
 test("renderSections marks a sequence's media blocks for scroll reveal but leaves credits/immersive blocks alone", () => {
   const { html } = renderSections([
     {

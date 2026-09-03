@@ -157,10 +157,21 @@ test("full pipeline (fetch -> normalize -> localize -> render) produces a comple
     assert.ok(existsSync(path.join(outputDir, file)), `expected output file: ${file}`);
   }
 
+  // This story's theme uses Open Sans + Noto Serif — both get vendored,
+  // with every @font-face url() landing on a real file.
+  assert.deepEqual(manifest.meta.vendoredFonts, ["open_sans", "noto_serif"]);
+  const fontsCss = await readFile(path.join(outputDir, "assets/fonts/fonts.css"), "utf8");
+  for (const match of fontsCss.matchAll(/url\('([^']+)'\)/g)) {
+    assert.ok(existsSync(path.join(outputDir, "assets/fonts", match[1])), `missing vendored font file: ${match[1]}`);
+  }
+  assert.ok(existsSync(path.join(outputDir, "assets/fonts/open_sans/OpenSans-LICENSE.txt")));
+  assert.ok(existsSync(path.join(outputDir, "assets/fonts/noto_serif/DroidSerif-LICENSE.txt")));
+
   // No leftover template artifacts, and the story's real title made it through.
   const html = await readFile(path.join(outputDir, "index.html"), "utf8");
   assert.doesNotMatch(html, /undefined|\[object Object\]/);
   assert.match(html, /Idaho Dairy Industry/);
+  assert.match(html, /<link rel="stylesheet" href="assets\/fonts\/fonts\.css">/);
 
   // This story has no map sections, so Leaflet should not have been vendored.
   assert.equal(existsSync(path.join(outputDir, "assets/vendor/leaflet")), false);

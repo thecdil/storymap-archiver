@@ -36,10 +36,29 @@ function pct(ratio) {
 }
 
 /**
+ * `image.sizes` (Phase A's localizer) holds the responsive variants that
+ * actually landed on disk, largest first, each with a real pixel width —
+ * emit them as a `srcset` so a narrow viewport doesn't pay for the 2048px
+ * download. Only ever produced for background images with more than one
+ * localized variant; block images (a single file each) never have one.
+ */
+function srcsetAttr(sizes) {
+  const usable = (sizes ?? []).filter((size) => Number.isInteger(size.width) && size.width > 0);
+  if (usable.length < 2) return "";
+  return ` srcset="${usable.map((size) => `${escapeHtml(size.url)} ${size.width}w`).join(", ")}" sizes="100vw"`;
+}
+
+/**
  * A full-bleed background image honoring the author's `placement`
  * (docs/polish.md §1.6): `fill` keeps the chosen focal point in view while
  * covering the box; `fit` letterboxes the whole image over the builder's
  * sampled edge color. Shared by hero sections and immersive views.
+ *
+ * `options.mobilePos` (rare — no reference story sets it) is Cascade's
+ * narrow-viewport override of the horizontal crop only; the desktop
+ * position is baked into the `style` attribute as a graceful no-JS
+ * fallback, and `data-pos-x`/`data-pos-y`/`data-mobile-pos` let site.js
+ * swap just the X component in and out at the 767px breakpoint.
  */
 export function renderBackgroundImage(image) {
   if (!image?.url) return "";
@@ -48,15 +67,20 @@ export function renderBackgroundImage(image) {
   const alt = escapeHtml(htmlToPlainText(image.caption));
   const placement = image.options?.placement;
   const src = escapeHtml(image.url);
+  const srcset = srcsetAttr(image.sizes);
+  const mobilePos = image.options?.mobilePos;
 
   if (placement?.type === "fit") {
     const color = placement.fit?.color ? `background-color:${escapeHtml(placement.fit.color)};` : "";
-    return `<div class="background-fit" style="${color}"><img class="background-image" src="${src}" alt="${alt}" loading="lazy"></div>`;
+    const mobileAttrs = mobilePos ? ` data-mobile-pos="${escapeHtml(mobilePos)}" data-pos-x="50%" data-pos-y="50%"` : "";
+    return `<div class="background-fit" style="${color}"><img class="background-image" src="${src}"${srcset} alt="${alt}" loading="lazy"${mobileAttrs}></div>`;
   }
 
-  const position =
-    placement?.type === "fill" ? ` style="object-position:${pct(placement.fill.x)} ${pct(placement.fill.y)};"` : "";
-  return `<img class="background-image" src="${src}" alt="${alt}" loading="lazy"${position}>`;
+  const posX = placement?.type === "fill" ? pct(placement.fill.x) : "50%";
+  const posY = placement?.type === "fill" ? pct(placement.fill.y) : "50%";
+  const styleAttr = placement?.type === "fill" ? ` style="object-position:${posX} ${posY};"` : "";
+  const mobileAttrs = mobilePos ? ` data-mobile-pos="${escapeHtml(mobilePos)}" data-pos-x="${posX}" data-pos-y="${posY}"` : "";
+  return `<img class="background-image" src="${src}"${srcset} alt="${alt}" loading="lazy"${styleAttr}${mobileAttrs}>`;
 }
 
 function layerKey(layer, index) {

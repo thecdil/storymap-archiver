@@ -40,6 +40,28 @@
     run();
   }
 
+  // Cascade's rare per-image "mobile-pos" override: on narrow viewports,
+  // swap just the horizontal crop of a background image, keeping the
+  // vertical position the author picked (docs/polish.md §1.6). The
+  // rendered `style` attribute already has the desktop position baked in
+  // as a no-JS fallback; this only needs to react at the breakpoint, not
+  // on every scroll frame, so it stays off the shared scroll loop.
+  function initMobilePositions() {
+    var els = Array.prototype.slice.call(document.querySelectorAll("[data-mobile-pos]"));
+    if (els.length === 0) return;
+    var mq = window.matchMedia("(max-width: 767px)");
+    function apply() {
+      els.forEach(function (el) {
+        var x = mq.matches ? el.getAttribute("data-mobile-pos") : el.getAttribute("data-pos-x");
+        var y = el.getAttribute("data-pos-y") || "50%";
+        el.style.objectPosition = x + " " + y;
+      });
+    }
+    if (mq.addEventListener) mq.addEventListener("change", apply);
+    else if (mq.addListener) mq.addListener(apply);
+    apply();
+  }
+
   /* ---------- header, progress bar, cover ---------- */
 
   function initHeader() {
@@ -337,6 +359,10 @@
     function updatePartial(panel, state) {
       var card = panel.querySelector(".imm-card");
       if (!card) return;
+      if (reduceMotion) {
+        card.style.opacity = 1;
+        return;
+      }
       var rect = card.getBoundingClientRect();
       card.style.opacity = engine.scrollPartialOpacity(rect.top, rect.bottom, state.windowHeight);
     }
@@ -387,6 +413,7 @@
     if (!engine) return;
     initHeader();
     initScrollInvite();
+    initMobilePositions();
     initNavHighlighting();
     initSequenceReveal();
     initMaps();

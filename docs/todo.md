@@ -262,6 +262,19 @@ inspection alone:
 
 ## Phase 5 — Render the new static site ✅
 
+**Note:** this phase's "recreate the core interactions" work below was a
+first pass (cover, immersive panels, nav) using approximated CSS numbers
+and a system-font fallback — real, but not yet checked against a *live*
+original story pixel-for-pixel, and missing the scroll-driven background
+cross-fades/swipes, title bands, and vendored theme fonts entirely. That
+deeper pass — including catching and fixing a real ~40% oversized cover
+title (an `em` value that doesn't scale the way it first appears against
+Cascade's actual font-size cascade) and a credits-section contrast bug,
+both found only by comparing screenshots against the live original viewer —
+is `docs/polish.md`, kept as its own document since it's a large, separate
+effort. Read this phase's notes for the original pipeline decisions; read
+`docs/polish.md` for the interaction/typography fidelity work.
+
 - [x] Build fresh, semantic, accessible HTML/CSS from the manifest — not a
       reskin of Cascade's markup. Target: correct landmarks/heading order,
       keyboard-navigable scroll/immersive interactions, `prefers-reduced-motion`

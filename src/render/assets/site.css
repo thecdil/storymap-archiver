@@ -18,11 +18,12 @@ html {
   html {
     scroll-behavior: auto;
   }
-  * {
-    animation-duration: 0.001ms !important;
-    transition-duration: 0.001ms !important;
-  }
 }
+
+/* Every other reduced-motion override lives next to the rule it turns
+   off (search "prefers-reduced-motion" — the header/progress bar are the
+   deliberate exception: their continuous scroll-driven updates aren't
+   decorative motion, so they're left alone). */
 
 body {
   margin: 0;
@@ -142,7 +143,10 @@ button:focus-visible {
 }
 
 .story-title {
-  font-size: 2.1em;
+  /* px, not the original's `2.1em` — see the .cover-title comment above
+     for why: measured 29.4px against the real viewer (2.1em × an
+     effective 14px ancestor basis, not the 16px default root). */
+  font-size: 29.4px;
   line-height: 38px;
   height: 42px;
   margin-left: 14px;
@@ -151,12 +155,22 @@ button:focus-visible {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: opacity 1s linear;
+  visibility: visible;
+  /* `visibility` only flips the instant the *reverse* (fade back in)
+     transition starts — so it's gone from the accessibility tree while
+     compact, but never disappears mid-fade on the way out. A pa11y pass
+     flagged this as 0-contrast (invisible) text without it; the original
+     viewer has the exact same gap (plain `opacity: 0`, still fully in the
+     tree) — fixed here rather than reproduced, per this project's
+     accessibility aim. */
+  transition: opacity 1s linear, visibility 0s linear 0s;
 }
 
 .story-header.compact .story-title {
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
+  transition: opacity 1s linear, visibility 0s linear 1s;
 }
 
 .story-bookmarks {
@@ -220,7 +234,7 @@ button:focus-visible {
 
 @media (max-width: 767px) {
   .story-title {
-    font-size: 1.3em;
+    font-size: 18.2px;
     margin-left: 5px;
   }
   .story-bookmarks {
@@ -331,8 +345,17 @@ main > section {
   min-width: 300px;
 }
 
+/* Pixel values below (not the `7em`/`1.7em` the original template's own
+   source uses) — Cascade's cover title/subtitle sizes turn out to depend
+   on a compounding chain of ancestor font-sizes (a 10px root plus at
+   least one 14px-equivalent ancestor in between), not a clean multiple of
+   the 16px default; reproducing the `em` numbers verbatim rendered
+   ~1.4x too large (measured on the real viewer: 112px vs the original's
+   98px at 1440px wide) and wrapped titles onto an extra line. These are
+   the actual computed sizes measured directly against the original
+   viewer at each breakpoint (docs/polish.md Phase H). */
 .cover-title {
-  font-size: 7em;
+  font-size: 98px;
   line-height: 1.2;
   font-weight: 300;
   margin: 0;
@@ -340,7 +363,7 @@ main > section {
 }
 
 .cover-subtitle {
-  font-size: 1.7em;
+  font-size: 27px;
   line-height: 1.4;
   margin: 30px 0 0;
   overflow-wrap: break-word;
@@ -348,16 +371,19 @@ main > section {
 
 @media (max-width: 1200px) {
   .cover-title {
-    font-size: 5em;
+    font-size: 70px;
+  }
+  .cover-subtitle {
+    font-size: 23.8px;
   }
 }
 
 @media (max-width: 767px) {
   .cover-title {
-    font-size: 2.7em;
+    font-size: 37.8px;
   }
   .cover-subtitle {
-    font-size: 1.1em;
+    font-size: 15.4px;
     margin-top: 10px;
   }
   .hero-cover .text-background.background-light,
@@ -477,6 +503,12 @@ main > section {
   }
   50% {
     opacity: 0.6;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-invite-btn {
+    animation: none;
   }
 }
 
@@ -647,6 +679,12 @@ figure.block-image-gallery figcaption {
 
 .sequence-content [data-reveal].bring-in {
   animation: fade-in-media 1s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sequence-content [data-reveal].bring-in {
+    animation: none;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -1000,7 +1038,9 @@ figure.block-image-gallery figcaption {
     line-height: 1.5;
   }
   .immersive-title h2 {
-    font-size: 1.4em;
+    /* px, not the original's `1.4em` (measured against the real viewer —
+       see the .cover-title comment). */
+    font-size: 23.52px;
   }
 }
 
@@ -1019,12 +1059,20 @@ figure.block-image-gallery figcaption {
 .credits {
   padding: 4rem 1.5rem;
   text-align: center;
-  background-color: var(--bg-main);
+  /* Fixed, not theme-driven — matches the original, which renders every
+     credits section on this same dark band regardless of the story's
+     theme or the section's own authored background color. */
+  background-color: #323232;
+  color: #f8f8f8;
 }
 
 .credits-content {
   max-width: 34rem;
   margin: 0 auto;
+}
+
+.credits-content a {
+  color: #56a5d8;
 }
 
 .credits-list {
@@ -1100,5 +1148,107 @@ table.map-popup td {
      `.leaflet-container a` color rule of equal specificity, which would
      otherwise win purely on source order. */
   color: #0b4f8a !important;
+}
+
+/* Print: nothing here is interactive on paper, so unpin every sticky
+   stage, stop hiding backgrounds/panels behind scroll state, and force
+   plain black-on-white everywhere a component set its own light-on-dark
+   or translucent-over-photo colors for the screen. `100vh` sections
+   (cover/title/immersive) get a fixed printed height instead — literal
+   100vh would burn a full page on every one of them. */
+@media print {
+  .skip-link,
+  .story-header,
+  .story-progress,
+  .scroll-invite,
+  .immersive-swipe-edge,
+  .leaflet-control-container {
+    display: none !important;
+  }
+
+  /* This was `inset: 0` against the sticky stage as a solid backdrop
+     while later views loaded in behind it — once the stage is unpinned
+     below, its containing block becomes the whole (now much taller)
+     section, so it would stretch to cover the title and panels below it
+     with an opaque rectangle. Purely a sticky-stage artifact; print has
+     no use for it. */
+  .immersive-filler {
+    display: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-cover {
+    position: static;
+  }
+
+  .hero,
+  .title-band {
+    min-height: 0;
+    height: 3in;
+    page-break-inside: avoid;
+  }
+
+  .immersive-stage {
+    position: static;
+    height: auto;
+    overflow: visible;
+  }
+
+  /* Was absolutely positioned to fill a sticky stage; `position: relative`
+     (not `static`) keeps it in normal flow while still giving its own
+     absolutely-positioned image/map child a box to fill. */
+  .immersive-bg {
+    position: relative;
+    height: 3in;
+    margin-bottom: 10px;
+    opacity: 1 !important;
+    visibility: visible !important;
+    page-break-inside: avoid;
+  }
+
+  .immersive-title {
+    position: static;
+    opacity: 1 !important;
+    margin-bottom: 10px;
+  }
+
+  .immersive-panels {
+    margin-top: 0;
+  }
+
+  .imm-panel {
+    min-height: 0;
+    padding: 0 0 20px;
+  }
+
+  .imm-panel.layout-scroll-full:not(.bring-in),
+  .imm-panel.layout-scroll-partial .imm-card,
+  .sequence-content [data-reveal]:not(.bring-in) {
+    opacity: 1 !important;
+  }
+
+  /* These normally rely on a CSS background-color alone for contrast
+     (over a photo, or assuming a dark/light theme) — printers commonly
+     skip background colors by default, so force one that will actually
+     print, and force text dark enough to read on plain paper regardless. */
+  .imm-card,
+  .text-background {
+    background: #fff !important;
+    color: #000 !important;
+    text-shadow: none !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .hero,
+  .title-band,
+  .immersive-panels,
+  .background-unavailable,
+  .background-unsupported {
+    color: #000 !important;
+  }
 }
 

@@ -5,6 +5,7 @@
  * at a list of scroll offsets.
  *
  *   node scripts/screenshot.js <url> <outDir> [--width 1440] [--height 900] [--scroll 0,900,1800] [--chromium path]
+ *     [--media screen|print] [--reduced-motion]
  *
  * <url> may be an http(s) URL (e.g. `pnpm dev` serving an output folder, or
  * the original Cascade viewer per docs/use-cascade.md) or a file:// URL.
@@ -26,6 +27,8 @@ const { values, positionals } = parseArgs({
     scroll: { type: "string", default: "0" },
     chromium: { type: "string", default: process.env.CHROMIUM ?? "chromium" },
     settle: { type: "string", default: "700" },
+    media: { type: "string", default: "screen" },
+    "reduced-motion": { type: "boolean", default: false },
   },
 });
 
@@ -123,6 +126,10 @@ try {
   await cdp.send("Page.enable");
   await cdp.send("Runtime.enable");
   await cdp.send("Emulation.setDeviceMetricsOverride", { width, height, deviceScaleFactor: 1, mobile: false });
+  await cdp.send("Emulation.setEmulatedMedia", {
+    media: values.media,
+    features: values["reduced-motion"] ? [{ name: "prefers-reduced-motion", value: "reduce" }] : [],
+  });
 
   const loaded = new Promise((r) => cdp.on("Page.loadEventFired", r));
   await cdp.send("Page.navigate", { url });

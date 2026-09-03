@@ -101,6 +101,44 @@ test("renderBackground renders an image with its fill focal point / fit letterbo
   assert.doesNotMatch(plain.html, /style=|background-fit/);
 });
 
+test("renderBackground emits a srcset from localized size variants, largest first, only when there's more than one", () => {
+  const multi = renderBackground({
+    type: "image",
+    image: {
+      url: "assets/images/big.jpg",
+      caption: "",
+      sizes: [
+        { url: "assets/images/big.jpg", width: 2048, height: 1137 },
+        { url: "assets/images/small.jpg", width: 1024, height: 569 },
+      ],
+    },
+  });
+  assert.match(multi.html, /srcset="assets\/images\/big\.jpg 2048w, assets\/images\/small\.jpg 1024w" sizes="100vw"/);
+
+  const single = renderBackground({
+    type: "image",
+    image: { url: "assets/images/only.jpg", caption: "", sizes: [] },
+  });
+  assert.doesNotMatch(single.html, /srcset/);
+});
+
+test("renderBackground carries options.mobilePos as data attributes for site.js to swap in on narrow viewports", () => {
+  const withFill = renderBackground({
+    type: "image",
+    image: { url: "a.jpg", caption: "", options: { placement: { type: "fill", fill: { x: 0.25, y: 0.75 } }, mobilePos: "10%" } },
+  });
+  assert.match(withFill.html, /data-mobile-pos="10%" data-pos-x="25%" data-pos-y="75%"/);
+
+  const withFit = renderBackground({
+    type: "image",
+    image: { url: "b.jpg", caption: "", options: { placement: { type: "fit", fit: { color: "#eee" } }, mobilePos: "80%" } },
+  });
+  assert.match(withFit.html, /data-mobile-pos="80%" data-pos-x="50%" data-pos-y="50%"/);
+
+  const withoutMobilePos = renderBackground({ type: "image", image: { url: "c.jpg", caption: "" } });
+  assert.doesNotMatch(withoutMobilePos.html, /data-mobile-pos/);
+});
+
 test("renderBackground shows a clear placeholder for an unavailable webmap instead of an empty map", () => {
   const result = renderBackground({ type: "webmap", unavailable: true });
   assert.match(result.html, /background-unavailable/);

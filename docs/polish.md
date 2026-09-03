@@ -593,84 +593,301 @@ Findings:
   so a stray `cd` writes the site somewhere unexpected. Nothing to change
   in the tool — just run it from the repo root.
 
-### Phase F — Image fidelity and fonts
+### Phase F — Image fidelity and fonts ✅
+
+`src/render/background.js`, `src/assets/vendor.js`, `src/assets/localize.js`,
+`src/render/site.js`, `site.js`.
 
 - [x] `renderBackground` (image): `object-position: x% y%` for `fill`
       placement; `fit` → `.background-fit` wrapper with `fit.color` and
       `object-fit: contain`. Cover/title/immersive share it (done in
       Phase E).
-- [ ] Apply `mobile-pos` via a `data-mobile-pos` attribute read by a
-      `(max-width: 767px)` rule or by JS (none of the reference stories
-      set it).
-- [ ] Use the largest fetched variant for backgrounds (Phase A); emit
-      `srcset`/`sizes` when multiple variants were fetched. Never
-      resample images in the pipeline (no `sharp`); fidelity comes from
-      picking the right source file.
-- [ ] Vendor fonts: copy the `open_sans` (Light/LightItalic/Semibold/
-      SemiboldItalic, latin + latin-ext) and `noto_serif` (400/700
-      normal/italic, latin + latin-ext) `.woff2` files from
-      `Storymaps-Cascade-1.23.0/resources/...` into `assets/fonts/`, with
-      the two license files, and write `@font-face` rules using the *theme's
-      family names* (`'open_sans'`, `'noto_serif'`) with the same
-      weight mapping (400→Light, 700→Semibold) and `font-display: swap`. Only
-      copy families the story's theme actually references; other subsets
-      (cyrillic, greek, vietnamese) only when the text contains those ranges
-      — simplest first cut: latin + latin-ext always, others never, and log
-      a warning if non-Latin text is detected.
-- [ ] `themeMajor: "dark"`: swap `--bg-main`-driven fills to `#0E0E0E`
-      (sequence, filler, title band fallback) and body text to the theme's
-      `textMain`.
+- [x] `mobile-pos`: `renderBackgroundImage` emits `data-mobile-pos`,
+      `data-pos-x`, `data-pos-y` alongside the desktop `style=` fallback;
+      `initMobilePositions()` in site.js swaps just the X component via
+      `matchMedia("(max-width: 767px)")` (not the scroll loop — it's a
+      breakpoint event, not a per-frame one). Untested against a real
+      story (none of the 3 references set it) but covered directly in
+      `background.test.js`.
+- [x] `srcset`/`sizes`: `renderBackgroundImage` emits `srcset` from
+      `image.sizes` (Phase A's localized variants, largest first) whenever
+      there's more than one, `sizes="100vw"`. No resampling — the variant
+      files are exactly what Unsplash/Flickr served and Phase A downloaded.
+- [x] Fonts: `vendorFonts(outputDir, theme)` (new, `src/assets/vendor.js`)
+      copies only the family(ies) the story's theme actually references —
+      checked against Cascade's real, complete `THEME_FONT_OPTIONS` list
+      (Open Sans, Noto Serif, Georgia, Arial; the latter two are plain
+      system fonts needing nothing) — into `assets/fonts/<family>/`
+      alongside the license covering those files, and writes
+      `assets/fonts/fonts.css` with `@font-face` rules under the theme's
+      own family name and `font-display: swap`. `localizeAssets` calls it
+      unconditionally and stores the result as `manifest.meta.vendoredFonts`;
+      `renderHead` links the stylesheet only when that list is non-empty.
+      A theme naming a family that's neither vendorable nor a known system
+      font gets a warning instead of silently falling back. A separate
+      warning fires if the story's own text contains a character outside
+      the vendored subset's coverage (`hasUnsupportedGlyphs`).
+- [x] `themeMajor: "dark"`: turned out to need almost no new code. Every
+      section that fills with the theme's background (`.sequence`,
+      `.credits`, `.title-band`, `.immersive-stage`/`.immersive-filler`,
+      `body`) already reads `--bg-main`/`--text-main`, which `themeStyle()`
+      sets directly from the theme's own `colors.bgMain`/`textMain` — and
+      Cascade's real dark preset (`white-on-black-1`) sets those to
+      `#0E0E0E`/`#DDD` itself, so a dark story already themes correctly with
+      zero extra CSS. Added one defensive fallback in `themeStyle()`:
+      if `themeMajor === "dark"` but `bgMain`/`textMain` are missing,
+      default to those same values rather than silently falling through
+      to the light-theme default.
+- [x] Tests: `test/vendor.test.js` (new, 7 cases: family detection,
+      dedup, unvendorable warning, glyph detection, and `vendorFonts`
+      actually writing real files + `@font-face` rules whose `url()`s all
+      resolve), `test/background.test.js` (+2: srcset, mobile-pos data
+      attributes), `test/site.test.js` (+2: conditional fonts link, dark
+      fallback), `test/pipeline.test.js` (Dairy Drought's real theme
+      vendors both families with every font file present on disk). 108
+      tests green.
+- Verified live: regenerated Dairy Drought (open_sans + noto_serif theme)
+  and screenshotted the cover — Open Sans Light and Noto Serif are
+  visibly rendering (distinct rounded sans / serif faces, not the system
+  fallback) — and confirmed `srcset="...2048w, ...1024w"` on real
+  Unsplash backgrounds in the output HTML. Re-ran Syringa afterward: still
+  exactly the same 10 (pre-existing, webmap-related) warnings — no new
+  font warnings, confirming the theme-detection path is clean for real
+  stories.
 
-### Phase G — Motion, accessibility, and responsiveness pass
+Findings:
 
-- [ ] Replace the global `* { animation-duration: 0.001ms }` reduced-motion
-      rule with targeted rules: no `fade-in-media`, no background
-      cross-fade, no swipe, no scroll-invite blink, `scroll-behavior: auto`;
-      the header/progress bar can keep instantaneous updates.
-- [ ] Never hide narrative text with `visibility: hidden` or `display:
-      none` for animation purposes — `opacity` only — so screen readers,
-      find-in-page, and print all see the full story. Backgrounds (images,
-      maps) *may* use `visibility` since they're decorative or duplicated.
-- [ ] Immersive panels get `role="complementary"`? The original does this,
-      but it's semantically wrong for primary narrative; use plain `<div>`
-      inside the `<section>` and rely on heading structure instead.
-- [ ] Keyboard: scroll-invite is a `<button>`; bookmarks are links; map
-      containers are focusable only when interaction is enabled.
-- [ ] Breakpoints: `< 768px` mobile (`2.7em` cover title, `34px` band
-      title, centered 100%-width panels, `16px` sequence text), `< 1025px`
-      tablet (50% columns). Prefer `clamp()` for font sizes but keep the
-      endpoints matching the original.
-- [ ] Print stylesheet (small): unpin stages, show all backgrounds inline,
-      full opacity everywhere. Cheap and makes the archive PDF-able.
+- **The original CSS's own `unicode-range` for its "latin" subset files is
+  corrupted** — literally `unicode-range:U+370-3FF,U00,U+131,...` where
+  `U00` has no codepoints and is invalid, which makes browsers discard the
+  *entire* `unicode-range` value for that rule (per spec, one invalid
+  entry invalidates the whole list) and match it against everything. So
+  faithfully reproducing Cascade's declarations verbatim would've meant
+  reproducing a bug. Treated the "latin" files as universal (no
+  `unicode-range` at all) instead, which is both simpler and matches what
+  actually happens in real browsers today.
+- **Scope cut: latin only, not latin + latin-ext.** The plan's original
+  "simplest first cut" said vendor both; implementing it turned out to
+  require the latin-ext `@font-face` rules to be declared *before* the
+  latin ones (CSS resolves a character to the first source-order rule
+  whose `unicode-range` matches it, and latin's un-restricted range would
+  otherwise shadow latin-ext for every codepoint they share). Latin alone
+  — Basic Latin + Latin-1 Supplement, i.e. plain English/French/German/
+  Spanish including common accents (é, ñ, ü) — covers all 3 reference
+  stories and the large majority of realistic English-language digital-
+  collection content; Latin Extended-A/B (Polish, Czech, Turkish-specific
+  letters) is the actual gap, caught by `hasUnsupportedGlyphs` and
+  surfaced as a migration warning rather than silently mis-rendered.
+  Revisit if a real story trips that warning.
+- Cascade's builder (`THEME_FONT_OPTIONS`) only ever offers 4 fonts —
+  confirmed by reading the actual builder source rather than assuming
+  from the 3 (identical-theme) reference fixtures, which all use the same
+  preset and wouldn't have surfaced Georgia/Arial or a custom-family edge
+  case on their own.
+- The Noto Serif license file in Cascade's own tree is named
+  `DroidSerif-LICENSE.txt` (Droid Serif was an earlier release of the same
+  family, same Apache-2.0 terms) — carried over under that original name
+  rather than renamed, to stay traceable to source.
 
-### Phase H — Verification
+### Phase G — Motion, accessibility, and responsiveness pass ✅
 
-- [ ] **Side-by-side screenshots.** Bring back the throwaway CDP harness
-      from Phase 5 as a checked-in dev script (`scripts/screenshot.js`,
-      Node ≥ 22 native `WebSocket`, system Chromium, no npm dependency) that,
-      given a URL and a list of scroll offsets, writes PNGs. Run it against
-      the original viewer (`docs/use-cascade.md`) and the new output for all
-      three fixtures at the same viewport (1440×900, 1024×768, 390×844) and
-      the same scroll positions; compare visually. Record the notable
-      remaining differences in this doc.
-- [ ] **Unit tests**: `transitions.test.js` (rule table), `sections.test.js`
-      (immersive DOM shape: one bg per unique media, `data-view` mapping,
-      panel classes, empty-panel omission, title band size classes, bookmark
-      nav omitted when none enabled), `background.test.js` (placement
-      styles, `srcset`), `blocks.test.js` (`block-size-*`, portrait),
-      `normalize.test.js` (new fields), `pipeline.test.js` (fonts and
-      largest-variant image present on disk).
-- [ ] **Behavior tests** for `site.js` logic: extract the pure functions
-      (active-view selection, scroll-full threshold, scroll-partial ramp,
-      swipe edge, header-compact rule) into `src/render/assets/engine.js`
-      that `site.js` imports at build time (concatenate or emit as a second
-      `<script>`), so they run under `node --test` with synthetic
-      rects — no browser needed.
-- [ ] Re-run `pa11y` (WCAG2AA) on all three outputs; the card-alpha decision
-      in Phase E is settled here.
-- [ ] Update `README.md` (aims: "recreate the original Cascade theme
-      interactions" now true; note fonts/licenses in the output) and
-      `docs/todo.md` Phase 5 notes to point here.
+`src/render/assets/site.css`, `site.js`, `scripts/screenshot.js`.
+
+- [x] The global `* { animation-duration: 0.001ms !important; transition-
+      duration: 0.001ms !important }` rule is gone, replaced by a small
+      `@media (prefers-reduced-motion: reduce)` block next to each
+      decorative effect: `.scroll-invite-btn{animation:none}`,
+      `.sequence-content [data-reveal].bring-in{animation:none}`,
+      `.immersive-bg`/`.immersive-title{transition:none}`,
+      `.imm-panel.layout-scroll-full.bring-in{animation:none}`. Swipe was
+      already JS-gated (`reduceMotion` skips `swipeClip` entirely, Phase
+      E); added the same guard to the scroll-partial ramp
+      (`updatePartial` now just sets `opacity:1` under reduced motion —
+      not literally listed in the plan bullet, but the same class of
+      continuous scroll-linked effect as swipe, so treated the same way).
+      Header/progress-bar transitions deliberately untouched, per the
+      plan — their updates are state indicators, not decoration.
+- [x] Verified (didn't need to add) — no narrative text ever uses
+      `visibility`/`display:none` to hide/reveal: grepped every use in
+      site.css; the only two `visibility:hidden`/`display:none` outside
+      backgrounds (which are allowed to use it) are the header's own
+      bookmark nav and tagline link, both navigation chrome hidden by
+      screen size or scroll state, never narrative content.
+- [x] Verified (already true) — no `role="complementary"` (or any role)
+      was ever added to `.imm-panel`; panels are plain `<div>`s.
+- [x] Verified (already true) — scroll-invite is a `<button>` (Phase B);
+      bookmarks are `<a>` (Phase B); Leaflet's own `keyboard` option is
+      already wired to `interaction !== false` (Phase E), so a
+      non-interactive map never gets `tabindex` in the first place.
+- [x] Verified (already true) — every breakpoint value the plan quotes
+      was already in place from Phases B–D. **Skipped `clamp()`**: Cascade
+      itself uses hard breakpoints, not fluid scaling, so converting would
+      be a deviation done purely for modernization's sake, touching many
+      verified numbers for a "prefer" (not required) bullet — not worth
+      the risk this pass; revisit as a standalone, narrowly-scoped change
+      if wanted later.
+- [x] Print stylesheet (`@media print`, new): unpins `.hero-cover` and
+      `.immersive-stage` (`position: static`), gives every full-viewport
+      section a fixed `3in` height instead of `100vh` (which in print
+      means one full *page* per section), forces `.imm-card`/
+      `.text-background` to a real white background + black text with
+      `print-color-adjust: exact` (translucent-over-photo/theme-driven
+      light text would otherwise be invisible or unreliable — printers
+      commonly skip CSS background colors by default; real `<img>`
+      backgrounds print regardless), hides chrome that makes no sense on
+      paper (header, progress bar, scroll invite, swipe edge, Leaflet's
+      zoom control).
+- [x] `scripts/screenshot.js` gained `--media screen|print` and
+      `--reduced-motion` (via CDP `Emulation.setEmulatedMedia`) to make
+      this phase's own claims checkable, not just asserted.
+- [x] Tests: `test/site-css.test.js` (new, 4 cases) checks the *text* of
+      site.css (there's no CSS engine in this suite) for the specific
+      properties above, including a brace-balanced block extractor so a
+      multi-rule `@media` block can't silently truncate the check. 112
+      tests green.
+
+Findings:
+
+- **A real, non-obvious print bug, caught only by screenshotting, not by
+  reading the CSS.** `.immersive-filler` is
+  `position: absolute; inset: 0` against the *sticky stage* as a solid
+  backdrop while other views load in behind it. Once print unpins the
+  stage (`position: static`), that same `inset: 0` re-resolves against
+  the next positioned ancestor up — the whole `.immersive` section, now
+  much taller — so the filler silently stretched to cover the title and
+  every panel below it with an opaque rectangle. The immersive title
+  rendered with entirely correct computed styles (confirmed via a CDP
+  `getComputedStyle` probe: black text, white box, right position) and
+  still didn't appear on screen, because something *else*, painted later
+  due to CSS's positioned-elements-paint-after-static-content rule,
+  covered it. Fixed by hiding `.immersive-filler` outright for print —
+  it only ever existed for the sticky-stage illusion, which print doesn't
+  use. This is exactly the kind of bug `docs/todo.md`'s Phase 5 notes
+  already flagged as a pattern (grep/DOM checks don't show it, only a
+  screenshot does) — reconfirmed here for a second, unrelated bug.
+- **A workflow trap worth naming**: the first two verification attempts
+  showed the *pre-fix* CSS even after editing the source, because
+  `pnpm migrate` copies `site.css` into the output folder at generation
+  time — editing `src/render/assets/site.css` does nothing to an
+  already-generated `output/<project>/assets/css/site.css` until you
+  re-run migrate. Cost real time to notice; worth remembering for any
+  future CSS-only fix.
+- Confirmed via a temporary revert-and-rerun that the new
+  `test/site-css.test.js` regression test actually fails without the
+  `.immersive-filler` fix (not just a test that happens to pass) — the
+  discipline the earlier bug argued for.
+
+### Phase H — Verification ✅
+
+- [x] **Side-by-side screenshots.** `scripts/screenshot.js` already existed
+      (built in Phase B, extended in E/G with `--media`/`--reduced-motion`).
+      Ran the real, live original viewer (`docs/use-cascade.md`, a local
+      `python3 -m http.server` in `Storymaps-Cascade-1.23.0/`, hitting the
+      real ArcGIS Sharing REST API — internet access confirmed available)
+      side by side with freshly-regenerated output for all 3 fixtures:
+      covers, the first sequence, an immersive lead-in/panel, and a title
+      band, at 1440×900 (the width where the worst bug below only shows up)
+      plus a couple of 390×844 spot checks. Anchoring by our own generated
+      element IDs doesn't work against the original (it has no such IDs);
+      matched sections instead by DOM order (`.section:nth-of-type(N)` on
+      the original vs `main>section:nth-of-type(N)` on ours — both list
+      every story section in the same authored order).
+- [x] **Unit tests**: all of `transitions.test.js`, the `sections.test.js`
+      cases, `background.test.js` (placement, `srcset`), `blocks.test.js`
+      (`block-size-*`, portrait), `normalize.test.js` (new fields), and
+      `pipeline.test.js` (fonts, largest-variant image) were already
+      written incrementally in Phases A–F as each feature landed, rather
+      than batched here — confirmed all present and passing (113 tests).
+- [x] **Behavior tests**: `src/render/assets/engine.js` (pure scroll math)
+      and `test/engine.test.js` were already built in Phase E, exactly as
+      specified — nothing left to do here.
+- [x] **pa11y** (WCAG2AA, `htmlcs` runner, via `pnpm dlx pa11y` against a
+      system Chromium — pa11y's bundled Puppeteer Chrome download isn't
+      available in this environment, so pointed it at the system binary
+      via `chromeLaunchConfig.executablePath`) against all 3 real outputs.
+      **First pass found 2 real bugs** (below), both fixed; **re-run is
+      clean**: Syringa 0 errors; Loggerettes 1 (the header tagline link's
+      contrast while the header is transparent over the cover photo);
+      Dairy Drought 1 (an empty `<a>` inside Esri's own CC-license HTML,
+      pre-existing in the source item's `licenseInfo`, not introduced by
+      this project). Both remaining findings are documented, accepted
+      tradeoffs, not defects — see below.
+      **Card-alpha decision (deferred from Phase E) is settled**: `.75`
+      (the original's own value, already in place since Phase E) produces
+      *zero* contrast findings against `.imm-card` across all 3 real
+      stories. Keep it as-is; no reason to move toward the earlier,
+      more-opaque `.95–.97` compromise.
+- [x] Updated `README.md` (pointers to `docs/polish.md` from both
+      "Repository Contents" and the interactions aim; a note that vendored
+      fonts + their licenses ship in the output, nothing fetched from a
+      font CDN) and `docs/todo.md` (a note at the top of Phase 5 pointing
+      here, naming the two bugs below as concrete examples of what the
+      deeper pass caught that the original Phase 5 side-by-side didn't).
+
+Two real, previously-unknown bugs found by this side-by-side pass (not
+counted in earlier phases' own screenshot checks, which never compared
+against a *live* original story until now):
+
+1. **The cover title rendered ~40% too large and wrapped onto an extra
+   line.** Cascade's own CSS sets `.cover-title{font-size:7em}`, which this
+   project ported literally — but measuring the *actual rendered* original
+   (via a CDP `getComputedStyle` probe, not by reading more CSS) showed
+   `98px`, not the `112px` that `7em` resolves to against a plain 16px
+   root. Cascade's real cascade runs through at least one intermediate
+   ancestor with an effective `14px` `em`-basis (confirmed by the same
+   `7em × 14px = 98px` relationship holding at every breakpoint tested:
+   `5em`→`70px`, `2.7em`→`37.8px`), which this project's markup doesn't
+   reproduce (different DOM nesting). Rather than reverse-engineer *which*
+   ancestor and replicate the exact chain, every affected size
+   (`.cover-title`, `.cover-subtitle`, `.story-title` header, `.immersive-
+   title h2`'s mobile size) was switched from the original's `em` value to
+   its **measured, real pixel value** at each breakpoint — sidesteps the
+   whole class of "which ancestor's font-size is this relative to" bugs
+   for good. Confirmed after the fix: the title wraps onto the same 2
+   lines as the original, pixel-close.
+2. **Credits sections used the section's own authored background color**
+   (e.g. `#000`, whatever the author picked) **with the theme's default
+   text color**, which is only legible on a *light* page background —
+   giving 2.45:1 contrast (needs 4.5:1) whenever the author's chosen color
+   was dark. Checked the real viewer: Cascade **always** renders credits
+   on a fixed `#323232`/`#f8f8f8` dark band, completely ignoring whatever
+   background color the section itself carries (that color is not even
+   visible — it renders `rgba(0,0,0,0)` transparent behind the always-
+   opaque foreground band). Fixed by hardcoding that same fixed band in
+   `.credits`/`.credits-content` and dropping the inline
+   `background-color` for credits sections entirely.
+
+Also fixed, found by the pa11y pass rather than the screenshot comparison:
+`.story-title`'s compact-header fade used `opacity: 0` alone (matching the
+original exactly), which stays in the accessibility tree as 0-contrast
+"invisible" text rather than being genuinely hidden. Paired it with a
+delayed `visibility` toggle (`transition: opacity 1s, visibility 0s 1s` on
+the way out; no delay on the way in) — invisible to sighted users either
+way, but a real, cheap accessibility improvement *over* the original rather
+than a faithful reproduction of one of its gaps, matching this project's
+stated aim to modernize accessibility, not just replicate it as-is.
+
+Findings:
+
+- **A side-by-side comparison against a live original is qualitatively
+  different from reading its CSS.** Every earlier phase's "verified
+  against the original" note was really "verified by extracting and
+  reading the original's CSS/JS," which is exactly how the `em`-cascade
+  bug above got through 6 phases unnoticed — the extracted value (`7em`)
+  was correct, the *assumption* that it resolves the same way in a
+  differently-nested DOM was not. Worth remembering for any future CSS
+  port from a source you can't directly execute.
+- Both real bugs were things a purely-visual "does it look right" pass
+  could plausibly still miss at a glance (the title wrap only shows up
+  once you count lines; the credits contrast only shows up if you happen
+  to view a story with a dark authored credits color, and even then
+  reads as "a bit hard to read," not "obviously broken"). The pa11y pass
+  and the discipline of running an *automated pixel comparison* (matching
+  section by DOM order, not eyeballing) both earned their keep here.
+- `pnpm migrate` copies `site.css`/render output at generation time — a
+  reminder from Phase G's own findings that bit again here: every
+  screenshot comparison in this phase required re-running `migrate` after
+  a fix, not just re-screenshotting the old output.
 
 ## 5. Decisions to make up front
 

@@ -2,14 +2,15 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { renderDocument } from "../src/render/site.js";
 
-function manifest({ header = {}, sections }) {
+function manifest({ header = {}, theme = null, vendoredFonts = [], sections }) {
   return {
     meta: {
       title: "Flunkies & Loggerettes",
       snippet: "",
       sourcePortal: "www.arcgis.com",
       sourceAppid: "abc",
-      theme: null,
+      theme,
+      vendoredFonts,
       header: {
         logo: { enabled: false, url: null, builtin: false, link: null },
         link: { url: null, title: null },
@@ -66,4 +67,18 @@ test("renderDocument shows an enabled, localized logo but never the built-in Esr
     manifest({ header: { logo: { enabled: true, url: null, builtin: true, link: null } }, sections: [cover] }),
   );
   assert.doesNotMatch(builtin, /story-logo/);
+});
+
+test("renderDocument links the vendored fonts stylesheet only when localizeAssets actually vendored one", () => {
+  const withFonts = renderDocument(manifest({ vendoredFonts: ["open_sans", "noto_serif"], sections: [cover] }));
+  assert.match(withFonts, /<link rel="stylesheet" href="assets\/fonts\/fonts\.css">/);
+
+  const withoutFonts = renderDocument(manifest({ vendoredFonts: [], sections: [cover] }));
+  assert.doesNotMatch(withoutFonts, /assets\/fonts/);
+});
+
+test("renderDocument falls back to Cascade's own dark-theme colors when themeMajor is dark but bgMain/textMain are missing", () => {
+  const html = renderDocument(manifest({ theme: { colors: { themeMajor: "dark" } }, sections: [cover] }));
+  assert.match(html, /--story-bg-main: #0E0E0E;/);
+  assert.match(html, /--story-text-main: #DDD;/);
 });
