@@ -3,14 +3,15 @@
 In 2026 classic "Esri Story Maps" was retired (in favor of current "ArcGIS StoryMaps").
 The content and data for classic projects still exists, but is not available as a live story website. 
 
-storymap-archiver provides contains automated scripts for extracting and downloading the data and assets from existing projects and outputting a new self-contained static web version.
-Provide the ArcGIS "appid" for a retired Cascade Esri Story Map and the migrator will output a folder of standalone, static web files ready to deploy in a new location on a static server.
+storymap-archiver provides automated scripts for extracting and downloading the data and assets from existing projects and outputting a new self-contained static web version.
+Provide the ArcGIS "appid" for a retired Cascade Esri Story Map and the migrator will output a folder of standalone, static web files ready to deploy in a new location on any server.
 
 storymap-archiver aims to:
 
 - Capture and download retired content accurately to avoid loss of data.
 - Recreate the original Cascade theme interactions and presentation in a self-contained static web package with no external dependencies.
 - Improve the theme with modernized html, css, best practices, and accessibility to ensure long term useability.
+- It does not provide an editing interface or migration to a new platform.
 
 ## Use 
 
@@ -56,8 +57,9 @@ Run `pnpm migrate --help` or `pnpm dev --help` for the full list of options.
 
 ## Original Cascade Theme
 
-The folder "docs/Storymaps-Cascade-1.23.0" is the original Esri Story Maps Cascade layout for reference. 
-It can be used to view old stories in their original form for recovery or reference. 
+The folder "docs/Storymaps-Cascade-1.23.0" is the original Esri Story Maps Cascade package.
+This source is used by the migration script. 
+It can also be used to view old stories in their original form for reference or recovery. 
 See "docs/use-cascade.md" for info.
 
 ## Examples 
