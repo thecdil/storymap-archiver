@@ -115,7 +115,7 @@ async function downloadImageFile(url, source, { appid, portalHost, outputDir, ca
   if (cached) return cached;
 
   const { data, sourceName } = await fetchAssetBytes({ url, source, appid, portalHost });
-  const filename = localAssetFilename(sourceName, url);
+  const filename = localAssetFilename(sourceName, url, data);
   const relPath = `${IMAGES_DIR}/${filename}`;
   await mkdir(path.join(outputDir, IMAGES_DIR), { recursive: true });
   await writeFile(path.join(outputDir, IMAGES_DIR, filename), data);
