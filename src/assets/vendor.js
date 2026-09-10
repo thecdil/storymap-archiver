@@ -22,7 +22,7 @@ export async function vendorLeaflet(outputDir) {
 
 const CASCADE_RESOURCES = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
-  "../../Storymaps-Cascade-1.23.0/resources",
+  "../../docs/Storymaps-Cascade-1.23.0/resources",
 );
 
 /**
