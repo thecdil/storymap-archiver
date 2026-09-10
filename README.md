@@ -19,7 +19,7 @@ storymap-archiver aims to:
 
 To use storymap-archiver, you will need [pnpm](https://pnpm.io/) (as node package manager).
 
-To install storymap-archiver's dependencies, open a terminal in this repository and type
+To install storymap-archiver's dependencies, open a terminal in this repository and type:
 
 `pnpm install`
 
@@ -44,7 +44,7 @@ To install storymap-archiver's dependencies, open a terminal in this repository 
 The output folder is fully self-contained: images, map data, and webfonts are all stored locally in "assets/". 
 The only remaining live dependency is basemap tiles for any interactive map sections.
 
-### Full Options
+### Options
 
 Options:
 
@@ -69,7 +69,6 @@ Example retired projects:
 - Dairy Drought, https://uidaho.maps.arcgis.com/apps/Cascade/index.html?appid=545cd13f571b4ca087a3667951f9da44
 - Closure of Syringa, https://uidaho.maps.arcgis.com/apps/Cascade/index.html?appid=a459d05f5e2c4b5c9cd9e535e0c4afaa
 - Flunkies and Loggerettes, https://www.arcgis.com/apps/Cascade/index.html?appid=cd897eb9ea4c4544af3e1972ec924745
-- https://uidaho.maps.arcgis.com/home/item.html?id=8372c1acd90749a489cd937795d788a5#overview
 
 ## License
 

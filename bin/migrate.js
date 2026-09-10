@@ -147,7 +147,7 @@ async function main() {
     console.log();
   }
   console.log(`Done. New site written to output/${projectSlug}/`);
-  console.log(`Review it with: storymap-dev --dir output/${projectSlug}`);
+  console.log(`Review it with: pnpm dev --dir output/${projectSlug}`);
 }
 
 main().catch((err) => {

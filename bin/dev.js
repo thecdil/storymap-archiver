@@ -132,9 +132,24 @@ function createRequestHandler(rootDir) {
       return;
     }
 
+    const stats = await stat(filePath);
     const contentType = MIME_TYPES[path.extname(filePath).toLowerCase()] ?? "application/octet-stream";
-    res.writeHead(200, { "Content-Type": contentType });
-    createReadStream(filePath).pipe(res);
+    // Explicit Content-Length (instead of chunked) and no-store so the browser
+    // never serves a stale/ambiguous cached copy of a file we just edited.
+    res.writeHead(200, {
+      "Content-Type": contentType,
+      "Content-Length": stats.size,
+      "Cache-Control": "no-store",
+    });
+
+    const stream = createReadStream(filePath);
+    stream.on("error", () => {
+      if (!res.headersSent) {
+        res.writeHead(500, { "Content-Type": "text/plain; charset=utf-8" });
+      }
+      res.end();
+    });
+    stream.pipe(res);
   };
 }
 
