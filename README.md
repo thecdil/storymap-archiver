@@ -69,3 +69,8 @@ Example retired projects:
 - Dairy Drought, https://uidaho.maps.arcgis.com/apps/Cascade/index.html?appid=545cd13f571b4ca087a3667951f9da44
 - Closure of Syringa, https://uidaho.maps.arcgis.com/apps/Cascade/index.html?appid=a459d05f5e2c4b5c9cd9e535e0c4afaa
 - Flunkies and Loggerettes, https://www.arcgis.com/apps/Cascade/index.html?appid=cd897eb9ea4c4544af3e1972ec924745
+- https://uidaho.maps.arcgis.com/home/item.html?id=8372c1acd90749a489cd937795d788a5#overview
+
+## License
+
+Licensed under the Apache License, Version 2.0, copyright evanwill 2026.
