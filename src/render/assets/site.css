@@ -259,7 +259,6 @@ main > section {
 
 .text-background {
   display: inline-block;
-  max-width: 90%;
 }
 
 .text-background.background-light,
@@ -622,6 +621,8 @@ figure.block-image-gallery figcaption {
 
 .sequence-content figure.block-image img {
   min-width: 170px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .sequence-content figure.block-image.block-size-small {
