@@ -27,6 +27,8 @@ Options:
   --portal <host>      ArcGIS portal host to query, overriding the default
                      (www.arcgis.com, or the host from an --appid URL)
                      e.g. uidaho.maps.arcgis.com
+  --noindex           Add <meta name="robots" content="noindex, nofollow">
+                     to the rendered page (off by default)
   -h, --help          Show this help message
 `;
 
@@ -38,6 +40,7 @@ function parseCliArgs(argv) {
       site: { type: "string" },
       base: { type: "string" },
       portal: { type: "string" },
+      noindex: { type: "boolean", default: false },
       help: { type: "boolean", short: "h" },
     },
   });
@@ -65,6 +68,7 @@ async function main() {
     portalHost,
     site: args.site ?? null,
     base: args.base ?? null,
+    noindex: args.noindex ?? false,
   };
 
   console.log("storymap-archiver migrate");
@@ -130,7 +134,7 @@ async function main() {
   await writeFile(path.join(outputDir, "manifest.json"), JSON.stringify(manifest, null, 2));
 
   console.log("Rendering site...");
-  await renderSite(manifest, { outputDir, site: options.site, base: options.base });
+  await renderSite(manifest, { outputDir, site: options.site, base: options.base, noindex: options.noindex });
 
   console.log();
   if (allWarnings.length > 0) {

@@ -153,7 +153,7 @@ test("full pipeline (fetch -> normalize -> localize -> render) produces a comple
   assert.doesNotMatch(manifestText, /images\.unsplash\.com/, "remote size variants must not remain in the manifest");
 
   // The site's own static files should all be present.
-  for (const file of ["index.html", "manifest.json", "robots.txt", "assets/css/site.css", "assets/js/engine.js", "assets/js/site.js"]) {
+  for (const file of ["index.html", "manifest.json", "assets/css/site.css", "assets/js/engine.js", "assets/js/site.js"]) {
     assert.ok(existsSync(path.join(outputDir, file)), `expected output file: ${file}`);
   }
 

@@ -97,7 +97,7 @@ function renderFooter(meta) {
   return `<footer class="story-footer">${parts.join("\n")}</footer>`;
 }
 
-function renderHead({ meta, site, base }) {
+function renderHead({ meta, site, base, noindex }) {
   const title = escapeHtml(meta.title || "Untitled Story");
   const description = escapeHtml(meta.snippet || "");
   const canonicalUrl = site ? `${site.replace(/\/+$/, "")}${base ? `/${base.replace(/^\/+|\/+$/g, "")}` : ""}/` : null;
@@ -119,7 +119,7 @@ function renderHead({ meta, site, base }) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${title}</title>
   <meta name="description" content="${description}">
-  <meta name="robots" content="noindex, nofollow">
+  ${noindex ? '<meta name="robots" content="noindex, nofollow">' : ""}
   ${ogTags}
   ${themeStyle(meta.theme)}
   ${fontsLink}
@@ -140,7 +140,7 @@ export function renderDocument(manifest, options = {}) {
   return `<!doctype html>
 <html lang="en">
 <head>
-  ${renderHead({ meta: manifest.meta, site: options.site, base: options.base })}
+  ${renderHead({ meta: manifest.meta, site: options.site, base: options.base, noindex: options.noindex })}
   ${needsLeaflet ? '<link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">' : ""}
 </head>
 <body id="top">
@@ -159,13 +159,14 @@ ${sectionsHtml}
 }
 
 /**
- * Render the manifest to a complete static site in outputDir: index.html,
- * the site's CSS/JS, and a default noindex robots.txt. Assumes Phase 4
- * (localizeAssets) has already run — this step does no network access, it
- * only reads the manifest already sitting in memory/disk.
+ * Render the manifest to a complete static site in outputDir: index.html and
+ * the site's CSS/JS. Assumes Phase 4 (localizeAssets) has already run — this
+ * step does no network access, it only reads the manifest already sitting in
+ * memory/disk. `noindex` is opt-in (off by default): most migrations land at
+ * their own production URL and should be indexable like any other page.
  */
-export async function renderSite(manifest, { outputDir, site = null, base = null }) {
-  const html = renderDocument(manifest, { site, base });
+export async function renderSite(manifest, { outputDir, site = null, base = null, noindex = false }) {
+  const html = renderDocument(manifest, { site, base, noindex });
 
   await mkdir(path.join(outputDir, "assets/css"), { recursive: true });
   await mkdir(path.join(outputDir, "assets/js"), { recursive: true });
@@ -174,5 +175,4 @@ export async function renderSite(manifest, { outputDir, site = null, base = null
   await copyFile(path.join(ASSETS_DIR, "site.css"), path.join(outputDir, "assets/css/site.css"));
   await copyFile(path.join(ASSETS_DIR, "engine.js"), path.join(outputDir, "assets/js/engine.js"));
   await copyFile(path.join(ASSETS_DIR, "site.js"), path.join(outputDir, "assets/js/site.js"));
-  await writeFile(path.join(outputDir, "robots.txt"), "User-agent: *\nDisallow: /\n");
 }
