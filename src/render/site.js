@@ -86,12 +86,13 @@ ${bookmarks.map((item) => `        <li><a href="#${item.id}">${escapeHtml(item.l
 
 function renderFooter(meta) {
   const sourceUrl = `https://${meta.sourcePortal}/home/item.html?id=${meta.sourceAppid}`;
+  const currentYear = new Date().getFullYear();
   const parts = [];
   if (meta.credit) parts.push(`<p>${escapeHtml(meta.credit)}</p>`);
   if (meta.license) parts.push(`<div class="story-license">${meta.license}</div>`);
   parts.push(
-    `<p class="story-provenance">Archived from an Esri Story Map Cascade project. ` +
-      `<a href="${escapeHtml(sourceUrl)}">Original source item</a>.</p>`,
+    `<p class="story-provenance">Archived from an Esri Story Map Cascade project using <a href="https://github.com/thecdil/storymap-archiver">storymap-archiver</a> in ${currentYear}.` +
+      `<br><a href="${escapeHtml(sourceUrl)}">Original source item</a>.</p>`,
   );
   return `<footer class="story-footer">${parts.join("\n")}</footer>`;
 }
