@@ -21,6 +21,7 @@ To view the story:
 ## ArcGIS docs
 
 - [Cascade source](https://github.com/Esri/storymap-cascade/releases/tag/V1.23.0)
+- [MapJournal source](https://github.com/Esri/storymap-journal/releases/tag/1.31.0)
 - [view classic stories docs](https://community.esri.com/t5/arcgis-storymaps-blog/how-to-view-your-classic-esri-story-maps-after/ba-p/1599422)
 - [story maps retirement notes](https://community.esri.com/t5/arcgis-storymaps-blog/managing-the-classic-esri-story-maps-retirement-in/ba-p/1599398)
 - [story converter notebook](https://www.arcgis.com/home/item.html?id=bc35e93d5d374e1a9c3583be0cc9f1d7)
